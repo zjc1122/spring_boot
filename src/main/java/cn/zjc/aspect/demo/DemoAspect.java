@@ -16,7 +16,7 @@ import java.lang.reflect.Method;
 @Component
 public class DemoAspect {
 
-    @Pointcut("@annotation(cn.zjc.aspect.demo.Demo)")
+    @Pointcut("@annotation(cn.zjc.aspect.demo.Demo) && execution(* cn.zjc..*(..))" )
     private void demoPointCut() {
     }
     @Around("demoPointCut()")
