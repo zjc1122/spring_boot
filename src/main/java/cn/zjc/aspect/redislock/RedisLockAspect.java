@@ -75,7 +75,7 @@ public class RedisLockAspect  {
                     // 继续等待获取锁
                     if (lockInfo.action().equals(RedisLock.LockFailAction.CONTINUE)) {
                         // 如果超过最大等待时间抛出异常
-                        //log.info("稍后重新请求锁...");
+                        log.info("稍后重新请求锁...");
                         if (lockInfo.maxSleepMills() > 0 && System.currentTimeMillis() > maxSleepMills) {
                             throw new TimeoutException("获取锁资源等待超时");
                         }
