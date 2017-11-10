@@ -99,7 +99,7 @@ public class RedisConfig extends CachingConfigurerSupport{
     /**
      * Redis 连接
      */
-    private RedisConnectionFactory generateDevConnectionFactory() {
+    private RedisConnectionFactory generateConnectionFactory() {
         JedisConnectionFactory factory = new JedisConnectionFactory();
         factory.setHostName(masterHost);
         factory.setPort(masterPort);
@@ -127,7 +127,7 @@ public class RedisConfig extends CachingConfigurerSupport{
     }
     @Bean(name = "redisConnectionFactory")
     RedisConnectionFactory factory() {
-        return generateDevConnectionFactory();
+        return generateConnectionFactory();
     }
 
     /**

@@ -30,7 +30,7 @@ public class RedisApplicationTests {
 	private RedisTest redisTest;
 
 	@Test
-	public void testHello() throws InterruptedException {
+	public void secKill() throws InterruptedException {
 		for (int i = 0; i < 510; i++) {
 			new Thread(new Runnable() {
 
@@ -46,11 +46,11 @@ public class RedisApplicationTests {
 			}).start();
 		}
 
-		TimeUnit.SECONDS.sleep(20);
+		TimeUnit.SECONDS.sleep(10);
 	}
 
 	@Test
-	public void testHello2() throws InterruptedException{
+	public void sayHello() throws InterruptedException{
 		redisTest.seckill("xxxxx", 111111);
 		TimeUnit.SECONDS.sleep(3);
 	}
