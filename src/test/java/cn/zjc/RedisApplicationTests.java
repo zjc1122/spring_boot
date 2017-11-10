@@ -41,7 +41,7 @@ public class RedisApplicationTests {
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
-					redisTest.add("xxxxx", 111111);
+					redisTest.seckill("xxxxx", 111111);
 				}
 			}).start();
 		}
@@ -51,7 +51,7 @@ public class RedisApplicationTests {
 
 	@Test
 	public void testHello2() throws InterruptedException{
-		redisTest.add("xxxxx", 111111);
+		redisTest.seckill("xxxxx", 111111);
 		TimeUnit.SECONDS.sleep(3);
 	}
 }

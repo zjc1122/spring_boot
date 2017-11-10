@@ -13,7 +13,7 @@ public class RedisTest {
     private int i = 500;
 
     @RedisLock(value = "12345")
-    public void add(String key, int key1) {
+    public void seckill(String key, int key1) {
         System.out.println(Thread.currentThread().getName() + "获得了锁");
         i--;
         if(i>0){
