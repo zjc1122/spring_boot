@@ -1,4 +1,4 @@
-package cn.zjc.aspect.redislock;
+package cn.zjc.aspect.redisdistributedlock;
 
 import cn.zjc.rediscache.RedisUtil;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -26,7 +26,7 @@ public class RedisLockAspect  {
     private RedisUtil redisUtil;
     private static final Logger log = LoggerFactory.getLogger(RedisLockAspect.class);
 
-    @Pointcut("@annotation(cn.zjc.aspect.redislock.RedisLock) && execution(* cn.zjc..*(..))")
+    @Pointcut("@annotation(cn.zjc.aspect.redisdistributedlock.RedisLock) && execution(* cn.zjc..*(..))")
     private void lockPoint(){}
 
     @Around("lockPoint()")

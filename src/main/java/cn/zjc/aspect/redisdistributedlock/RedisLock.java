@@ -1,4 +1,4 @@
-package cn.zjc.aspect.redislock;
+package cn.zjc.aspect.redisdistributedlock;
 
 import java.lang.annotation.*;
 

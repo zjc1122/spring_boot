@@ -1,6 +1,5 @@
 package cn.zjc;
 
-import cn.zjc.aspect.redislock.RedisLock;
 import cn.zjc.test.RedisTest;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -11,7 +10,6 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
-import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.concurrent.TimeUnit;
@@ -41,7 +39,7 @@ public class RedisApplicationTests {
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
-					redisTest.seckill("xxxxx", 111111);
+					redisTest.getGoods("xxxxx", 111111);
 				}
 			}).start();
 		}
@@ -51,7 +49,7 @@ public class RedisApplicationTests {
 
 	@Test
 	public void sayHello() throws InterruptedException{
-		redisTest.seckill("xxxxx", 111111);
+		redisTest.getGoods("xxxxx", 111111);
 		TimeUnit.SECONDS.sleep(3);
 	}
 }
