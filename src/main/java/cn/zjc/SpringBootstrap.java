@@ -15,7 +15,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @SpringBootApplication
 @EnableAutoConfiguration
 @ComponentScan(basePackages = "cn.zjc")
-@PropertySource({"classpath:redis.properties"})
+@PropertySource({"classpath:redis.properties","classpath:zk.properties"})
 @EnableAsync
 @EnableScheduling
 public class SpringBootstrap {

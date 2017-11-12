@@ -1,6 +1,6 @@
 package cn.zjc;
 
-import cn.zjc.test.RedisTest;
+import cn.zjc.test.DistributedTest;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,37 +19,41 @@ import java.util.concurrent.TimeUnit;
 @SpringBootTest
 @EnableAutoConfiguration
 @ComponentScan(basePackages = "cn.zjc")
-@PropertySource({"classpath:redis.properties"})
+@PropertySource({"classpath:redis.properties","classpath:zk.properties"})
 @EnableAsync
 @EnableScheduling
 public class RedisApplicationTests {
 
 	@Autowired
-	private RedisTest redisTest;
+	private DistributedTest distributedTest;
 
 	@Test
 	public void secKill() throws InterruptedException {
-		for (int i = 0; i < 510; i++) {
+		int k=10;
+		for (int i = 0; i < 50; i++) {
 			new Thread(new Runnable() {
 
 				@Override
 				public void run() {
 					try {
-						TimeUnit.SECONDS.sleep(1);
+						TimeUnit.SECONDS.sleep(10);
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
-					redisTest.getGoods("xxxxx", 111111);
+					distributedTest.getGoods("xxxxx", 111111);
+					//System.out.println("我是第" + k + "号线程，我开始获取锁");
 				}
 			}).start();
+			Thread.sleep(2000);
+
 		}
 
-		TimeUnit.SECONDS.sleep(10);
+		TimeUnit.SECONDS.sleep(3);
 	}
 
 	@Test
 	public void sayHello() throws InterruptedException{
-		redisTest.getGoods("xxxxx", 111111);
+		distributedTest.getGoods("xxxxx", 111111);
 		TimeUnit.SECONDS.sleep(3);
 	}
 }
