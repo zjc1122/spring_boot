@@ -30,7 +30,7 @@ public class RedisLockAspect  {
     private void lockPoint(){}
 
     @Around("lockPoint()")
-    public Object arround(ProceedingJoinPoint pjp) throws Throwable {
+    public Object redisDistributedLock(ProceedingJoinPoint pjp) throws Throwable {
         //获取RedisLock注解信息
         MethodSignature methodSignature = (MethodSignature) pjp.getSignature();
         Method method = methodSignature.getMethod();
