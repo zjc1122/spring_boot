@@ -29,7 +29,6 @@ public class RedisApplicationTests {
 
 	@Test
 	public void secKill() throws InterruptedException {
-		int k=10;
 		for (int i = 0; i < 50; i++) {
 			new Thread(new Runnable() {
 
@@ -41,7 +40,6 @@ public class RedisApplicationTests {
 						e.printStackTrace();
 					}
 					distributedTest.getGoods("xxxxx", 111111);
-					//System.out.println("我是第" + k + "号线程，我开始获取锁");
 				}
 			}).start();
 			Thread.sleep(2000);
