@@ -15,5 +15,5 @@ public @interface ZkDistributedLock {
      * 设置锁的超时时间
      * @return
      */
-    long expireTime() default 30;
+    int expireTime() default 20;
 }

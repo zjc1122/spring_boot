@@ -11,7 +11,6 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
 import java.util.concurrent.TimeUnit;
 
 //@RunWith(SpringRunner.class)
@@ -29,29 +28,21 @@ public class ApplicationTests {
 
 	@Test
 	public void secKill() throws InterruptedException {
-		for (int i = 0; i < 50; i++) {
+		for (int i = 0; i < 10; i++) {
 			new Thread(new Runnable() {
-
 				@Override
 				public void run() {
 					try {
-						TimeUnit.SECONDS.sleep(10);
-					} catch (InterruptedException e) {
+						distributedTest.getGoods("123456", 111111);
+						Thread.sleep(10000);
+					} catch (Exception e) {
 						e.printStackTrace();
 					}
-					distributedTest.getGoods("xxxxx", 111111);
 				}
 			}).start();
-			Thread.sleep(2000);
-
+			Thread.sleep(1000);
 		}
-
 		TimeUnit.SECONDS.sleep(3);
 	}
 
-	@Test
-	public void sayHello() throws InterruptedException{
-		distributedTest.getGoods("xxxxx", 111111);
-		TimeUnit.SECONDS.sleep(3);
-	}
 }

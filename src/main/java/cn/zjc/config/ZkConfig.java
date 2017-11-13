@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 public class ZkConfig {
-    @Value("${zk.master.host}")
+    @Value("${zk.host}")
     private String masterHost;
     @Value("${zk.lockPath}")
     private String lockPath;
@@ -21,6 +21,8 @@ public class ZkConfig {
     private Integer tryTime;
     @Value("${zk.tryCount}")
     private Integer tryCount;
+    @Value("${zk.sessionOutTime}")
+    private Integer sessionOutTime;
 
     CuratorFramework client;
     RetryPolicy retryPolicy;
@@ -28,7 +30,11 @@ public class ZkConfig {
 
     public CuratorFramework getZkClient(){
         retryPolicy = new ExponentialBackoffRetry(tryTime,tryCount);
-        client= CuratorFrameworkFactory.newClient(masterHost, retryPolicy);
+        client= CuratorFrameworkFactory.builder()
+                .connectString(masterHost)
+                .sessionTimeoutMs(sessionOutTime)
+                .retryPolicy(retryPolicy)
+                .build();
         return client;
     }
     public InterProcessMutex getZkLock(){
