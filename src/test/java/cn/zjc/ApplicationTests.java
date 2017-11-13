@@ -22,7 +22,7 @@ import java.util.concurrent.TimeUnit;
 @PropertySource({"classpath:redis.properties","classpath:zk.properties"})
 @EnableAsync
 @EnableScheduling
-public class RedisApplicationTests {
+public class ApplicationTests {
 
 	@Autowired
 	private DistributedTest distributedTest;
