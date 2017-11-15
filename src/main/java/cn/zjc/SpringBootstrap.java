@@ -1,5 +1,6 @@
 package cn.zjc;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -14,6 +15,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
  */
 @SpringBootApplication
 @EnableAutoConfiguration
+@MapperScan("cn.zjc.mapper")
 @ComponentScan(basePackages = "cn.zjc")
 @PropertySource({"classpath:redis.properties","classpath:zk.properties"})
 @EnableAsync

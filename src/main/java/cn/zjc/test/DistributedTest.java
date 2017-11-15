@@ -12,8 +12,8 @@ import org.springframework.stereotype.Component;
 public class DistributedTest {
 
     private int i = 500;//假设有500个库存
-//    @RedisLock(value = "lock") //redis分布式锁
-    @ZkDistributedLock //zk分布式锁
+    @RedisLock(value = "lock") //redis分布式锁
+//    @ZkDistributedLock //zk分布式锁
     public void getGoods(String key, int key1) {
 
         System.out.println(Thread.currentThread().getName() + "开始秒杀");
