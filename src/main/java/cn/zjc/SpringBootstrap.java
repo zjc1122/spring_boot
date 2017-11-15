@@ -8,6 +8,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
  * Spring boot 启动类
@@ -20,6 +21,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @PropertySource({"classpath:redis.properties","classpath:zk.properties"})
 @EnableAsync
 @EnableScheduling
+@EnableTransactionManagement
 public class SpringBootstrap {
 
 	public static void main(String[] args) {
