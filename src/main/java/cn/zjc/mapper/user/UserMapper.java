@@ -1,23 +1,10 @@
 package cn.zjc.mapper.user;
 
-import cn.zjc.model.User;
+import cn.zjc.mapper.BaseMapper;
+import cn.zjc.model.user.User;
 import org.apache.ibatis.annotations.Mapper;
 
-import java.util.List;
 @Mapper
-public interface UserMapper {
+public interface UserMapper extends BaseMapper<User>{
 
-    int deleteByPrimaryKey(Long id);
-
-    void insert(User record);
-
-    int insertSelective(User record);
-
-    User selectByPrimaryKey(Long  id);
-
-    int updateByPrimaryKeySelective(User record);
-
-    int updateByPrimaryKey(User record);
-
-    List<User> selectAllUser();
 }

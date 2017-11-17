@@ -1,15 +1,12 @@
 package cn.zjc.server.user;
 
-import cn.zjc.model.User;
-
-import java.util.List;
+import cn.zjc.model.user.User;
+import cn.zjc.server.base.BaseServer;
 
 /**
  * Created by zhangjiacheng on 2017/11/15.
  */
-public interface UserService {
+public interface UserService extends BaseServer<User>{
 
-    void addUser(User user);
 
-    List<User> findAllUser(int pageNum, int pageSize);
 }
