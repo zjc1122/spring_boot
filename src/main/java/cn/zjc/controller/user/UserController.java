@@ -1,9 +1,7 @@
 package cn.zjc.controller.user;
 
-import cn.zjc.mapper.BaseMapper;
 import cn.zjc.model.user.User;
 import cn.zjc.server.user.UserService;
-import cn.zjc.server.user.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
