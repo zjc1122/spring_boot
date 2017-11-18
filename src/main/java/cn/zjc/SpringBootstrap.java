@@ -18,7 +18,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableAutoConfiguration
 @MapperScan("cn.zjc.mapper")
 @ComponentScan(basePackages = "cn.zjc")
-@PropertySource({"classpath:redis.properties","classpath:zk.properties","classpath:datasources.properties"})
+@PropertySource({"classpath:redis.properties","classpath:zk.properties",
+		"classpath:datasources.properties","classpath:log4j.properties"})
 @EnableAsync
 @EnableScheduling
 @EnableTransactionManagement
