@@ -21,10 +21,10 @@ import java.util.concurrent.TimeUnit;
 @Aspect
 @Component
 public class ZkDistributedLockAspect {
+    private static final Logger log = LoggerFactory.getLogger(ZkDistributedLockAspect.class);
 
     @Autowired
     ZkConfig zkConfig;
-    private static final Logger log = LoggerFactory.getLogger(ZkDistributedLockAspect.class);
 
     @Pointcut("@annotation(cn.zjc.aspect.zkdistributedlock.ZkDistributedLock) && execution(* cn.zjc..*(..))")
     private void lockPoint(){}

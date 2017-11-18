@@ -1,5 +1,6 @@
 package cn.zjc.aspect.redisdistributedlock;
 
+import cn.zjc.aspect.zkdistributedlock.ZkDistributedLockAspect;
 import cn.zjc.rediscache.RedisUtil;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -21,10 +22,10 @@ import java.util.concurrent.TimeoutException;
 @Aspect
 @Component
 public class RedisLockAspect  {
+    private static final Logger log = LoggerFactory.getLogger(ZkDistributedLockAspect.class);
 
     @Autowired
     private RedisUtil redisUtil;
-    private static final Logger log = LoggerFactory.getLogger(RedisLockAspect.class);
 
     @Pointcut("@annotation(cn.zjc.aspect.redisdistributedlock.RedisLock) && execution(* cn.zjc..*(..))")
     private void lockPoint(){}
