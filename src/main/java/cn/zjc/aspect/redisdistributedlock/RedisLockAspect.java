@@ -1,7 +1,7 @@
 package cn.zjc.aspect.redisdistributedlock;
 
 import cn.zjc.aspect.zkdistributedlock.ZkDistributedLockAspect;
-import cn.zjc.rediscache.RedisUtil;
+import cn.zjc.util.RedisUtil;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;

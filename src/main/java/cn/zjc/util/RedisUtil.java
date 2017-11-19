@@ -1,4 +1,4 @@
-package cn.zjc.rediscache;
+package cn.zjc.util;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
