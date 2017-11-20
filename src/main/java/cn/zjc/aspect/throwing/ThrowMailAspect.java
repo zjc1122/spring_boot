@@ -39,7 +39,12 @@ public class ThrowMailAspect {
         log.info("抛异常了=========");
         SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMddHHmmss");
         String dateString = formatter.format(new Date());
-        File file = new File(Path + dateString + "log.txt");
+        File file = new File(Path + dateString + "Error.log");
+        //不存在则创建父目录
+        if (!file.getParentFile().exists()){
+            file.getParentFile().mkdirs();
+            file.createNewFile();
+        }
         PrintStream stream = null;
         stream = new PrintStream(file);
         //将异常信息写入文件中
