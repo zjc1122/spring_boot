@@ -19,7 +19,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @MapperScan("cn.zjc.mapper")
 @ComponentScan(basePackages = "cn.zjc")
 @PropertySource({"classpath:redis.properties","classpath:zk.properties",
-		"classpath:datasources.properties","classpath:log4j.properties"})
+		"classpath:datasources.properties","classpath:log4j.properties","classpath:rabbitmq.properties"})
 @EnableAsync
 @EnableScheduling
 @EnableTransactionManagement
