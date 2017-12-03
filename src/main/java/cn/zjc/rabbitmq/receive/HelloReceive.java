@@ -1,16 +1,16 @@
-package cn.zjc.controller.test;
+package cn.zjc.rabbitmq.receive;
 
 import org.springframework.amqp.rabbit.annotation.RabbitHandler;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
 
 @Component
-@RabbitListener(queues = "messages")
-public class HelloReceiver1 {
+@RabbitListener(queues="queue_one")
+public class HelloReceive {
 
     @RabbitHandler
-    public void process(String hello) {
-        System.out.println("Receiver1  : " + hello);
+    public void processC(String str) {
+        System.out.println("Receive:"+str);
     }
 
 }
