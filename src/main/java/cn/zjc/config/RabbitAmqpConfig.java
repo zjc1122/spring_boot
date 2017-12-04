@@ -1,5 +1,6 @@
 package cn.zjc.config;
 
+import com.rabbitmq.client.Channel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.core.TopicExchange;
@@ -103,7 +104,7 @@ public class RabbitAmqpConfig {
      * 针对消费者配置
      * @return
      */
-    @Bean
+    @Bean(name = "queue_one")
     public Queue queue() {
         return new Queue("queue_one", true); //队列持久
 
@@ -114,8 +115,13 @@ public class RabbitAmqpConfig {
      * @return
      */
     @Bean
-    public Binding binding() {
-        return BindingBuilder.bind(queue()).to(directExchange()).with("queue_one_key1");
+    public Binding binding(Queue queue) {
+        System.out.println(queue.getName());
+        return BindingBuilder.bind(queue()).to(directExchange()).with(queue.getName());
+    }
+
+    public SimpleMessageListenerContainer ss(Queue queue){
+        return messageContainer(queue);
     }
     /**
      * 接受消息的监听，这个监听会接受消息队列的消息
@@ -123,18 +129,18 @@ public class RabbitAmqpConfig {
      * @return
      */
     @Bean
-    public SimpleMessageListenerContainer messageContainer() {
+    public SimpleMessageListenerContainer messageContainer(Queue queue) {
         SimpleMessageListenerContainer container = new SimpleMessageListenerContainer(cachingConnectionFactory());
-        container.setQueues(queue());
+        container.setQueues(queue);
         container.setExposeListenerChannel(true);
         container.setMaxConcurrentConsumers(1);
         container.setConcurrentConsumers(1);
         container.setAcknowledgeMode(AcknowledgeMode.MANUAL); //设置确认模式手工确认
         container.setMessageListener(new ChannelAwareMessageListener() {
-
-            public void onMessage(Message message, com.rabbitmq.client.Channel channel) throws Exception {
+            @Override
+            public void onMessage(Message message, Channel channel) throws Exception {
                 byte[] body = message.getBody();
-                System.out.println("收到消息 : " + new String(body));
+                log.info("收到消息 : " + new String(body));
                 channel.basicAck(message.getMessageProperties().getDeliveryTag(), false); //确认消息成功消费
             }
         });
