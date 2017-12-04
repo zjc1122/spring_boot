@@ -14,7 +14,7 @@ public class ScheduledTasks {
 
     private static final Logger log = LoggerFactory.getLogger(ScheduledTasks.class);
 
-    @Scheduled(cron="0 0/1 8-20 * * ?")
+    @Scheduled(cron="0 0/1 23 * * ?")
     public void autoTask(){
         System.out.println("开始自动任务");
         log.info("开始自动任务");
