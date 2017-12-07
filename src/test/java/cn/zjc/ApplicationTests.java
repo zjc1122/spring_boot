@@ -1,5 +1,7 @@
 package cn.zjc;
 
+import cn.zjc.rabbitmq.sender.direct.DirectSender;
+import cn.zjc.rabbitmq.sender.topic.TopicSender;
 import cn.zjc.test.DistributedTest;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -18,7 +20,7 @@ import java.util.concurrent.TimeUnit;
 @SpringBootTest
 @EnableAutoConfiguration
 @ComponentScan(basePackages = "cn.zjc")
-@PropertySource({"classpath:redis.properties","classpath:zk.properties"})
+@PropertySource({"classpath:redis.properties","classpath:zk.properties","classpath:rabbitmq.properties"})
 @EnableAsync
 @EnableScheduling
 public class ApplicationTests {
@@ -44,5 +46,13 @@ public class ApplicationTests {
 		}
 		TimeUnit.SECONDS.sleep(3);
 	}
+	@Autowired
+	private DirectSender directSender;
+	@Autowired
+	private TopicSender topicSender;
 
+	@Test
+	public void send() throws Exception {
+		topicSender.send();
+	}
 }

@@ -13,6 +13,7 @@ import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer;
 import org.springframework.amqp.rabbit.support.CorrelationData;
 import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Bean;
@@ -60,10 +61,11 @@ public class RabbitAmqpConfig {
         RabbitAdmin rabbitAdmin =  new RabbitAdmin(cachingConnectionFactory);
         return rabbitAdmin;
     }
-    @Bean
+
     /**
      * 因为要设置回调类，所以应是prototype类型，如果是singleton类型，则回调类为最后一次设置
      */
+    @Bean
     @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
     public RabbitTemplate rabbitTemplatenew() {
         RabbitTemplate template = new RabbitTemplate(cachingConnectionFactory());
@@ -74,7 +76,7 @@ public class RabbitAmqpConfig {
             @Override
             public void confirm(CorrelationData correlationData, boolean ack, String cause) {
                 if (ack) {
-                    log.info("消息成功发送");
+                    log.info("消息成功消费");
                 } else {
                     log.info("消息发送失败:" + cause+"\n重新发送");
                     throw new RuntimeException("消息发送失败 " + cause);
@@ -86,10 +88,10 @@ public class RabbitAmqpConfig {
     /**
      * 配置消息交换机
      * 针对消费者配置
-     FanoutExchange: 将消息分发到所有的绑定队列，无routingkey的概念
-     HeadersExchange ：通过添加属性key-value匹配
-     DirectExchange:按照routingkey分发到指定队列
-     TopicExchange:多关键字匹配
+     * FanoutExchange: 将消息分发到所有的绑定队列，无routingkey的概念
+     * HeadersExchange ：通过添加属性key-value匹配
+     * DirectExchange:按照routingkey分发到指定队列
+     * TopicExchange:多关键字匹配
      */
     @Bean
     public DirectExchange directExchange() {
@@ -100,35 +102,72 @@ public class RabbitAmqpConfig {
         return new TopicExchange("topicExchange",true, false);
     }
     /**
-     * 配置消息队列
+     * 配置direct消息队列
      * 针对消费者配置
      * @return
      */
-    @Bean(name = "queue_one")
-    public Queue queue() {
-        return new Queue("queue_one", true); //队列持久
-
+    @Bean(name = "directQueue")
+    public Queue directQueue() {
+        return new Queue("directQueue", true); //队列持久
     }
     /**
-     * 将消息队列1与交换机绑定
+     * 配置topic消息队列
+     * 针对消费者配置
+     * @return
+     */
+    @Bean(name = "topicQueue")
+    public Queue topicQueue() {
+        return new Queue("topicQueue", true); //队列持久
+    }
+    @Bean(name = "topicQueueMore")
+    public Queue topicQueueMore() {
+        return new Queue("topicQueueMore", true); //队列持久
+    }
+    /**
+     * 将direct消息队列与交换机绑定
      * 针对消费者配置
      * @return
      */
     @Bean
-    public Binding binding(Queue queue) {
-        System.out.println(queue.getName());
-        return BindingBuilder.bind(queue()).to(directExchange()).with(queue.getName());
+    public Binding directBinding(@Qualifier("directQueue") Queue directQueue) {
+        return BindingBuilder.bind(directQueue()).to(directExchange()).with(directQueue.getName());
     }
-
-    public SimpleMessageListenerContainer ss(Queue queue){
-        return messageContainer(queue);
+    /**
+     * 将topic消息队列与交换机绑定
+     * 针对消费者配置
+     * 关键字是topicQueue
+     */
+    @Bean
+    public Binding topicBinding(@Qualifier("topicQueue") Queue topicQueue) {
+        return BindingBuilder.bind(topicQueue()).to(topicExchange()).with(topicQueue.getName());
+    }
+    /**
+     * 将topic消息队列与交换机绑定
+     * 针对消费者配置
+     * 关键字是topicQueue.#
+     * *表示一个词,#表示零个或多个词
+     */
+    @Bean
+    public Binding topicBindings(@Qualifier("topicQueueMore") Queue topicQueue) {
+        return BindingBuilder.bind(topicQueueMore()).to(topicExchange()).with("topicQueue.#");
+    }
+    @Bean
+    public SimpleMessageListenerContainer directListenerContainer(@Qualifier("directQueue")Queue directQueue){
+        return messageContainer(directQueue);
+    }
+    @Bean
+    public SimpleMessageListenerContainer topicListenerContainer(@Qualifier("topicQueue")Queue topicQueue){
+        return messageContainer(topicQueue);
+    }
+    @Bean
+    public SimpleMessageListenerContainer topicMoreListenerContainer(@Qualifier("topicQueueMore")Queue topicQueue){
+        return messageContainer(topicQueue);
     }
     /**
      * 接受消息的监听，这个监听会接受消息队列的消息
      * 针对消费者配置
      * @return
      */
-    @Bean
     public SimpleMessageListenerContainer messageContainer(Queue queue) {
         SimpleMessageListenerContainer container = new SimpleMessageListenerContainer(cachingConnectionFactory());
         container.setQueues(queue);
@@ -140,7 +179,7 @@ public class RabbitAmqpConfig {
             @Override
             public void onMessage(Message message, Channel channel) throws Exception {
                 byte[] body = message.getBody();
-                log.info("收到消息 : " + new String(body));
+                log.info("收到队列"+queue.getName()+"消息" + new String(body));
                 channel.basicAck(message.getMessageProperties().getDeliveryTag(), false); //确认消息成功消费
             }
         });
