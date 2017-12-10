@@ -179,7 +179,7 @@ public class RabbitAmqpConfig {
             @Override
             public void onMessage(Message message, Channel channel) throws Exception {
                 byte[] body = message.getBody();
-                log.info("收到队列"+queue.getName()+"消息" + new String(body));
+                log.info("收到"+queue.getName()+"队列的消息: " + new String(body));
                 channel.basicAck(message.getMessageProperties().getDeliveryTag(), false); //确认消息成功消费
             }
         });
