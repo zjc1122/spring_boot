@@ -1,16 +1,23 @@
 package cn.zjc.config;
 
+import cn.zjc.aspect.db.DynamicDataSource;
+import cn.zjc.enums.DataBaseType;
 import com.github.pagehelper.PageHelper;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.core.io.support.ResourcePatternResolver;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.TransactionManagementConfigurer;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
 import org.apache.ibatis.plugin.Interceptor;
 import javax.annotation.Resource;
@@ -21,15 +28,36 @@ import javax.sql.DataSource;
  */
 @Configuration
 public class MybatisConfig implements TransactionManagementConfigurer {
-    @Resource(name = "dataSource")
-    DataSource dataSource;
+    @Resource(name = "defaultDataSource")
+    DataSource defaultDataSource;
+    @Resource(name = "slaveDataSource")
+    DataSource slaveDataSource;
+    private static final Logger logger = LoggerFactory.getLogger(MybatisConfig.class);
+
+    @Bean
+    @Primary
+    public DynamicDataSource dataSource() {
+        try {
+            Map<Object, Object> targetDataSources = new HashMap<>();
+            targetDataSources.put(DataBaseType.Default_DB.get(), defaultDataSource);
+            targetDataSources.put(DataBaseType.Slave_DB.get(), slaveDataSource);
+            DynamicDataSource dataSource = new DynamicDataSource();
+            dataSource.setTargetDataSources(targetDataSources);// 该方法是AbstractRoutingDataSource的方法
+            dataSource.setDefaultTargetDataSource(defaultDataSource);// 默认的datasource设置为myTestDbDataSource
+
+            return dataSource;
+        } catch (Exception e) {
+            logger.error(e.getMessage(),e);
+        }
+        return null;
+    }
     /**
      * 事务管理,具体使用在service层加入@Transactional注解
      */
     @Bean(name = "transactionManager")
     @Override
     public PlatformTransactionManager annotationDrivenTransactionManager() {
-        return new DataSourceTransactionManager(dataSource);
+        return new DataSourceTransactionManager(dataSource());
     }
 
     @Bean(name = "sqlSessionTemplate")
@@ -38,9 +66,9 @@ public class MybatisConfig implements TransactionManagementConfigurer {
     }
 
     @Bean(name = "sqlSessionFactory")
-    public SqlSessionFactory sqlSessionFactoryBean() {
+    public SqlSessionFactory sqlSessionFactoryBean(DynamicDataSource ds) {
         SqlSessionFactoryBean bean = new SqlSessionFactoryBean();
-        bean.setDataSource(dataSource);
+        bean.setDataSource(ds);
         bean.setTypeAliasesPackage("cn.zjc.model");
         //分页插件,插件无非是设置mybatis的拦截器
         PageHelper pageHelper = new PageHelper();
