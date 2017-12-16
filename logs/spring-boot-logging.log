@@ -1,0 +1,29 @@
+2017-11-16 22:00:32.555  INFO 27708 --- [main] cn.zjc.SpringBootstrap                   : Starting SpringBootstrap on DESKTOP-7HP56NI with PID 27708 (E:\spring_boot\target\classes started by DELL in E:\spring_boot)
+2017-11-16 22:00:32.571  INFO 27708 --- [main] cn.zjc.SpringBootstrap                   : No active profile set, falling back to default profiles: default
+2017-11-16 22:00:33.988  INFO 27708 --- [main] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2017-11-16 22:00:35.714  INFO 27708 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2017-11-16 22:00:35.714  INFO 27708 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.23
+2017-11-16 22:00:35.792  INFO 27708 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2017-11-16 22:00:38.804  INFO 27708 --- [main] cn.zjc.SpringBootstrap                   : Started SpringBootstrap in 6.624 seconds (JVM running for 7.403)
+2017-11-16 22:00:52.912  INFO 27708 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2017/11/16-22:02 [main] ERROR org.springframework.boot.logging.LoggingApplicationListener- Cannot set level: DEBUG   for 'com.mycompany.mavenspringboot.mapper'
+ 2017/11/16-22:02 [main] ERROR org.springframework.boot.logging.LoggingApplicationListener- Cannot set level: WARN   for 'com.mycompany.mavenspringboot.controller'
+ 2017/11/16-22:02 [main] INFO  cn.zjc.SpringBootstrap- Starting SpringBootstrap on DESKTOP-7HP56NI with PID 10672 (E:\spring_boot\target\classes started by DELL in E:\spring_boot)
+ 2017/11/16-22:02 [main] INFO  cn.zjc.SpringBootstrap- No active profile set, falling back to default profiles: default
+ 2017/11/16-22:02 [main] INFO  com.alibaba.druid.pool.DruidDataSource- {dataSource-1} inited
+ 2017/11/16-22:02 [main] INFO  org.apache.catalina.core.StandardService- Starting service [Tomcat]
+ 2017/11/16-22:02 [main] INFO  org.apache.catalina.core.StandardEngine- Starting Servlet Engine: Apache Tomcat/8.5.23
+ 2017/11/16-22:02 [localhost-startStop-1] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/]- Initializing Spring embedded WebApplicationContext
+ 2017/11/16-22:02 [main] INFO  cn.zjc.SpringBootstrap- Started SpringBootstrap in 6.28 seconds (JVM running for 6.962)
+ 2017/11/16-22:02 [http-nio-8080-exec-1] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/]- Initializing Spring FrameworkServlet 'dispatcherServlet'
+ 2017/11/16-22:07 [main] ERROR org.springframework.boot.logging.LoggingApplicationListener- Cannot set level: DEBUG   for 'com.mycompany.mavenspringboot.mapper'
+ 2017/11/16-22:07 [main] ERROR org.springframework.boot.logging.LoggingApplicationListener- Cannot set level: WARN   for 'com.mycompany.mavenspringboot.controller'
+ 2017/11/16-22:07 [main] INFO  cn.zjc.SpringBootstrap- Starting SpringBootstrap on DESKTOP-7HP56NI with PID 21592 (E:\spring_boot\target\classes started by DELL in E:\spring_boot)
+ 2017/11/16-22:07 [main] INFO  cn.zjc.SpringBootstrap- No active profile set, falling back to default profiles: default
+ 2017/11/16-22:07 [main] INFO  com.alibaba.druid.pool.DruidDataSource- {dataSource-1} inited
+ 2017/11/16-22:07 [main] INFO  org.apache.catalina.core.StandardService- Starting service [Tomcat]
+ 2017/11/16-22:07 [main] INFO  org.apache.catalina.core.StandardEngine- Starting Servlet Engine: Apache Tomcat/8.5.23
+ 2017/11/16-22:07 [localhost-startStop-1] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/]- Initializing Spring embedded WebApplicationContext
+ 2017/11/16-22:07 [main] INFO  cn.zjc.SpringBootstrap- Started SpringBootstrap in 6.284 seconds (JVM running for 7.102)
+ 2017/11/16-22:07 [http-nio-8080-exec-1] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/]- Initializing Spring FrameworkServlet 'dispatcherServlet'
+ 
