@@ -1,4 +1,4 @@
-package cn.zjc.test;
+package cn.zjc.es.entity;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;

@@ -1,9 +1,9 @@
 package cn.zjc.controller.user;
 
-import cn.zjc.es.test.PostRepository;
+import cn.zjc.es.entity.Post;
+import cn.zjc.es.service.PostRepository;
 import cn.zjc.model.user.User;
 import cn.zjc.server.user.UserService;
-import cn.zjc.test.Post;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,9 +14,7 @@ import org.springframework.data.elasticsearch.core.query.SearchQuery;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import java.util.List;
-
 import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
 
 /**
@@ -33,6 +31,7 @@ public class UserController {
     private PostRepository postRepository;
     @Autowired
     ElasticsearchTemplate elasticsearchTemplate;
+
     @RequestMapping(value = "/all")
     public Object findAllUser(){
         User user = new User();
@@ -53,10 +52,10 @@ public class UserController {
     }
     @RequestMapping("/query")
     public Object testSearch(String word, @PageableDefault Pageable pageable) {
-//        String queryString = "springboot";//搜索关键字
+//        String queryString = "11";//搜索关键字
 //        QueryStringQueryBuilder builder = new QueryStringQueryBuilder(queryString);
-//        Iterable<User> searchResult = userSearchRepository.search(builder);
-//        Iterator<User> iterator = searchResult.iterator();
+//        Iterable<Post> searchResult = postRepository.search(builder);
+//        Iterator<Post> iterator = searchResult.iterator();
 //        while (iterator.hasNext()) {
 //            System.out.println(iterator.next());
 //        }
@@ -66,5 +65,17 @@ public class UserController {
             System.out.println(article.toString());
         }
         return elasticsearchTemplate.queryForList(searchQuery, Post.class);
+    }
+    @RequestMapping("/addes")
+    public void testSaveArticleIndex() {
+        Post post = new Post();
+        post.setId("springboot integreate elasticsearch");
+        post.setUserId(1);
+        post.setWeight(1);
+        post.setContent("zjc elasticsearch based on lucene,"
+                + "spring-data-elastichsearch based on elaticsearch"
+                + ",this tutorial tell you how to integrete springboot with spring-data-elasticsearch");
+        post.setWeight(11);
+        postRepository.save(post);
     }
 }
