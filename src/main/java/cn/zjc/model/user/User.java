@@ -2,7 +2,8 @@ package cn.zjc.model.user;
 
 import cn.zjc.model.BaseEntity;
 import lombok.Data;
-import javax.persistence.*;
+import javax.persistence.Table;
+
 
 @Data
 @Table(name = "t_user")
