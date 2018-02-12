@@ -1,5 +1,6 @@
 package cn.zjc.config;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.CachingConfigurerSupport;
@@ -91,8 +92,10 @@ public class RedisConfig extends CachingConfigurerSupport{
      * 管理缓存
      */
     @Bean
-    public CacheManager cacheManager(RedisTemplate redisTemplate) {
+    public CacheManager cacheManager(@Qualifier("redisTemplate") RedisTemplate<String, Object> redisTemplate) {
         RedisCacheManager rcm = new RedisCacheManager(redisTemplate);
+        //设置缓存过期时间
+        rcm.setDefaultExpiration(5 * 60);
         return rcm;
     }
 
