@@ -14,7 +14,6 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
 @Table(name = "sys_user")
 public class SysUser extends BaseEntity implements UserDetails {
 
@@ -43,4 +42,22 @@ public class SysUser extends BaseEntity implements UserDetails {
     private boolean isCredentialsNonExpired = true;
 
     public boolean isEnabled = true;
+
+    @Override
+    public boolean equals(Object o){
+        if(o.toString().equals(this.username))
+            return true;
+        return false;
+    }
+
+    @Override
+    public int hashCode(){
+        return username.hashCode();
+    }
+
+
+    @Override
+    public String toString() {
+        return this.username;
+    }
 }

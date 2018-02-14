@@ -10,6 +10,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -29,6 +31,7 @@ public class UserController {
     @RequestMapping(value = "/findAllUser",method = RequestMethod.POST)
     @Cacheable(value = "users" ,key="'findAllUser'")
     public PageInfo<User> findAllUser(@RequestParam("pageNo") Integer pageNo, @RequestParam("pageSize") Integer pageSize){
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = new User();
         log.info("===========");
         return userService.selectPageAll(pageNo,pageSize,user);

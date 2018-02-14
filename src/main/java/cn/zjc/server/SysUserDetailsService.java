@@ -18,7 +18,12 @@ public class SysUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
         //查询账号是否存在，是就返回一个UserDetails的对象，否就抛出异常！
-        SysUser user = sysUserService.getByUsername(userName);
+        SysUser user;
+        try {
+            user = sysUserService.getByUsername(userName);
+        }catch (Exception e){
+            throw new BadCredentialsException("查询用户报错!");
+        }
         if (user == null) {
             throw new BadCredentialsException(userName + "这个用户不存在!");
         }
