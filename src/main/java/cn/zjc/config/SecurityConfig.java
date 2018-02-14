@@ -13,15 +13,9 @@ import org.springframework.security.core.session.SessionRegistryImpl;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
-import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.security.web.authentication.session.ConcurrentSessionControlAuthenticationStrategy;
-import org.springframework.security.web.session.ConcurrentSessionFilter;
 import org.springframework.security.web.session.HttpSessionEventPublisher;
 import org.springframework.security.web.session.SessionInformationExpiredStrategy;
 import org.springframework.security.web.session.SimpleRedirectSessionInformationExpiredStrategy;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
 import org.springframework.session.web.http.HeaderHttpSessionStrategy;
 import org.springframework.session.web.http.HttpSessionStrategy;
@@ -59,13 +53,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 return encoder.matches(raw, s);
             }
         });
-        //不删除凭证
-        auth.eraseCredentials(false);
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.addFilterBefore(myValidCodeProcessingFilter(), UsernamePasswordAuthenticationFilter.class);
         http
             .csrf().disable()
             .authorizeRequests()
@@ -73,8 +64,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .antMatchers("/register").permitAll()
             .anyRequest().authenticated()
             .and().sessionManagement().maximumSessions(1).sessionRegistry(sessionRegistry).expiredUrl("/login").and()
-            .and().logout().logoutUrl("/login333").invalidateHttpSession(Boolean.TRUE).clearAuthentication(Boolean.TRUE).permitAll()
+            .and().logout().invalidateHttpSession(Boolean.TRUE).clearAuthentication(Boolean.TRUE).permitAll()
             .and().httpBasic();
+    }
+
+    @Bean
+    public SessionRegistry sessionRegistry() {
+        return new SessionRegistryImpl();
+    }
+
+    /**
+     * 生成x-auth-token信息，如果生成SESSION则注释掉即可
+     * @return
+     */
+    @Bean
+    public HttpSessionStrategy httpSessionStrategy() {
+        return new HeaderHttpSessionStrategy();
     }
 
     /**
@@ -83,29 +88,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private SessionInformationExpiredStrategy sessionInformationExpiredStrategy() {
         return new SimpleRedirectSessionInformationExpiredStrategy("/login");
     }
-
-    @Bean
-    public SessionRegistry sessionRegistry() {
-        return new SessionRegistryImpl();
-    }
     /**
      * SpringSecurity内置的session监听器
      */
     @Bean
     public HttpSessionEventPublisher httpSessionEventPublisher() {
         return new HttpSessionEventPublisher();
-    }
-
-    @Bean
-    public MyValidCodeProcessingFilter myValidCodeProcessingFilter() throws Exception {
-        MyValidCodeProcessingFilter filter = new MyValidCodeProcessingFilter();
-        filter.setAuthenticationManager(authenticationManagerBean());
-//        //设置登陆成功后跳转的URL
-//        filter.setAuthenticationSuccessHandler(new SimpleUrlAuthenticationSuccessHandler("/index.html"));
-//        //设置登陆失败后跳转的URL
-//        //如果不设置这两个属性，会导致登陆成功后访问默认地址/
-//        filter.setAuthenticationFailureHandler(new SimpleUrlAuthenticationFailureHandler("/login.html?error=1"));
-        filter.setSessionAuthenticationStrategy(new ConcurrentSessionControlAuthenticationStrategy(sessionRegistry));
-        return filter;
     }
 }

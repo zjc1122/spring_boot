@@ -1,12 +1,14 @@
 package cn.zjc.model.sysUser;
 
 import cn.zjc.model.BaseEntity;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.apache.commons.lang3.math.NumberUtils;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import javax.persistence.Entity;
 import javax.persistence.Table;
 import java.util.Collection;
 import java.util.Date;
@@ -14,6 +16,7 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 @Table(name = "sys_user")
 public class SysUser extends BaseEntity implements UserDetails {
 
@@ -43,21 +46,4 @@ public class SysUser extends BaseEntity implements UserDetails {
 
     public boolean isEnabled = true;
 
-    @Override
-    public boolean equals(Object o){
-        if(o.toString().equals(this.username))
-            return true;
-        return false;
-    }
-
-    @Override
-    public int hashCode(){
-        return username.hashCode();
-    }
-
-
-    @Override
-    public String toString() {
-        return this.username;
-    }
 }
