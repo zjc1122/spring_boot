@@ -15,11 +15,13 @@ import java.util.Map;
 @Getter
 public class JsonResult implements View {
 
+
   private static final String JSON_CONTENT_TYPE = "application/json;charset=UTF-8";
 
   public final static String SUCCESS_CODE = "0000";
   public final static String FAIL_CODE = "1111";
   public final static String SYS_ERROR = "9999";
+  public final static String SUCCESS_MSG = "success";
 
   public static final JsonResult EMPTY_SUCCESS = success(null);
   public static final JsonResult SYS_REQUEST_ERROR = JsonResult.failed(SYS_ERROR, "系统发生错误,请联系管理员!");
@@ -35,7 +37,7 @@ public class JsonResult implements View {
   }
 
   public static JsonResult success(Object data) {
-    return new JsonResult(SUCCESS_CODE, null, data);
+    return new JsonResult(SUCCESS_CODE, SUCCESS_MSG, data);
   }
 
   public static JsonResult success(Object data,String succeMsg) {

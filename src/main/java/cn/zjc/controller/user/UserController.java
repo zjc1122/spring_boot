@@ -4,12 +4,11 @@ import cn.zjc.model.user.User;
 import cn.zjc.server.user.UserService;
 import cn.zjc.util.JsonResult;
 import com.github.pagehelper.PageInfo;
-import org.hibernate.annotations.Cache;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping(value = "/user")
+@PreAuthorize("hasRole('USER')")
 public class UserController {
     private static final Logger log = LoggerFactory.getLogger(UserController.class);
 
@@ -38,6 +38,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/addUser",method = RequestMethod.POST)
+    @PreAuthorize("hasRole('ADMIN')")
     public JsonResult addUser(){
         User user = new User();
         log.info("===========");
@@ -46,6 +47,6 @@ public class UserController {
         user.setPhone("springboot_111");
         user.setUserName("springboot_222");
         userService.save(user);
-        return JsonResult.success(user.getUserName(),"添加成功");
+        return JsonResult.success(user.getUserName()+"添加成功!");
     }
 }

@@ -1,4 +1,4 @@
-package cn.zjc.model.sysUser;
+package cn.zjc.model.sysuser;
 
 import cn.zjc.model.BaseEntity;
 import lombok.AllArgsConstructor;

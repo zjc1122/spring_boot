@@ -1,6 +1,6 @@
-package cn.zjc.server.sysUser;
+package cn.zjc.server.sysuser;
 
-import cn.zjc.model.sysUser.SysUser;
+import cn.zjc.model.sysuser.SysUser;
 import cn.zjc.server.base.BaseServer;
 
 /**

@@ -2,7 +2,7 @@ package cn.zjc.mapper.sysuser;
 
 
 import cn.zjc.mapper.BaseMapper;
-import cn.zjc.model.sysUser.SysUser;
+import cn.zjc.model.sysuser.SysUser;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
