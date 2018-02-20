@@ -8,7 +8,6 @@ import lombok.ToString;
 import org.apache.commons.lang3.math.NumberUtils;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-
 import javax.persistence.Table;
 import java.util.Collection;
 import java.util.Date;
