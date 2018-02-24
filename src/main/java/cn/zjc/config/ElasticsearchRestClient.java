@@ -13,7 +13,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * Created by zhangjiacheng on 2018/2/22.
+ * Created by zhangjiacheng on 2018/2/20.
  */
 @Configuration
 public class ElasticsearchRestClient implements FactoryBean<RestHighLevelClient>, InitializingBean, DisposableBean {
