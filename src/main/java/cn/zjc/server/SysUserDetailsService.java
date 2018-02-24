@@ -36,6 +36,7 @@ public class SysUserDetailsService implements UserDetailsService {
             throw new BadCredentialsException("查询用户报错!");
         }
         if (user != null) {
+            //查询用户的权限
             List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
             List<SysRole> roles = sysRoleService.findRoleByUserId(Long.valueOf(user.getId()));
             if(Objects.nonNull(roles)){
