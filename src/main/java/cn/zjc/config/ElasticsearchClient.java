@@ -32,12 +32,12 @@ public class ElasticsearchClient implements FactoryBean<TransportClient>, Initia
     @Override
     public void destroy() throws Exception {
         try {
-            logger.info("Closing elasticSearch client");
+            logger.info("Closing TransportClient client");
             if (transportClient != null) {
                 transportClient.close();
             }
         } catch (final Exception e) {
-            logger.error("Error closing ElasticSearch client: ", e);
+            logger.error("Error closing TransportClient client: ", e);
         }
     }
 
@@ -61,7 +61,7 @@ public class ElasticsearchClient implements FactoryBean<TransportClient>, Initia
         buildClient();
     }
 
-    protected void buildClient()  {
+    private void buildClient()  {
         try {
             PreBuiltTransportClient  preBuiltTransportClient = new PreBuiltTransportClient(settings());
             if (!"".equals(clusterNodes)){
@@ -72,7 +72,7 @@ public class ElasticsearchClient implements FactoryBean<TransportClient>, Initia
                     preBuiltTransportClient.addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName(Address),port ));
                 }
                 transportClient = preBuiltTransportClient;
-                logger.info("ElasticsearchClient 连接成功");
+                logger.info("Elasticsearch TransportClient 连接成功");
             }
         } catch (UnknownHostException e) {
             logger.error(e.getMessage());
