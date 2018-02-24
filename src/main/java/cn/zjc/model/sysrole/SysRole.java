@@ -18,7 +18,7 @@ public class SysRole extends BaseEntity {
 
     private String name;
 
-    private Byte enable;
+    private Integer enable;
 
     private Date createdAt;
 
