@@ -1,4 +1,4 @@
-package cn.zjc.elasticsearch.controller;
+package cn.zjc.elasticsearch;
 
 //import cn.zjc.elasticsearch.service.PostRepository;
 import org.elasticsearch.action.get.GetResponse;
