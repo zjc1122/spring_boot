@@ -16,9 +16,9 @@ import org.springframework.context.annotation.Configuration;
  * Created by zhangjiacheng on 2018/2/20.
  */
 @Configuration
-public class ElasticsearchRestClient implements FactoryBean<RestHighLevelClient>, InitializingBean, DisposableBean {
+public class EsRestClient implements FactoryBean<RestHighLevelClient>, InitializingBean, DisposableBean {
 
-    private static final Logger logger = LoggerFactory.getLogger(ElasticsearchRestClient.class);
+    private static final Logger logger = LoggerFactory.getLogger(EsRestClient.class);
 
     @Value("${httpHost.host}")
     private String host;
