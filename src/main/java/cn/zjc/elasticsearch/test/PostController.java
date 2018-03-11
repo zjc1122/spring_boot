@@ -1,6 +1,8 @@
 package cn.zjc.elasticsearch.test;
 
 //import cn.zjc.elasticsearch.service.PostRepository;
+import cn.zjc.model.Post;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.elasticsearch.action.get.GetResponse;
 import org.elasticsearch.action.index.IndexRequestBuilder;
 import org.elasticsearch.action.index.IndexResponse;
@@ -72,6 +74,8 @@ public class PostController {
          */
         XContentBuilder xContentBuilder = jsonBuilder().startObject().field("author", "保尔柯察金")
                 .field("publishTime", new Date()).field("title", "钢铁是怎么样练成的").endObject();
+        ObjectMapper objectMapper = new ObjectMapper();
+        String s = objectMapper.writeValueAsString(Post.class);
         /**
          * 采用json的形式
          */
