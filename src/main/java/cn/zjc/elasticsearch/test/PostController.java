@@ -1,7 +1,9 @@
 package cn.zjc.elasticsearch.test;
 
 //import cn.zjc.elasticsearch.service.PostRepository;
-import cn.zjc.model.Post;
+import cn.zjc.elasticsearch.TransportClientRepository;
+import cn.zjc.model.Article;
+import cn.zjc.model.user.User;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.elasticsearch.action.get.GetResponse;
 import org.elasticsearch.action.index.IndexRequestBuilder;
@@ -18,6 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.Resource;
 import java.io.IOException;
 import java.util.Date;
 
@@ -36,27 +39,30 @@ public class PostController {
     @Autowired
     private TransportClient transportClient;
 
+    @Resource
+    TransportClientRepository client;
+
     private static final Logger logger = LoggerFactory.getLogger(PostController.class);
 
 //    @RequestMapping("/query")
 //    public Object testSearch(String word, @PageableDefault Pageable pageable) {
 ////        String queryString = "11";//搜索关键字
 ////        QueryStringQueryBuilder builder = new QueryStringQueryBuilder(queryString);
-////        Iterable<Post> searchResult = postRepository.search(builder);
-////        Iterator<Post> iterator = searchResult.iterator();
+////        Iterable<Article> searchResult = postRepository.search(builder);
+////        Iterator<Article> iterator = searchResult.iterator();
 ////        while (iterator.hasNext()) {
 ////            System.out.println(iterator.next());
 ////        }
 //        SearchQuery searchQuery = new NativeSearchQueryBuilder().withQuery(queryStringQuery(word)).withPageable(pageable).build();
-//        List<Post> articles = elasticsearchTemplate.queryForList(searchQuery, Post.class);
-//        for (Post article : articles) {
+//        List<Article> articles = elasticsearchTemplate.queryForList(searchQuery, Article.class);
+//        for (Article article : articles) {
 //            System.out.println(article.toString());
 //        }
-//        return elasticsearchTemplate.queryForList(searchQuery, Post.class);
+//        return elasticsearchTemplate.queryForList(searchQuery, Article.class);
 //    }
 //    @RequestMapping("/addes")
 //    public void testSaveArticleIndex() {
-//        Post post = new Post();
+//        Article post = new Article();
 //        post.setId("springboot integreate elasticsearch");
 //        post.setUserId(1);
 //        post.setWeight(1);
@@ -75,7 +81,7 @@ public class PostController {
         XContentBuilder xContentBuilder = jsonBuilder().startObject().field("author", "保尔柯察金")
                 .field("publishTime", new Date()).field("title", "钢铁是怎么样练成的").endObject();
         ObjectMapper objectMapper = new ObjectMapper();
-        String s = objectMapper.writeValueAsString(Post.class);
+        String s = objectMapper.writeValueAsString(Article.class);
         /**
          * 采用json的形式
          */
@@ -120,4 +126,12 @@ public class PostController {
         logger.info(getResponse.getSourceAsString());
         return getResponse.getSourceAsString();
     }
+    @RequestMapping("/adds")
+    public String adds(){
+        Article user =Article.builder().author("aaa").content("bbb").title("ccc").date("2018-03-24").build();
+
+        String s = client.saveDoc("index", "type", "1234456", user);
+        return s;
+    }
+
 }
