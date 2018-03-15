@@ -66,7 +66,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .csrf().disable()
             .authorizeRequests()
             .antMatchers("/login").permitAll()
-            .antMatchers("/register").permitAll()
+            .antMatchers("/register").permitAll().antMatchers("/transport/*").permitAll()
             .anyRequest().authenticated()
             .and().sessionManagement().maximumSessions(1).sessionRegistry(sessionRegistry).expiredUrl("/login").and()
             .and().logout().invalidateHttpSession(Boolean.TRUE).clearAuthentication(Boolean.TRUE).permitAll()

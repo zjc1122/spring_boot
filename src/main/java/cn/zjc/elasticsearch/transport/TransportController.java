@@ -1,28 +1,26 @@
-package cn.zjc.elasticsearch.test;
+package cn.zjc.elasticsearch.transport;
 
 
-import cn.zjc.elasticsearch.TransportClientRepository;
-import cn.zjc.model.Article;
+import cn.zjc.model.es.Article;
+import cn.zjc.model.es.ArticleUser;
+import cn.zjc.util.JsonResult;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.elasticsearch.action.admin.indices.create.CreateIndexRequestBuilder;
-import org.elasticsearch.action.admin.indices.create.CreateIndexResponse;
 import org.elasticsearch.action.get.GetResponse;
 import org.elasticsearch.action.index.IndexRequestBuilder;
 import org.elasticsearch.action.index.IndexResponse;
 import org.elasticsearch.client.transport.TransportClient;
 import org.elasticsearch.common.xcontent.XContentBuilder;
-import org.elasticsearch.common.xcontent.XContentFactory;
 import org.elasticsearch.rest.RestStatus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import javax.annotation.Resource;
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.util.Date;
-
 import static org.elasticsearch.common.xcontent.XContentFactory.jsonBuilder;
 
 
@@ -31,18 +29,16 @@ import static org.elasticsearch.common.xcontent.XContentFactory.jsonBuilder;
  */
 
 @RestController
-@RequestMapping(value = "/post")
-public class PostController {
+@RequestMapping(value = "/transport")
+public class TransportController {
 
-//    @Autowired
-//    private PostRepository postRepository;
     @Autowired
     private TransportClient transportClient;
 
     @Resource
-    TransportClientRepository client;
+    private TransportClientRepository client;
 
-    private static final Logger logger = LoggerFactory.getLogger(PostController.class);
+    private static final Logger logger = LoggerFactory.getLogger(TransportController.class);
 
     @RequestMapping("/addes")
     public String AddIndex() throws IOException {
@@ -52,8 +48,6 @@ public class PostController {
          */
         XContentBuilder xContentBuilder = jsonBuilder().startObject().field("author", "保尔柯察金")
                 .field("publishTime", new Date()).field("title", "钢铁是怎么样练成的").endObject();
-        ObjectMapper objectMapper = new ObjectMapper();
-        String s = objectMapper.writeValueAsString(Article.class);
         /**
          * 采用json的形式
          */
@@ -98,47 +92,47 @@ public class PostController {
         logger.info(getResponse.getSourceAsString());
         return getResponse.getSourceAsString();
     }
-    @RequestMapping("/adds")
-    public String adds(){
-        Article article =Article.builder().author("aaa").content("bbb").title("ccc").date("2018-03-24").build();
 
-        String s = client.saveDoc("index", "type", "444", article);
-        return s;
+    @RequestMapping("/createIndexAndDocument")
+    public JsonResult createIndexAndDocument(String index, String type) throws JsonProcessingException {
+        Article article =Article.builder().articleId(11L).author("aaa").content("bbb").title("ccc").date(new Timestamp(System.currentTimeMillis())).userId(2L).build();
+        ObjectMapper objectMapper = new ObjectMapper();
+        String json = objectMapper.writeValueAsString(article);
+        String indexAndDocument = client.createIndexAndDocument(index, type, json);
+        return JsonResult.success(indexAndDocument,"添加成功");
     }
-    @RequestMapping("/CreateIndexAndMapping")
-    public void ss() throws IOException {
-        CreateIndexRequestBuilder cib=transportClient.admin().indices().prepareCreate("zjc");
-        XContentBuilder mapping = XContentFactory.jsonBuilder()
-                .startObject()
-                .startObject("properties") //设置之定义字段
-                .startObject("author")
-                .field("type","string") //设置数据类型
-                .endObject()
-                .startObject("title")
-                .field("type","string")
-                .endObject()
-                .startObject("content")
-                .field("type","string")
-                .endObject()
-                .startObject("price")
-                .field("type","string")
-                .endObject()
-                .startObject("view")
-                .field("type","string")
-                .endObject()
-                .startObject("tag")
-                .field("type","string")
-                .endObject()
-                .startObject("date")
-                .field("type","date")  //设置Date类型
-                .field("format","yyyy-MM-dd HH:mm:ss") //设置Date的格式
-                .endObject()
-                .endObject()
-                .endObject();
-        cib.addMapping("zjc-1", mapping);
 
-        CreateIndexResponse res=cib.execute().actionGet();
-
-        System.out.println("----------添加映射成功----------");
+    @RequestMapping("/createIndexAndMapping")
+    public JsonResult createIndexAndMapping(String index, String type){
+        Article article =Article.builder().build();
+        ArticleUser articleUser = ArticleUser.builder().build();
+        Boolean indexAndMapping = client.createIndexAndMapping(index, type, article);
+        if(!indexAndMapping){
+            return JsonResult.failed("添加失败");
+        }
+        return JsonResult.success("添加成功");
     }
+
+    @RequestMapping("/createTypeAndMapping")
+    public JsonResult createTypeAndMapping(String index, String type){
+        client.createIndex(index);
+        Article article =Article.builder().build();
+        ArticleUser articleUser = ArticleUser.builder().build();
+        Boolean typeAndMapping = client.createTypeAndMapping(index, type, article);
+        if(!typeAndMapping){
+            return JsonResult.failed("添加失败");
+        }
+        return JsonResult.success("添加成功");
+    }
+
+    @RequestMapping("/deleteIndex")
+    public JsonResult deleteIndex(String index){
+        Boolean aBoolean = client.deleteIndex(index);
+
+        if(!aBoolean){
+            return JsonResult.failed("删除失败");
+        }
+        return JsonResult.success("删除成功");
+    }
+
 }

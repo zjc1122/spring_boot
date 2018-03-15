@@ -43,7 +43,9 @@ public class JsonResult implements View {
   public static JsonResult success(Object data,String succeMsg) {
     return new JsonResult(SUCCESS_CODE, succeMsg, data);
   }
-
+  public static JsonResult success(String succeMsg) {
+    return new JsonResult(SUCCESS_CODE, succeMsg, null);
+  }
   public static JsonResult failed(String message) {
     return JsonResult.failed(FAIL_CODE, message, null);
   }
