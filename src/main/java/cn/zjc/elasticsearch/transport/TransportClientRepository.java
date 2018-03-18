@@ -18,6 +18,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import java.beans.PropertyDescriptor;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -46,6 +47,15 @@ public class TransportClientRepository {
         IndexResponse response = transportClient
                 .prepareIndex(index, type)
                 .setSource(obj, XContentType.JSON)
+                .execute()
+                .actionGet();
+        return response.getIndex();
+    }
+
+    public String createIndexAndDocument(String index, String type, Object obj){
+        IndexResponse response = transportClient
+                .prepareIndex(index, type)
+                .setSource(getXContentBuilderKeyValue(obj))
                 .execute()
                 .actionGet();
         return response.getIndex();
@@ -264,6 +274,36 @@ public class TransportClientRepository {
             builder.endObject();
             builder.endObject();
             logger.info(builder.string());
+            return builder;
+        } catch (Exception e) {
+            logger.error("获取object key-value失败，{}", e.getMessage());
+        }
+        return null;
+    }
+
+    private XContentBuilder getXContentBuilderKeyValue(Object o) {
+        try {
+            XContentBuilder builder = XContentFactory.jsonBuilder().startObject();
+            List<Field> fieldList = new ArrayList<Field>();
+            @SuppressWarnings("rawtypes")
+            Class tempClass = o.getClass();
+            // 当父类为null的时候说明到达了最上层的父类(Object类).
+            while (tempClass != null) {
+                fieldList.addAll(Arrays.asList(tempClass.getDeclaredFields()));
+                // 得到父类,然后赋给自己
+                tempClass = tempClass.getSuperclass();
+            }
+            for (Field field : fieldList) {
+                if(field.isAnnotationPresent(ESearchTypeColumn.class)) {
+                    PropertyDescriptor descriptor = new PropertyDescriptor(field.getName(), o.getClass());
+                    Object value =descriptor.getReadMethod().invoke(o);
+                    if (value != null) {
+                        builder.field(field.getName(),value.toString());
+                    }
+                }
+            }
+            builder.endObject();
+            logger.debug(builder.string());
             return builder;
         } catch (Exception e) {
             logger.error("获取object key-value失败，{}", e.getMessage());

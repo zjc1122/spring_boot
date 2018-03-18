@@ -3,7 +3,6 @@ package cn.zjc.util;
 import com.google.gson.GsonBuilder;
 import lombok.Getter;
 import org.springframework.web.servlet.View;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Map;
@@ -22,9 +21,9 @@ public class JsonResult implements View {
   public final static String FAIL_CODE = "1111";
   public final static String SYS_ERROR = "9999";
   public final static String SUCCESS_MSG = "success";
-
+  public final static String FAILED_MSG = "failed";
   public static final JsonResult EMPTY_SUCCESS = success(null);
-  public static final JsonResult SYS_REQUEST_ERROR = JsonResult.failed(SYS_ERROR, "系统发生错误,请联系管理员!");
+  public static final JsonResult SYS_REQUEST_ERROR = JsonResult.failed(SYS_ERROR, "系统发生错误!");
 
   private final String code;
   private final String Msg;
@@ -39,24 +38,12 @@ public class JsonResult implements View {
   public static JsonResult success(Object data) {
     return new JsonResult(SUCCESS_CODE, SUCCESS_MSG, data);
   }
+  public static JsonResult success(String succeMsg,Object data) { return new JsonResult(SUCCESS_CODE, succeMsg, data); }
+  public static JsonResult success(String code, String message, Object data) { return new JsonResult(code, message, data); }
 
-  public static JsonResult success(Object data,String succeMsg) {
-    return new JsonResult(SUCCESS_CODE, succeMsg, data);
-  }
-  public static JsonResult success(String succeMsg) {
-    return new JsonResult(SUCCESS_CODE, succeMsg, null);
-  }
-  public static JsonResult failed(String message) {
-    return JsonResult.failed(FAIL_CODE, message, null);
-  }
-
-  public static JsonResult failed(String code, String message) {
-    return JsonResult.failed(code, message, null);
-  }
-
-  public static JsonResult failed(String code, String message, Object data) {
-    return new JsonResult(code, message, data);
-  }
+  public static JsonResult failed(Object data) { return new JsonResult(FAIL_CODE, FAILED_MSG, data); }
+  public static JsonResult failed(String message,Object data) { return JsonResult.failed(FAIL_CODE, message, data); }
+  public static JsonResult failed(String code, String message, Object data) { return new JsonResult(code, message, data); }
 
   @Override
   public String getContentType() {
