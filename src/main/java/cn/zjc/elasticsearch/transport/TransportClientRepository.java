@@ -36,7 +36,8 @@ public class TransportClientRepository {
     private static final Logger logger = LoggerFactory.getLogger(TransportClientRepository.class);
 
     /**
-     * 创建索引并添加映射和文档
+     * 创建文档
+     * 如果索引和类型不存在会同时创建
      * @param index 索引名称
      * @param type 索引类型
      * @param obj

@@ -157,7 +157,7 @@ public class TransportController {
      * @throws JsonProcessingException
      */
     @RequestMapping("/addDocumentforJson")
-    public JsonResult addDocumentforJson(String index, String type) throws JsonProcessingException {
+    public JsonResult addDocumentforJson(String index, String type){
         Article article =Article.builder().articleId(11L).author("aaa").content("bbb").title("ccc").date(TimeUtil.localDateTimetoString(LocalDateTime.now())).userId(2L).build();
         //时间为时间戳格式，es的字段类型为long
         String jsonString = JSON.toJSONString(article);
@@ -176,7 +176,7 @@ public class TransportController {
      * @throws JsonProcessingException
      */
     @RequestMapping("/addDocumentforBuilder")
-    public JsonResult addDocumentforBuilder(String index, String type) throws JsonProcessingException {
+    public JsonResult addDocumentforBuilder(String index, String type){
         Article article =Article.builder().articleId(11L).author("aaa").content("bbb").title("ccc").date(TimeUtil.localDateTimetoString(LocalDateTime.now())).userId(2L).build();
         String indexAndDocument = client.createIndexAndDocument(index, type, article);
 
