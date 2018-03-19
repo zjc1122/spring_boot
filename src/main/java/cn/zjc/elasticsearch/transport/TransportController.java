@@ -4,7 +4,6 @@ package cn.zjc.elasticsearch.transport;
 import cn.zjc.model.es.Article;
 import cn.zjc.model.es.ArticleUser;
 import cn.zjc.util.JsonResult;
-import cn.zjc.util.TimeUtil;
 import com.alibaba.fastjson.JSON;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -14,6 +13,9 @@ import org.elasticsearch.action.index.IndexResponse;
 import org.elasticsearch.client.transport.TransportClient;
 import org.elasticsearch.common.xcontent.XContentBuilder;
 import org.elasticsearch.rest.RestStatus;
+import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -95,7 +97,7 @@ public class TransportController {
 
     @RequestMapping("/createIndexAndDocument")
     public JsonResult createIndexAndDocument(String index, String type) throws JsonProcessingException {
-        Article article =Article.builder().articleId(11L).author("aaa").content("bbb").title("ccc").date(TimeUtil.localDateTimetoString(LocalDateTime.now())).userId(2L).build();
+        Article article =Article.builder().articleId(11L).author("aaa").content("bbb").title("ccc").date(LocalDateTime.now()).userId(2L).build();
         ObjectMapper objectMapper = new ObjectMapper();
         String json = objectMapper.writeValueAsString(article);
         String indexAndDocument = client.createIndexAndDocument(index, type, json);
@@ -158,7 +160,7 @@ public class TransportController {
      */
     @RequestMapping("/addDocumentforJson")
     public JsonResult addDocumentforJson(String index, String type){
-        Article article =Article.builder().articleId(11L).author("aaa").content("bbb").title("ccc").date(TimeUtil.localDateTimetoString(LocalDateTime.now())).userId(2L).build();
+        Article article =Article.builder().articleId(11L).author("aaa").content("bbb").title("ccc").date(LocalDateTime.now()).userId(2L).build();
         //时间为时间戳格式，es的字段类型为long
         String jsonString = JSON.toJSONString(article);
         //时间为格式化后的时间类型，es的字段类型为date
@@ -177,10 +179,43 @@ public class TransportController {
      */
     @RequestMapping("/addDocumentforBuilder")
     public JsonResult addDocumentforBuilder(String index, String type){
-        Article article =Article.builder().articleId(11L).author("aaa").content("bbb").title("ccc").date(TimeUtil.localDateTimetoString(LocalDateTime.now())).userId(2L).build();
+        Article article =Article.builder().articleId(11L).author("aaa").content("bbb").title("ccc").date(LocalDateTime.now()).userId(2L).build();
         String indexAndDocument = client.createIndexAndDocument(index, type, article);
 
         return JsonResult.success(indexAndDocument,"添加成功");
     }
 
+    /**
+     * 以XContentBuilder的格式更新文档数据
+     * @param index
+     * @param type
+     * @param id
+     * @return
+     */
+    @RequestMapping("/updateDocumentforBuilder")
+    public JsonResult updateDocumentforBuilder(String index, String type,String id){
+        Article article =Article.builder().articleId(11L).author("zzz").content("zzz").title("zzz").date(LocalDateTime.now()).userId(2L).build();
+        client.updateDocumentforBuilder(index, type,id,article);
+
+        return JsonResult.success("更新成功");
+    }
+
+    /**
+     * 以Json的格式更新文档数据
+     * @param index
+     * @param type
+     * @param id
+     * @return
+     */
+    @RequestMapping("/updateDocumentforJson")
+    public JsonResult updateDocumentforJson(String index, String type,String id){
+        Article article =Article.builder().articleId(11L).author("yyy").content("yyy").title("yyy").date(LocalDateTime.now()).userId(2L).build();
+        //时间为时间戳格式，es的字段类型为long
+        String jsonString = JSON.toJSONString(article);
+        //时间为格式化后的时间类型，es的字段类型为date
+        String json = JSON.toJSONStringWithDateFormat(article,"yyyy-MM-dd HH:mm:ss");
+        client.updateDocumentforJson(index, type,id, json);
+
+        return JsonResult.success("更新成功");
+    }
 }

@@ -8,6 +8,7 @@ import org.elasticsearch.action.admin.indices.delete.DeleteIndexResponse;
 import org.elasticsearch.action.admin.indices.mapping.put.PutMappingRequest;
 import org.elasticsearch.action.admin.indices.mapping.put.PutMappingResponse;
 import org.elasticsearch.action.index.IndexResponse;
+import org.elasticsearch.action.update.UpdateResponse;
 import org.elasticsearch.client.Requests;
 import org.elasticsearch.client.transport.TransportClient;
 import org.elasticsearch.common.settings.Settings;
@@ -61,6 +62,7 @@ public class TransportClientRepository {
                 .actionGet();
         return response.getIndex();
     }
+
     /**
      * 创建索引并添加映射(不包含文档数据)
      * 一次性创建index和mapping
@@ -91,6 +93,7 @@ public class TransportClientRepository {
 
         return createIndexResponse.isShardsAcked();
     }
+
     /**
      * 创建索引
      * @param index 索引名称
@@ -115,6 +118,7 @@ public class TransportClientRepository {
         }
         return acknowledged;
     }
+
     /**
      * 删除索引
      * @param index 索引名称
@@ -122,12 +126,10 @@ public class TransportClientRepository {
     public Boolean deleteIndex(String index){
         Boolean acknowledged = false;
         DeleteIndexResponse deleteIndexResponse ;
-
         if (!isIndexExist(index)) {
             logger.error("{}索引不存在", index);
             return false;
         }
-
         try {
             deleteIndexResponse = transportClient
                     .admin()
@@ -223,6 +225,28 @@ public class TransportClientRepository {
         return acknowledged;
     }
 
+    public void updateDocumentforJson(String index, String type,String id, String obj){
+
+        UpdateResponse updateResponse = transportClient
+                .prepareUpdate()
+                .setIndex(index)
+                .setType(type)
+                .setId(id)
+                .setDoc(obj, XContentType.JSON)
+                .execute()
+                .actionGet();
+    }
+    public void updateDocumentforBuilder(String index, String type,String id, Object obj){
+
+        UpdateResponse updateResponse = transportClient
+                .prepareUpdate()
+                .setIndex(index)
+                .setType(type)
+                .setId(id)
+                .setDoc(getXContentBuilderKeyValue(obj))
+                .execute()
+                .actionGet();
+    }
     /**
      * 得到bean中的key和type
      * @param o
@@ -266,7 +290,7 @@ public class TransportClientRepository {
                         //对date类型做时间处理
                         if(type.equals("date")){
                             //设置Date的格式
-                            builder.field("format","yyyy-MM-dd HH:mm:ss");
+//                            builder.field("format","yyyy-MM-dd HH:mm:ss");
                         }
                     }
                     builder.endObject();

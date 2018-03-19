@@ -4,6 +4,7 @@ import cn.zjc.elasticsearch.ESearchTypeColumn;
 import lombok.Builder;
 import lombok.Data;
 import lombok.ToString;
+import java.time.LocalDateTime;
 
 @Data
 @Builder
@@ -23,7 +24,7 @@ public class Article {
     private String author;
 
     @ESearchTypeColumn(type = "date")
-    private String date;
+    private LocalDateTime date;
 
     @ESearchTypeColumn(type = "long")
     private Long userId;
