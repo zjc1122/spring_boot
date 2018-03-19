@@ -1,14 +1,15 @@
 package cn.zjc.model.es;
 
 import cn.zjc.elasticsearch.ESearchTypeColumn;
-import lombok.Builder;
-import lombok.Data;
-import lombok.ToString;
+import lombok.*;
+
 import java.time.LocalDateTime;
 
 @Data
 @Builder
 @ToString
+@NoArgsConstructor
+@AllArgsConstructor
 public class Article {
 
     @ESearchTypeColumn(type = "long")

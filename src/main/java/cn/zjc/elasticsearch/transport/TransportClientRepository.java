@@ -7,6 +7,8 @@ import org.elasticsearch.action.admin.indices.create.CreateIndexResponse;
 import org.elasticsearch.action.admin.indices.delete.DeleteIndexResponse;
 import org.elasticsearch.action.admin.indices.mapping.put.PutMappingRequest;
 import org.elasticsearch.action.admin.indices.mapping.put.PutMappingResponse;
+import org.elasticsearch.action.delete.DeleteResponse;
+import org.elasticsearch.action.get.GetResponse;
 import org.elasticsearch.action.index.IndexResponse;
 import org.elasticsearch.action.update.UpdateResponse;
 import org.elasticsearch.client.Requests;
@@ -15,6 +17,7 @@ import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.common.xcontent.XContentBuilder;
 import org.elasticsearch.common.xcontent.XContentFactory;
 import org.elasticsearch.common.xcontent.XContentType;
+import org.elasticsearch.rest.RestStatus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -246,6 +249,44 @@ public class TransportClientRepository {
                 .setDoc(getXContentBuilderKeyValue(obj))
                 .execute()
                 .actionGet();
+    }
+
+    /**
+     * 根据ID查询一条数据记录
+     * @param index
+     * @param type
+     * @param id
+     * @return
+     */
+    public String getDocument(String index, String type, String id){
+
+        GetResponse getResponse = transportClient
+                .prepareGet()
+                .setIndex(index)
+                .setType(type)
+                .setId(id)
+                .execute()
+                .actionGet();
+        return getResponse.getSourceAsString();
+    }
+
+    /**
+     * 根据ID删除一条数据记录
+     * @param index
+     * @param type
+     * @param id
+     * @return
+     */
+    public Integer deleteDocument(String index, String type, String id) {
+        DeleteResponse deleteResponse  = transportClient
+                .prepareDelete()
+                .setIndex(index)
+                .setType(type)
+                .setId(id)
+                .execute()
+                .actionGet();
+
+        return deleteResponse.status().getStatus();
     }
     /**
      * 得到bean中的key和type

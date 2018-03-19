@@ -5,6 +5,8 @@ import cn.zjc.model.es.Article;
 import cn.zjc.model.es.ArticleUser;
 import cn.zjc.util.JsonResult;
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.TypeReference;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.elasticsearch.action.get.GetResponse;
@@ -141,6 +143,11 @@ public class TransportController {
         return JsonResult.success("添加成功");
     }
 
+    /**
+     * 删除索引
+     * @param index
+     * @return
+     */
     @RequestMapping("/deleteIndex")
     public JsonResult deleteIndex(String index){
         Boolean aBoolean = client.deleteIndex(index);
@@ -217,5 +224,35 @@ public class TransportController {
         client.updateDocumentforJson(index, type,id, json);
 
         return JsonResult.success("更新成功");
+    }
+
+    /**
+     * 根据ID查询一条文档
+     * @param index
+     * @param type
+     * @param id
+     * @return
+     */
+    @RequestMapping("/getDocument")
+    public JsonResult getDocument(String index, String type,String id){
+        String json = client.getDocument(index, type, id);
+        Article article = JSON.parseObject(json, new TypeReference<Article>() {});
+        return JsonResult.success(article);
+    }
+
+    /**
+     * 根据ID删除一条文档
+     * @param index
+     * @param type
+     * @param id
+     * @return
+     */
+    @RequestMapping("/deleteDocument")
+    public JsonResult deleteDocument(String index, String type,String id){
+        Integer status = client.deleteDocument(index, type, id);
+        if(!status.equals(200)){
+            return JsonResult.success("删除失败",status);
+        }
+        return JsonResult.success("删除成功",status);
     }
 }
