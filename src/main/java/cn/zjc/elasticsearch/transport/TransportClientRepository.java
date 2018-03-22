@@ -10,6 +10,7 @@ import org.elasticsearch.action.admin.indices.mapping.put.PutMappingResponse;
 import org.elasticsearch.action.delete.DeleteResponse;
 import org.elasticsearch.action.get.GetResponse;
 import org.elasticsearch.action.index.IndexResponse;
+import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.action.update.UpdateResponse;
 import org.elasticsearch.client.Requests;
 import org.elasticsearch.client.transport.TransportClient;
@@ -17,11 +18,13 @@ import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.common.xcontent.XContentBuilder;
 import org.elasticsearch.common.xcontent.XContentFactory;
 import org.elasticsearch.common.xcontent.XContentType;
-import org.elasticsearch.rest.RestStatus;
+import org.elasticsearch.index.query.QueryBuilder;
+import org.elasticsearch.index.query.QueryBuilders;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.beans.PropertyDescriptor;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -287,6 +290,11 @@ public class TransportClientRepository {
                 .actionGet();
 
         return deleteResponse.status().getStatus();
+    }
+    public  SearchResponse matchAllQuery(String index) throws Exception{
+        QueryBuilder queryBuilder = QueryBuilders.matchAllQuery();
+        SearchResponse response = transportClient.prepareSearch(index).setQuery(queryBuilder).execute().actionGet();
+        return response;
     }
     /**
      * 得到bean中的key和type
