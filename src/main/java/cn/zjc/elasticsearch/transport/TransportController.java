@@ -127,8 +127,18 @@ public class TransportController {
     }
 
     /**
-     * 先创建索引index
-     * 再创建type和mapping
+     * 创建索引
+     */
+    @RequestMapping("/createIndex")
+    public JsonResult createIndex(String index){
+        Boolean index1 = client.createIndex(index);
+        if(!index1){
+            return JsonResult.failed("添加失败");
+        }
+        return JsonResult.failed("添加成功");
+    }
+    /**
+     * 创建type和mapping
      * type和mapping存在则进行更新
      * @param index
      * @param type
@@ -136,10 +146,9 @@ public class TransportController {
      */
     @RequestMapping("/createTypeAndMapping")
     public JsonResult createTypeAndMapping(String index, String type) {
-        client.createIndex(index);
         Article article = Article.builder().build();
         ArticleUser articleUser = ArticleUser.builder().build();
-        Boolean typeAndMapping = client.createTypeAndMapping(index, type, article);
+        Boolean typeAndMapping = client.createTypeAndMapping(index, type, articleUser);
         if (!typeAndMapping) {
             return JsonResult.failed("添加失败");
         }
@@ -170,8 +179,8 @@ public class TransportController {
      */
     @RequestMapping("/addDocumentforJson")
     public JsonResult addDocumentforJson(String index, String type) {
-        Article article = Article.builder().articleId(11L).author("aaa").content("bbb").title("ccc").date(LocalDateTime.now()).userId(2L).build();
-        String json = GsonHolder.getDateGson().toJson(article);
+        Article article = Article.builder().articleId(11L).author("zzz").content("jjj").title("ccc").date(LocalDateTime.now()).userId(333L).build();
+        String json = GsonHolder.getLocalDateGson().toJson(article);
         String indexAndDocument = client.createIndexAndDocument(index, type, json);
         return JsonResult.success(indexAndDocument, "添加成功");
     }
@@ -185,7 +194,7 @@ public class TransportController {
      */
     @RequestMapping("/addDocumentforBuilder")
     public JsonResult addDocumentforBuilder(String index, String type) {
-        Article article = Article.builder().articleId(11L).author("aaa").content("bbb").title("ccc").date(LocalDateTime.now()).userId(2L).build();
+        Article article = Article.builder().articleId(11L).author("zzz").content("jjj").title("ccc").date(LocalDateTime.now()).userId(333L).build();
         String indexAndDocument = client.createIndexAndDocument(index, type, article);
 
         return JsonResult.success(indexAndDocument, "添加成功");
@@ -217,7 +226,7 @@ public class TransportController {
     @RequestMapping("/updateDocumentforJson")
     public JsonResult updateDocumentforJson(String index, String type, String id) {
         Article article = Article.builder().articleId(11L).author("yyy").content("yyy").title("yyy").date(LocalDateTime.now()).userId(2L).build();
-        String json = GsonHolder.getDateGson().toJson(article);
+        String json = GsonHolder.getLocalDateGson().toJson(article);
         client.updateDocumentforJson(index, type, id, json);
 
         return JsonResult.success("更新成功");
@@ -255,13 +264,13 @@ public class TransportController {
     }
 
     @RequestMapping("/matchAllQuery")
-    public JsonResult matchAllQuery(String index) throws Exception {
-        SearchResponse searchResponse = client.matchAllQuery(index);
+    public JsonResult matchAllQuery(String index,String type) throws Exception {
+        SearchResponse searchResponse = client.matchAllQuery(index,type);
         ArrayList<Article> list = Lists.newArrayList();
         for (SearchHit searchHit : searchResponse.getHits()) {
             String sourceAsString = searchHit.getSourceAsString();
             System.out.println(sourceAsString);
-            Article article = GsonHolder.getDateGson().fromJson(sourceAsString, Article.class);
+            Article article = GsonHolder.getLocalDateGson().fromJson(sourceAsString, Article.class);
             list.add(article);
         }
         return JsonResult.success(list);
@@ -269,7 +278,7 @@ public class TransportController {
 
     public static void main(String[] args) {
         String str = "{\"articleId\":\"11\",\"title\":\"ccc\",\"content\":\"bbb\",\"author\":\"aaa\",\"date\":\"2018-03-19T15:05:01.063\",\"userId\":\"2\"}";
-        Article article = GsonHolder.getDateGson().fromJson(str, Article.class);
+        Article article = GsonHolder.getLocalDateGson().fromJson(str, Article.class);
 
         System.out.println(LocalDateTime.now());
 

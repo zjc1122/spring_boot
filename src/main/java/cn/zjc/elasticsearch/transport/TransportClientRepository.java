@@ -1,6 +1,7 @@
 package cn.zjc.elasticsearch.transport;
 
 import cn.zjc.elasticsearch.ESearchTypeColumn;
+import org.apache.commons.lang3.StringUtils;
 import org.elasticsearch.ElasticsearchException;
 import org.elasticsearch.action.admin.indices.create.CreateIndexRequestBuilder;
 import org.elasticsearch.action.admin.indices.create.CreateIndexResponse;
@@ -291,9 +292,23 @@ public class TransportClientRepository {
 
         return deleteResponse.status().getStatus();
     }
-    public  SearchResponse matchAllQuery(String index) throws Exception{
+
+    /**
+     * 查询索引或者索引下的type中的文档
+     * @param index
+     * @param type
+     * @return
+     * @throws Exception
+     */
+    public SearchResponse matchAllQuery(String index,String type) throws Exception{
+        SearchResponse response;
         QueryBuilder queryBuilder = QueryBuilders.matchAllQuery();
-        SearchResponse response = transportClient.prepareSearch(index).setQuery(queryBuilder).execute().actionGet();
+        if(StringUtils.isNotBlank(type)){
+            response = transportClient.prepareSearch(index).setTypes(type).setQuery(queryBuilder).execute().actionGet();
+        }else {
+            response = transportClient.prepareSearch(index).setQuery(queryBuilder).execute().actionGet();
+        }
+
         return response;
     }
     /**
