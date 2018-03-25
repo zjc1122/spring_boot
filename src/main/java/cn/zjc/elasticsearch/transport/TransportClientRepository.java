@@ -21,6 +21,10 @@ import org.elasticsearch.common.xcontent.XContentFactory;
 import org.elasticsearch.common.xcontent.XContentType;
 import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
+import org.elasticsearch.index.reindex.BulkByScrollResponse;
+import org.elasticsearch.index.reindex.DeleteByQueryAction;
+import org.elasticsearch.search.SearchHit;
+import org.elasticsearch.search.SearchHits;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -262,7 +266,7 @@ public class TransportClientRepository {
      * @param id
      * @return
      */
-    public String getDocument(String index, String type, String id){
+    public String getDocumentById(String index, String type, String id){
 
         GetResponse getResponse = transportClient
                 .prepareGet()
@@ -310,6 +314,44 @@ public class TransportClientRepository {
         }
 
         return response;
+    }
+    /**
+     * 根据条件查询
+     * @param index
+     * @param type
+     * @param field
+     * @param value
+     * @return
+     */
+    public List<String> queryByFilter(String index, String type,String field,String value) {
+
+        QueryBuilder  queryBuilder = QueryBuilders.termQuery(field,value);
+        SearchResponse searchResponse =
+                transportClient
+                        .prepareSearch()
+                        .setIndices(index)
+                        .setTypes(type)
+                        .setPostFilter(queryBuilder)
+                        .execute()
+                        .actionGet();
+
+        List<String> docList = new ArrayList<String>();
+        SearchHits searchHits = searchResponse.getHits();
+        for (SearchHit hit : searchHits) {
+            docList.add(hit.getSourceAsString());
+        }
+        return docList;
+    }
+    /**
+     * 根据条件删除文档。
+     */
+    public Long deleteByQuery(String index,String field,String value ) {
+        QueryBuilder queryBuilder = QueryBuilders.matchQuery(field, value);
+        BulkByScrollResponse response = DeleteByQueryAction.INSTANCE.newRequestBuilder(transportClient)
+                        .filter(queryBuilder)
+                        .source(index)
+                        .get();
+        return response.getDeleted();
     }
     /**
      * 得到bean中的key和type

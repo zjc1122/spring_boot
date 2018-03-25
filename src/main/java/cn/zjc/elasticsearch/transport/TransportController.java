@@ -11,7 +11,6 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.Lists;
 import lombok.extern.slf4j.Slf4j;
-import org.elasticsearch.action.get.GetResponse;
 import org.elasticsearch.action.index.IndexRequestBuilder;
 import org.elasticsearch.action.index.IndexResponse;
 import org.elasticsearch.action.search.SearchResponse;
@@ -24,12 +23,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import javax.annotation.Resource;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import static org.elasticsearch.common.xcontent.XContentFactory.jsonBuilder;
 
@@ -83,21 +82,6 @@ public class TransportController {
         return "成功";
     }
 
-    @RequestMapping("/getIndex")
-    public String getIndex() throws IOException {
-        // 查询所有
-
-        // GetResponse getResponse = transportClient.prepareGet().get();
-
-        // String string = getResponse.getSourceAsString();
-
-        // 在知道id的情况下使用
-
-        String id = "AWIVi8M4QaDxaSKrjebA";
-        GetResponse getResponse = transportClient.prepareGet("articles", "article", id).get();
-        logger.info(getResponse.getSourceAsString());
-        return getResponse.getSourceAsString();
-    }
 
     @RequestMapping("/createIndexAndDocument")
     public JsonResult createIndexAndDocument(String index, String type) throws JsonProcessingException {
@@ -239,9 +223,9 @@ public class TransportController {
      * @param id
      * @return
      */
-    @RequestMapping("/getDocument")
-    public JsonResult getDocument(String index, String type, String id) {
-        String json = client.getDocument(index, type, id);
+    @RequestMapping("/getDocumentById")
+    public JsonResult getDocumentById(String index, String type, String id) {
+        String json = client.getDocumentById(index, type, id);
         Article article = JSON.parseObject(json, new TypeReference<Article>() {
         });
         return JsonResult.success(article);
@@ -276,6 +260,25 @@ public class TransportController {
         return JsonResult.success(list);
     }
 
+    @RequestMapping("/queryByFilter")
+    public JsonResult queryByFilter(String index,String type,String field,String value){
+        List<String> queryList = client.queryByFilter(index,type,field,value);
+        ArrayList<Article> articles = Lists.newArrayList();
+        for (String json: queryList) {
+            Article article = GsonHolder.getDateGson().fromJson(json, Article.class);
+            articles.add(article);
+        }
+        return JsonResult.success(articles);
+    }
+
+    @RequestMapping("/deleteByQuery")
+    public JsonResult deleteByQuery(String index,String field,String value){
+        Long count = client.deleteByQuery(index, field, value);
+        if(count==0){
+            return JsonResult.success("没有符合条件的数据！");
+        }
+        return JsonResult.success("删除"+count+"条数据！");
+    }
     public static void main(String[] args) {
         String str = "{\"articleId\":\"11\",\"title\":\"ccc\",\"content\":\"bbb\",\"author\":\"aaa\",\"date\":\"2018-03-19T15:05:01.063\",\"userId\":\"2\"}";
         Article article = GsonHolder.getLocalDateGson().fromJson(str, Article.class);
