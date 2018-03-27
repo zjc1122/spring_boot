@@ -194,7 +194,7 @@ public class TransportController {
      */
     @RequestMapping("/updateDocumentforBuilder")
     public JsonResult updateDocumentforBuilder(String index, String type, String id) {
-        Article article = Article.builder().articleId(11L).author("zzz").content("zzz").title("zzz").date(LocalDateTime.now()).userId(2L).build();
+        Article article = Article.builder().articleId(11L).author("zzz").content("zzz").title("zzz").date(LocalDateTime.now()).userId(1L).build();
         client.updateDocumentforBuilder(index, type, id, article);
 
         return JsonResult.success("更新成功");
@@ -279,17 +279,10 @@ public class TransportController {
         }
         return JsonResult.success("删除"+count+"条数据！");
     }
-    public static void main(String[] args) {
-        String str = "{\"articleId\":\"11\",\"title\":\"ccc\",\"content\":\"bbb\",\"author\":\"aaa\",\"date\":\"2018-03-19T15:05:01.063\",\"userId\":\"2\"}";
-        Article article = GsonHolder.getLocalDateGson().fromJson(str, Article.class);
-
-        System.out.println(LocalDateTime.now());
-
-        /*String str = "2018-03-21T18:25:50.032";
-        DateTimeFormatter formatter = DateTimeFormatter.ISO_LOCAL_DATE_TIME;
-        LocalDateTime parse = LocalDateTime.parse(str, formatter);*/
-
-        System.out.println();
+    @RequestMapping("/min")
+    public JsonResult min(String index,String field){
+        Double min = client.min(index, field);
+        return JsonResult.success(min);
     }
 
 }

@@ -25,6 +25,8 @@ import org.elasticsearch.index.reindex.BulkByScrollResponse;
 import org.elasticsearch.index.reindex.DeleteByQueryAction;
 import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.SearchHits;
+import org.elasticsearch.search.aggregations.AggregationBuilders;
+import org.elasticsearch.search.aggregations.metrics.min.InternalMin;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -353,6 +355,21 @@ public class TransportClientRepository {
                         .get();
         return response.getDeleted();
     }
+    /**
+     * 使用min聚合查询字段上最小的值。
+     * @param index
+     * @param field
+     */
+    public Double min(String index,String field) {
+        SearchResponse response = transportClient
+                .prepareSearch(index)
+                .addAggregation(AggregationBuilders.min("min").field(field))
+                .execute()
+                .actionGet();
+        InternalMin min = response.getAggregations().get("min");
+        return min.getValue();
+    }
+
     /**
      * 得到bean中的key和type
      * @param o
