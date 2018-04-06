@@ -36,13 +36,13 @@ public class RedisLockAspect  {
         MethodSignature methodSignature = (MethodSignature) pjp.getSignature();
         Method method = methodSignature.getMethod();
         RedisLock lockInfo = method.getAnnotation(RedisLock.class);
-        String lockKey = lockInfo .value();
+        String lockKey = lockInfo.value();
         if (lockKey == null ||"".equals(lockKey)) {
             throw new IllegalArgumentException("配置参数错误,lockKey不能为空！");
         }
         // 持有锁超时时间换算为秒
         Integer lockExpire;
-        //没有设置超时时间，给一个默认值60秒
+        //没有设置超时时间，给一个默认值30秒
         if(lockInfo.keepMills() <= 0){
             lockExpire = 30;
         }else{
