@@ -26,7 +26,6 @@ public class RedisLockAspect  {
 
     @Autowired
     private RedisUtil redisUtil;
-
     @Pointcut("@annotation(cn.zjc.aspect.redisdistributedlock.RedisLock) && execution(* cn.zjc..*(..))")
     private void lockPoint(){}
 
