@@ -3,6 +3,7 @@ package cn.zjc.config;
 import cn.zjc.aspect.db.DynamicDataSource;
 import cn.zjc.enums.DataBaseType;
 import com.github.pagehelper.PageHelper;
+import com.google.common.collect.Maps;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -38,13 +39,14 @@ public class MybatisConfig implements TransactionManagementConfigurer {
     @Primary
     public DynamicDataSource dataSource() {
         try {
-            Map<Object, Object> targetDataSources = new HashMap<>();
+            Map<Object, Object> targetDataSources = Maps.newHashMap();
             targetDataSources.put(DataBaseType.Default_DB.get(), defaultDataSource);
             targetDataSources.put(DataBaseType.Slave_DB.get(), slaveDataSource);
             DynamicDataSource dataSource = new DynamicDataSource();
-            dataSource.setTargetDataSources(targetDataSources);// 该方法是AbstractRoutingDataSource的方法
-            dataSource.setDefaultTargetDataSource(defaultDataSource);// 默认的datasource设置为myTestDbDataSource
-
+            // 该方法是AbstractRoutingDataSource的方法
+            dataSource.setTargetDataSources(targetDataSources);
+            // 默认的datasource设置为defaultDataSource
+            dataSource.setDefaultTargetDataSource(defaultDataSource);
             return dataSource;
         } catch (Exception e) {
             logger.error(e.getMessage(),e);

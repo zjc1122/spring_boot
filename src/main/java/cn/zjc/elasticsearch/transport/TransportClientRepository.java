@@ -1,6 +1,7 @@
 package cn.zjc.elasticsearch.transport;
 
 import cn.zjc.elasticsearch.ESearchTypeColumn;
+import com.google.common.collect.Lists;
 import org.apache.commons.lang3.StringUtils;
 import org.elasticsearch.ElasticsearchException;
 import org.elasticsearch.action.admin.indices.create.CreateIndexRequestBuilder;
@@ -337,7 +338,7 @@ public class TransportClientRepository {
                         .execute()
                         .actionGet();
 
-        List<String> docList = new ArrayList<String>();
+        List<String> docList = Lists.newArrayList();
         SearchHits searchHits = searchResponse.getHits();
         for (SearchHit hit : searchHits) {
             docList.add(hit.getSourceAsString());
@@ -378,7 +379,7 @@ public class TransportClientRepository {
     private XContentBuilder getXContentBuilderKeyAndType(Object o) {
         try {
             XContentBuilder builder = XContentFactory.jsonBuilder().startObject().startObject("properties");
-            List<Field> fieldList = new ArrayList<Field>();
+            List<Field> fieldList = Lists.newArrayList();
             Class tempClass = o.getClass();
             /**
              * 当父类为null的时候说明到达了最上层的父类(Object类).
@@ -432,7 +433,7 @@ public class TransportClientRepository {
     private XContentBuilder getXContentBuilderKeyValue(Object o) {
         try {
             XContentBuilder builder = XContentFactory.jsonBuilder().startObject();
-            List<Field> fieldList = new ArrayList<Field>();
+            List<Field> fieldList = Lists.newArrayList();
             @SuppressWarnings("rawtypes")
             Class tempClass = o.getClass();
             // 当父类为null的时候说明到达了最上层的父类(Object类).

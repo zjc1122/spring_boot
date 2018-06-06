@@ -101,7 +101,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new HttpSessionEventPublisher();
     }
 
-    //允许跨域
+    /**
+     * 允许跨域
+     */
     @Bean
     public WebMvcConfigurer corsConfigurer() {
         return new WebMvcConfigurerAdapter() {

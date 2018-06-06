@@ -4,6 +4,7 @@ import cn.zjc.model.sysrole.SysRole;
 import cn.zjc.model.sysuser.SysUser;
 import cn.zjc.server.sysrole.SysRoleService;
 import cn.zjc.server.sysuser.SysUserService;
+import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.GrantedAuthority;
@@ -33,11 +34,11 @@ public class SysUserDetailsService implements UserDetailsService {
         try {
             user = sysUserService.getByUsername(userName);
         }catch (Exception e){
-            throw new BadCredentialsException("查询用户报错!");
+            throw new BadCredentialsException("查询用户异常!");
         }
         if (user != null) {
             //查询用户的权限
-            List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
+            List<GrantedAuthority> grantedAuthorities = Lists.newArrayList();
             List<SysRole> roles = sysRoleService.findRoleByUserId(Long.valueOf(user.getId()));
             if(Objects.nonNull(roles)){
                 for (SysRole sysRole:roles) {
