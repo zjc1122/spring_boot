@@ -2,6 +2,7 @@ package cn.zjc.util;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
 import javax.activation.FileDataSource;
@@ -36,12 +37,15 @@ public class MailUtil {
     @Value("${email.AttachmentName}")
     private String AttachmentName;
 
-    public void sendMail( File attachment) throws Exception {
+    public void sendMail(File attachment) throws Exception {
         // 1. 创建参数配置, 用于连接邮件服务器的参数配置
-        Properties props = new Properties();                    // 参数配置
-        props.setProperty("mail.transport.protocol", "smtp");   // 使用的协议（JavaMail规范要求）
-        props.setProperty("mail.smtp.host", EmailSMTPHost);   // 发件人的邮箱的 SMTP 服务器地址
-        props.setProperty("mail.smtp.auth", "true");            // 需要请求认证
+        Properties props = new Properties();
+        // 使用的协议（JavaMail规范要求）
+        props.setProperty("mail.transport.protocol", "smtp");
+        // 发件人的邮箱的 SMTP 服务器地址
+        props.setProperty("mail.smtp.host", EmailSMTPHost);
+        // 需要请求认证
+        props.setProperty("mail.smtp.auth", "true");
 
         // PS: 某些邮箱服务器要求 SMTP 连接需要使用 SSL 安全认证 (为了提高安全性, 邮箱支持SSL连接, 也可以自己开启),
         //     如果无法连接邮件服务器, 仔细查看控制台打印的 log, 如果有有类似 “连接失败, 要求 SSL 安全连接” 等错误,
@@ -61,7 +65,7 @@ public class MailUtil {
         // 设置为debug模式, 可以查看详细的发送 log
         session.setDebug(false);
         // 3. 创建一封邮件
-        MimeMessage message = createMimeMessage(session, EmailAccount, receiveMailAccount,attachment);
+        MimeMessage message = createMimeMessage(session, EmailAccount, receiveMailAccount, attachment);
         // 4. 根据 Session 获取邮件传输对象
         Transport transport = session.getTransport();
         // 5. 使用 邮箱账号 和 密码 连接邮件服务器, 这里认证的邮箱必须与 message 中的发件人邮箱一致, 否则报错
@@ -84,16 +88,17 @@ public class MailUtil {
         // 7. 关闭连接
         transport.close();
     }
+
     /**
      * 创建一封只包含文本的简单邮件
      *
-     * @param session 和服务器交互的会话
-     * @param sendMail 发件人邮箱
+     * @param session     和服务器交互的会话
+     * @param sendMail    发件人邮箱
      * @param receiveMail 收件人邮箱
      * @return
      * @throws Exception
      */
-    public  MimeMessage createMimeMessage(Session session, String sendMail, String receiveMail,File attachment) throws Exception {
+    public MimeMessage createMimeMessage(Session session, String sendMail, String receiveMail, File attachment) throws Exception {
         // 1. 创建一封邮件
         MimeMessage message = new MimeMessage(session);
         // 2. From: 发件人
@@ -103,7 +108,7 @@ public class MailUtil {
         // 4. Subject: 邮件主题
         message.setSubject(Subject, "UTF-8");
         // 创建消息部分创建附件
-        BodyPart bodyPart  = new MimeBodyPart();
+        BodyPart bodyPart = new MimeBodyPart();
         // 消息
         bodyPart.setText("这是异常日志邮件，请查看附件！");
         bodyPart.setHeader("Content-Type", "text/html; charset=UTF-8");
@@ -112,7 +117,7 @@ public class MailUtil {
         // 设置文本消息部分
         multipart.addBodyPart(bodyPart);
         // 附件部分
-        BodyPart  fileBody = new MimeBodyPart();
+        BodyPart fileBody = new MimeBodyPart();
         DataSource source = new FileDataSource(attachment);
         fileBody.setDataHandler(new DataHandler(source));
         fileBody.setFileName(AttachmentName);

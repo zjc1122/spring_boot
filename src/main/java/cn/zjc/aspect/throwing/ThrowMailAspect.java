@@ -22,7 +22,7 @@ import java.util.Date;
 @Aspect
 @Component
 public class ThrowMailAspect {
-    private static final Logger log = LoggerFactory.getLogger(ThrowMailAspect.class);
+    private static final Logger logger = LoggerFactory.getLogger(ThrowMailAspect.class);
     @Value("${email.Path}")
     private String Path;
 
@@ -35,8 +35,8 @@ public class ThrowMailAspect {
     @AfterThrowing(value = "lockPoint()",throwing = "ex")
     public void throwingMail(JoinPoint joinPoint, Exception ex) throws Exception {
         String methodName = joinPoint.getSignature().getName();
-        log.info("The method " + methodName + " occurs excetion:" + ex);
-        log.info("抛异常了=========");
+        logger.info("The method :{},occurs excetion:{}", methodName ,ex);
+        logger.info("抛异常了=========");
         SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMddHHmmss");
         String dateString = formatter.format(new Date());
         File file = new File(Path + dateString + "Error.log");
@@ -45,8 +45,7 @@ public class ThrowMailAspect {
             file.getParentFile().mkdirs();
             file.createNewFile();
         }
-        PrintStream stream = null;
-        stream = new PrintStream(file);
+        PrintStream stream = new PrintStream(file);
         //将异常信息写入文件中
         ex.printStackTrace(stream);
         //将异常信息文件通过邮件附件方式发送

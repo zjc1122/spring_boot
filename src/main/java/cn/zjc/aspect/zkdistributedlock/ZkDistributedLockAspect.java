@@ -21,7 +21,7 @@ import java.util.concurrent.TimeUnit;
 @Aspect
 @Component
 public class ZkDistributedLockAspect {
-    private static final Logger log = LoggerFactory.getLogger(ZkDistributedLockAspect.class);
+    private static final Logger logger = LoggerFactory.getLogger(ZkDistributedLockAspect.class);
 
     @Autowired
     ZkClient zkClient;
@@ -43,7 +43,7 @@ public class ZkDistributedLockAspect {
         Object obj = null;
         try {
             if(lock.acquire(expireTime, TimeUnit.SECONDS)){
-                log.info("得到锁...");
+                logger.info("得到锁...");
                 obj = pjp.proceed();
                 Thread.sleep(500);
             }
@@ -53,7 +53,7 @@ public class ZkDistributedLockAspect {
             try {
                 //判断是否持有锁
                 if(lock.isAcquiredInThisProcess()){
-                    log.info("释放锁...");
+                    logger.info("释放锁...");
                     lock.release();
                 }
             } catch (Exception e) {

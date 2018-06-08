@@ -3,8 +3,13 @@ package cn.zjc.config;
 import com.rabbitmq.client.Channel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.amqp.core.AcknowledgeMode;
+import org.springframework.amqp.core.Binding;
+import org.springframework.amqp.core.BindingBuilder;
+import org.springframework.amqp.core.DirectExchange;
+import org.springframework.amqp.core.Message;
+import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.core.TopicExchange;
-import org.springframework.amqp.core.*;
 import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.ChannelAwareMessageListener;
@@ -36,9 +41,11 @@ public class RabbitAmqpConfig {
     private String password;
     @Value("${rabbitmq.virtualHost}")
     private String virtualHost;
-    private static final Logger log = LoggerFactory.getLogger(RabbitAmqpConfig.class);
+    private static final Logger loggere = LoggerFactory.getLogger(RabbitAmqpConfig.class);
+
     /**
      * 配置链接信息
+     *
      * @return
      */
     @Bean
@@ -58,7 +65,7 @@ public class RabbitAmqpConfig {
 
     @Bean
     public RabbitAdmin rabbitAdmin(ConnectionFactory cachingConnectionFactory) {
-        RabbitAdmin rabbitAdmin =  new RabbitAdmin(cachingConnectionFactory);
+        RabbitAdmin rabbitAdmin = new RabbitAdmin(cachingConnectionFactory);
         return rabbitAdmin;
     }
 
@@ -69,22 +76,24 @@ public class RabbitAmqpConfig {
     @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
     public RabbitTemplate rabbitTemplatenew() {
         RabbitTemplate template = new RabbitTemplate(cachingConnectionFactory());
-        template.setMessageConverter(new Jackson2JsonMessageConverter());//数据转换为json存入消息队列
+        //数据转换为json存入消息队列
+        template.setMessageConverter(new Jackson2JsonMessageConverter());
         //发布确认
         template.setConfirmCallback(new RabbitTemplate.ConfirmCallback() {
             //消息发送到queue时就执行
             @Override
             public void confirm(CorrelationData correlationData, boolean ack, String cause) {
                 if (ack) {
-                    log.info("消息成功消费");
+                    loggere.info("消息成功消费");
                 } else {
-                    log.info("消息发送失败:" + cause+"\n重新发送");
+                    loggere.info("消息发送失败:" + cause + "\n重新发送");
                     throw new RuntimeException("消息发送失败 " + cause);
                 }
             }
         });
         return template;
     }
+
     /**
      * 配置消息交换机
      * 针对消费者配置
@@ -97,41 +106,50 @@ public class RabbitAmqpConfig {
     public DirectExchange directExchange() {
         return new DirectExchange("directExchange", true, false);
     }
+
     @Bean
     public TopicExchange topicExchange() {
-        return new TopicExchange("topicExchange",true, false);
+        return new TopicExchange("topicExchange", true, false);
     }
+
     /**
      * 配置direct消息队列
      * 针对消费者配置
+     *
      * @return
      */
     @Bean(name = "directQueue")
     public Queue directQueue() {
-        return new Queue("directQueue", true); //队列持久
+        return new Queue("directQueue", true);
     }
+
     /**
      * 配置topic消息队列
      * 针对消费者配置
+     *
      * @return
      */
     @Bean(name = "topicQueue")
     public Queue topicQueue() {
-        return new Queue("topicQueue", true); //队列持久
+        return new Queue("topicQueue", true);
     }
+
     @Bean(name = "topicQueueMore")
     public Queue topicQueueMore() {
-        return new Queue("topicQueueMore", true); //队列持久
+        return new Queue("topicQueueMore", true);
     }
+
     /**
      * 将direct消息队列与交换机绑定
      * 针对消费者配置
+     *
      * @return
      */
     @Bean
     public Binding directBinding(@Qualifier("directQueue") Queue directQueue) {
         return BindingBuilder.bind(directQueue()).to(directExchange()).with(directQueue.getName());
     }
+
     /**
      * 将topic消息队列与交换机绑定
      * 针对消费者配置
@@ -141,6 +159,7 @@ public class RabbitAmqpConfig {
     public Binding topicBinding(@Qualifier("topicQueue") Queue topicQueue) {
         return BindingBuilder.bind(topicQueue()).to(topicExchange()).with(topicQueue.getName());
     }
+
     /**
      * 将topic消息队列与交换机绑定
      * 针对消费者配置
@@ -151,21 +170,26 @@ public class RabbitAmqpConfig {
     public Binding topicBindings(@Qualifier("topicQueueMore") Queue topicQueue) {
         return BindingBuilder.bind(topicQueueMore()).to(topicExchange()).with("topicQueue.#");
     }
+
     @Bean
-    public SimpleMessageListenerContainer directListenerContainer(@Qualifier("directQueue")Queue directQueue){
+    public SimpleMessageListenerContainer directListenerContainer(@Qualifier("directQueue") Queue directQueue) {
         return messageContainer(directQueue);
     }
+
     @Bean
-    public SimpleMessageListenerContainer topicListenerContainer(@Qualifier("topicQueue")Queue topicQueue){
+    public SimpleMessageListenerContainer topicListenerContainer(@Qualifier("topicQueue") Queue topicQueue) {
         return messageContainer(topicQueue);
     }
+
     @Bean
-    public SimpleMessageListenerContainer topicMoreListenerContainer(@Qualifier("topicQueueMore")Queue topicQueue){
+    public SimpleMessageListenerContainer topicMoreListenerContainer(@Qualifier("topicQueueMore") Queue topicQueue) {
         return messageContainer(topicQueue);
     }
+
     /**
      * 接受消息的监听，这个监听会接受消息队列的消息
      * 针对消费者配置
+     *
      * @return
      */
     public SimpleMessageListenerContainer messageContainer(Queue queue) {
@@ -174,13 +198,15 @@ public class RabbitAmqpConfig {
         container.setExposeListenerChannel(true);
         container.setMaxConcurrentConsumers(1);
         container.setConcurrentConsumers(1);
-        container.setAcknowledgeMode(AcknowledgeMode.MANUAL); //设置确认模式手工确认
+        //设置确认模式手工确认
+        container.setAcknowledgeMode(AcknowledgeMode.MANUAL);
         container.setMessageListener(new ChannelAwareMessageListener() {
             @Override
             public void onMessage(Message message, Channel channel) throws Exception {
                 byte[] body = message.getBody();
-                log.info("收到"+queue.getName()+"队列的消息: " + new String(body));
-                channel.basicAck(message.getMessageProperties().getDeliveryTag(), false); //确认消息成功消费
+                loggere.info("收到" + queue.getName() + "队列的消息: " + new String(body));
+                //确认消息成功消费
+                channel.basicAck(message.getMessageProperties().getDeliveryTag(), false);
             }
         });
         return container;

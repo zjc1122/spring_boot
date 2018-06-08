@@ -22,7 +22,7 @@ import java.util.concurrent.TimeoutException;
 @Aspect
 @Component
 public class RedisLockAspect  {
-    private static final Logger log = LoggerFactory.getLogger(ZkDistributedLockAspect.class);
+    private static final Logger logger = LoggerFactory.getLogger(ZkDistributedLockAspect.class);
 
     @Autowired
     private RedisUtil redisUtil;
@@ -60,14 +60,14 @@ public class RedisLockAspect  {
                 if (lock) {
                     //设置失效时间
                     redisUtil.expire(lockKey,lockExpire);
-                    log.info("得到锁...");
+                    logger.info("得到锁...");
                     obj = pjp.proceed();
                 }
                 // 已过期，并且getAndSet后旧的时间戳依然是过期的，可以认为获取到了锁
                 else if (System.currentTimeMillis() > redisUtil.get(lockKey) &&
                         (System.currentTimeMillis() > redisUtil.getAndSet(lockKey, keepMills))) {
                     lock = true;
-                    log.info("得到锁...");
+                    logger.info("得到锁...");
                     obj = pjp.proceed();
                 }
                 // 没有得到任何锁
@@ -75,7 +75,7 @@ public class RedisLockAspect  {
                     // 继续等待获取锁
                     if (lockInfo.action().equals(RedisLock.LockFailAction.CONTINUE)) {
                         // 如果超过最大等待时间抛出异常
-                        log.info("稍后重新请求锁...");
+                        logger.info("稍后重新请求锁...");
                         if (lockInfo.maxSleepMills() > 0 && System.currentTimeMillis() > maxSleepMills) {
                             throw new TimeoutException("获取锁资源等待超时");
                         }
@@ -83,7 +83,7 @@ public class RedisLockAspect  {
                     }
                     // 放弃等待
                     else {
-                        log.info("放弃锁...");
+                        logger.info("放弃锁...");
                         break;
                     }
                 }
@@ -97,7 +97,7 @@ public class RedisLockAspect  {
             if (lock) {
                 //锁没有过期就删除key
                 if (System.currentTimeMillis() < (System.currentTimeMillis() + lockInfo.keepMills())){
-                    log.info("释放锁...");
+                    logger.info("释放锁...");
                     redisUtil.delete(lockKey);
                 }
 

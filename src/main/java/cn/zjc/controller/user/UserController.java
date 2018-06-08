@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value = "/user")
 @PreAuthorize("hasRole('USER')")
 public class UserController {
-    private static final Logger log = LoggerFactory.getLogger(UserController.class);
+    private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
     @Autowired
     private UserService userService;
@@ -33,19 +33,21 @@ public class UserController {
     public PageInfo<User> findAllUser(@RequestParam("pageNo") Integer pageNo, @RequestParam("pageSize") Integer pageSize){
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = new User();
-        log.info("===========");
+        logger.info("===========");
         return userService.selectPageAll(pageNo,pageSize,user);
     }
 
     @RequestMapping(value = "/addUser",method = RequestMethod.POST)
     @PreAuthorize("hasRole('ADMIN')")
     public JsonResult addUser(){
-        User user = new User();
-        log.info("===========");
-        user.setUserId(5);
-        user.setPassword("springboot");
-        user.setPhone("springboot_111");
-        user.setUserName("springboot_222");
+        logger.info("===========");
+        User user = User
+                .builder()
+                .userId(5)
+                .password("springboot")
+                .userName("springboot_222")
+                .phone("123445")
+                .build();
         userService.save(user);
         return JsonResult.success(user.getUserName()+"添加成功!");
     }
