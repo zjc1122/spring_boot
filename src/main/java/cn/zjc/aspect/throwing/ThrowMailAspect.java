@@ -10,10 +10,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+
 import java.io.File;
 import java.io.PrintStream;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 /**
  * Created by zhangjiacheng on 2017/11/19
@@ -24,7 +25,7 @@ import java.util.Date;
 public class ThrowMailAspect {
     private static final Logger logger = LoggerFactory.getLogger(ThrowMailAspect.class);
     @Value("${email.Path}")
-    private String Path;
+    private String path;
 
     @Autowired
     private MailUtil mailUtil;
@@ -37,9 +38,9 @@ public class ThrowMailAspect {
         String methodName = joinPoint.getSignature().getName();
         logger.info("The method :{},occurs excetion:{}", methodName ,ex);
         logger.info("抛异常了=========");
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMddHHmmss");
-        String dateString = formatter.format(new Date());
-        File file = new File(Path + dateString + "Error.log");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
+        String dateString = formatter.format(LocalDateTime.now());
+        File file = new File(path + dateString + "Error.log");
         //不存在则创建父目录
         if (!file.getParentFile().exists()){
             file.getParentFile().mkdirs();

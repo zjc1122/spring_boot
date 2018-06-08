@@ -13,7 +13,8 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.text.SimpleDateFormat;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.Map;
 
@@ -25,24 +26,29 @@ public class MainsiteErrorController implements ErrorController {
 
     private static final String ERROR_PATH = "/error";
 
-    @RequestMapping(value=ERROR_PATH)
+    @RequestMapping(value = ERROR_PATH)
     @ResponseBody
     public JsonResult handleError(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-        SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-dd HH:mm:ss");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("YYYY-MM-dd HH:mm:ss");
 
-        Map<String,Object> errorAttributes = getErrorAttributes(request, true);
-        String message=(String)errorAttributes.get("message");
+        Map<String, Object> errorAttributes = getErrorAttributes(request, true);
+        String message = (String) errorAttributes.get("message");
         String error = (String) errorAttributes.get("error");
-        Integer status=(Integer)errorAttributes.get("status");
-        String path=(String)errorAttributes.get("path");
+        Integer status = (Integer) errorAttributes.get("status");
+        String path = (String) errorAttributes.get("path");
         Date timestamp = (Date) errorAttributes.get("timestamp");
-
-        SystemMsg systemMsg = SystemMsg.builder().message(message).status(status).error(error).path(path).sysTime(sdf.format(timestamp)).build();
-
+        SystemMsg systemMsg = SystemMsg
+                .builder()
+                .message(message)
+                .status(status)
+                .error(error)
+                .path(path)
+                .sysTime(formatter.format(timestamp.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime()))
+                .build();
         String msg;
 
-        switch (response.getStatus()){
+        switch (response.getStatus()) {
 
             case 401:
                 msg = "访问未授权!";
@@ -57,9 +63,9 @@ public class MainsiteErrorController implements ErrorController {
                 msg = "服务器错误!";
                 break;
             default:
-                msg= "系统繁忙";
+                msg = "系统繁忙";
         }
-        return JsonResult.failed(JsonResult.SYS_ERROR,msg,systemMsg);
+        return JsonResult.failed(JsonResult.SYS_ERROR, msg, systemMsg);
     }
 
     @Override

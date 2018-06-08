@@ -4,7 +4,7 @@ package cn.zjc.enums;
  * @ClassName : SysUtilCode
  * @Author : zhangjiacheng
  * @Date : 2018/6/8
- * @Description : TODO
+ * @Description : 错误编码枚举类
  */
 public enum SysUtilCode {
 
