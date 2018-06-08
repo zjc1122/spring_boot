@@ -10,11 +10,11 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * Created by zhangjiacheng on 2017/12/10
- *
  */
 public class ErrorInterceptor implements HandlerInterceptor {
 
     private static final Logger logger = LoggerFactory.getLogger(ErrorInterceptor.class);
+
     /**
      * preHandle方法是进行处理器拦截用的，顾名思义，该方法将在Controller处理之前进行调用，
      * SpringMVC中的Interceptor拦截器是链式的，可以同时存在多个Interceptor，
@@ -41,8 +41,9 @@ public class ErrorInterceptor implements HandlerInterceptor {
     @Override
     public void postHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, ModelAndView modelAndView) throws Exception {
 
-        logger.info("请求的状态为："+httpServletResponse.getStatus());
+        logger.info("请求的状态为:{}", httpServletResponse.getStatus());
     }
+
     /**
      * 该方法也是需要当前对应的Interceptor的preHandle方法的返回值为true时才会执行。
      * 该方法将在整个请求完成之后，也就是DispatcherServlet渲染了视图执行，

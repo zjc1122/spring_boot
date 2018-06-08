@@ -28,18 +28,18 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = "/findAllUser",method = RequestMethod.POST)
-    @Cacheable(value = "users" ,key="'findAllUser'")
-    public PageInfo<User> findAllUser(@RequestParam("pageNo") Integer pageNo, @RequestParam("pageSize") Integer pageSize){
+    @RequestMapping(value = "/findAllUser", method = RequestMethod.POST)
+    @Cacheable(value = "users", key = "'findAllUser'")
+    public PageInfo<User> findAllUser(@RequestParam("pageNo") Integer pageNo, @RequestParam("pageSize") Integer pageSize) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = new User();
         logger.info("===========");
-        return userService.selectPageAll(pageNo,pageSize,user);
+        return userService.selectPageAll(pageNo, pageSize, user);
     }
 
-    @RequestMapping(value = "/addUser",method = RequestMethod.POST)
+    @RequestMapping(value = "/addUser", method = RequestMethod.POST)
     @PreAuthorize("hasRole('ADMIN')")
-    public JsonResult addUser(){
+    public JsonResult addUser() {
         logger.info("===========");
         User user = User
                 .builder()
@@ -49,6 +49,6 @@ public class UserController {
                 .phone("123445")
                 .build();
         userService.save(user);
-        return JsonResult.success(user.getUserName()+"添加成功!");
+        return JsonResult.success(user.getUserName() + "添加成功!");
     }
 }

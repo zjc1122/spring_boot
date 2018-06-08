@@ -1,5 +1,6 @@
 package cn.zjc.config;
 
+import cn.zjc.enums.SysUtilCode;
 import com.rabbitmq.client.Channel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -86,8 +87,8 @@ public class RabbitAmqpConfig {
                 if (ack) {
                     loggere.info("消息成功消费");
                 } else {
-                    loggere.info("消息发送失败:" + cause + "\n重新发送");
-                    throw new RuntimeException("消息发送失败 " + cause);
+                    loggere.info("消息发送失败: {},重新发送", cause );
+                    throw new RuntimeException(SysUtilCode.MESSAGE_SEND_ERROR.getDesc() + cause);
                 }
             }
         });
@@ -204,7 +205,7 @@ public class RabbitAmqpConfig {
             @Override
             public void onMessage(Message message, Channel channel) throws Exception {
                 byte[] body = message.getBody();
-                loggere.info("收到" + queue.getName() + "队列的消息: " + new String(body));
+                loggere.info("收到:{},队列的消息:{}", queue.getName() ,new String(body));
                 //确认消息成功消费
                 channel.basicAck(message.getMessageProperties().getDeliveryTag(), false);
             }

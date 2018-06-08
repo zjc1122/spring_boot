@@ -40,7 +40,7 @@ public class MainsiteErrorController implements ErrorController {
 
         SystemMsg systemMsg = SystemMsg.builder().message(message).status(status).error(error).path(path).sysTime(sdf.format(timestamp)).build();
 
-        String msg = "系统请求错误!";
+        String msg;
 
         switch (response.getStatus()){
 
@@ -56,6 +56,8 @@ public class MainsiteErrorController implements ErrorController {
             case 500:
                 msg = "服务器错误!";
                 break;
+            default:
+                msg= "系统繁忙";
         }
         return JsonResult.failed(JsonResult.SYS_ERROR,msg,systemMsg);
     }

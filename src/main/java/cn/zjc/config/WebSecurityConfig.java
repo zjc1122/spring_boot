@@ -1,5 +1,6 @@
 package cn.zjc.config;
 
+import cn.zjc.enums.SysUtilCode;
 import cn.zjc.server.SysUserDetailsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -43,7 +44,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Resource
     private SessionRegistry sessionRegistry;
 
-    private  static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+    private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
     @Bean
     UserDetailsService sysUserService() {
@@ -54,16 +55,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(sysUserService()).passwordEncoder(new PasswordEncoder() {
             @Override
-            public String encode(CharSequence raw) {
-                return encoder.encode(raw);
+            public String encode(CharSequence rawPassword) {
+                return encoder.encode(rawPassword);
             }
 
             @Override
-            public boolean matches(CharSequence raw, String s) {
-                if(!encoder.matches(raw, s)){
-                    throw new BadCredentialsException("密码错误！");
+            public boolean matches(CharSequence rawPassword, String encodedPassword) {
+                if (!encoder.matches(rawPassword, encodedPassword)) {
+                    throw new BadCredentialsException(SysUtilCode.PASSWORD_ERROR.getDesc());
                 }
-                return encoder.matches(raw, s);
+                return encoder.matches(rawPassword, encodedPassword);
             }
         });
     }
@@ -71,20 +72,21 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-            .csrf().disable()
-            .authorizeRequests()
-            .antMatchers("/login").permitAll()
-            .antMatchers("/register").permitAll().antMatchers("/transport/*").permitAll()
-            .anyRequest().authenticated()
-            .and().sessionManagement().maximumSessions(1).sessionRegistry(sessionRegistry).expiredUrl("/login").and()
-            .and().logout().invalidateHttpSession(Boolean.TRUE).clearAuthentication(Boolean.TRUE).permitAll()
-            .and().httpBasic();
+                .csrf().disable()
+                .authorizeRequests()
+                .antMatchers("/login").permitAll()
+                .antMatchers("/register").permitAll().antMatchers("/transport/*").permitAll()
+                .anyRequest().authenticated()
+                .and().sessionManagement().maximumSessions(1).sessionRegistry(sessionRegistry).expiredUrl("/login").and()
+                .and().logout().invalidateHttpSession(Boolean.TRUE).clearAuthentication(Boolean.TRUE).permitAll()
+                .and().httpBasic();
     }
 
     @Override
     public void configure(WebSecurity web) throws Exception {
         web.ignoring().antMatchers("/js/**", "/css/**", "/images/**", "/**/favicon.ico");
     }
+
     @Bean
     public SessionRegistry sessionRegistry() {
         return new SessionRegistryImpl();
@@ -92,6 +94,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     /**
      * 生成x-auth-token信息，如果生成SESSION则注释掉即可
+     *
      * @return
      */
     @Bean
@@ -105,6 +108,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private SessionInformationExpiredStrategy sessionInformationExpiredStrategy() {
         return new SimpleRedirectSessionInformationExpiredStrategy("/login");
     }
+
     /**
      * SpringSecurity内置的session监听器
      */
@@ -122,7 +126,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**").allowedOrigins("*")
-                        .allowedMethods("GET", "HEAD", "POST","PUT", "DELETE", "OPTIONS")
+                        .allowedMethods("GET", "HEAD", "POST", "PUT", "DELETE", "OPTIONS")
                         .allowCredentials(false).maxAge(3600);
             }
         };

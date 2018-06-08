@@ -10,6 +10,7 @@ public class WebConfigurerAdapter extends WebMvcConfigurerAdapter {
 
     /**
      * 对来自/** 这个链接来的请求进行拦截
+     *
      * @param registry
      */
     @Override
@@ -20,8 +21,9 @@ public class WebConfigurerAdapter extends WebMvcConfigurerAdapter {
     }
 
     /**
-     *  通过此配置，不用添加LoginController的方法就可以直接通过
-     *  “http://localhost:8080/login”访问到login.html页面了！
+     * 通过此配置，不用添加LoginController的方法就可以直接通过
+     * “http://localhost:8080/login”访问到login.html页面了！
+     *
      * @param registry
      */
     @Override
