@@ -12,7 +12,8 @@
     </appender>
     <!-- 按照每天生成日志文件 -->
     <appender name="logfile" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <File>${logDir}/spring_boot.log</File>
+        <!-- 只生成一个日志文件-->
+        <!--<File>${logDir}/spring_boot.log</File>-->
         <!--日志文件输出的文件名-->
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <FileNamePattern>${logDir}/spring_boot_%d{yyyy-MM-dd}.log</FileNamePattern>
@@ -20,6 +21,7 @@
             <maxHistory>30</maxHistory>
         </rollingPolicy>
         <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符-->
             <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50}:%L - %msg%n</pattern>
             <charset>UTF-8</charset>
         </encoder>
