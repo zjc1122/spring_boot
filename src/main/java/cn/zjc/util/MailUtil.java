@@ -24,18 +24,18 @@ import java.util.Properties;
 @Service
 public class MailUtil {
 
-    @Value("${email.EmailAccount}")
-    private String EmailAccount;
-    @Value("${email.EmailPassword}")
-    private String EmailPassword;
-    @Value("${email.receiveMailAccount}")
-    private String receiveMailAccount;
-    @Value("${email.EmailSMTPHost}")
-    private String EmailSMTPHost;
-    @Value("${email.Subject}")
-    private String Subject;
-    @Value("${email.AttachmentName}")
-    private String AttachmentName;
+    @Value("${email.send}")
+    private String send;
+    @Value("${email.password}")
+    private String password;
+    @Value("${email.receive}")
+    private String receive;
+    @Value("${email.SMTPHost}")
+    private String SMTPHost;
+    @Value("${email.subject}")
+    private String subject;
+    @Value("${email.attachmentName}")
+    private String attachmentName;
 
     public void sendMail(File attachment) throws Exception {
         // 1. 创建参数配置, 用于连接邮件服务器的参数配置
@@ -43,7 +43,7 @@ public class MailUtil {
         // 使用的协议（JavaMail规范要求）
         props.setProperty("mail.transport.protocol", "smtp");
         // 发件人的邮箱的 SMTP 服务器地址
-        props.setProperty("mail.smtp.host", EmailSMTPHost);
+        props.setProperty("mail.smtp.host", SMTPHost);
         // 需要请求认证
         props.setProperty("mail.smtp.auth", "true");
 
@@ -65,7 +65,7 @@ public class MailUtil {
         // 设置为debug模式, 可以查看详细的发送 log
         session.setDebug(false);
         // 3. 创建一封邮件
-        MimeMessage message = createMimeMessage(session, EmailAccount, receiveMailAccount, attachment);
+        MimeMessage message = createMimeMessage(session, send, receive, attachment);
         // 4. 根据 Session 获取邮件传输对象
         Transport transport = session.getTransport();
         // 5. 使用 邮箱账号 和 密码 连接邮件服务器, 这里认证的邮箱必须与 message 中的发件人邮箱一致, 否则报错
@@ -82,7 +82,7 @@ public class MailUtil {
         //           (5) 如果以上几点都确定无误, 到邮件服务器网站查找帮助。
         //
         //    PS_03: 仔细看log, 认真看log, 看懂log, 错误原因都在log已说明。
-        transport.connect(EmailAccount, EmailPassword);
+        transport.connect(send, password);
         // 6. 发送邮件, 发到所有的收件地址, message.getAllRecipients() 获取到的是在创建邮件对象时添加的所有收件人, 抄送人, 密送人
         transport.sendMessage(message, message.getAllRecipients());
         // 7. 关闭连接
@@ -106,7 +106,7 @@ public class MailUtil {
         // 3. To: 收件人（可以增加多个收件人、抄送、密送）
         message.setRecipient(MimeMessage.RecipientType.TO, new InternetAddress(receiveMail, "UTF-8"));
         // 4. Subject: 邮件主题
-        message.setSubject(Subject, "UTF-8");
+        message.setSubject(subject, "UTF-8");
         // 创建消息部分创建附件
         BodyPart bodyPart = new MimeBodyPart();
         // 消息
@@ -120,7 +120,7 @@ public class MailUtil {
         BodyPart fileBody = new MimeBodyPart();
         DataSource source = new FileDataSource(attachment);
         fileBody.setDataHandler(new DataHandler(source));
-        fileBody.setFileName(AttachmentName);
+        fileBody.setFileName(attachmentName);
         multipart.addBodyPart(fileBody);
         // 5. Content: 邮件正文
         message.setContent(multipart);
