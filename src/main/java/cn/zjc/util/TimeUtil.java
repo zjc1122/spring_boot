@@ -122,12 +122,4 @@ public class TimeUtil {
         return formatter_2.format(LocalDateTime.now());
     }
 
-    public static void main(String[] args) {
-        TimeUtil.getDayStart(LocalDateTime.now());
-        TimeUtil.getDayEnd(LocalDateTime.now());
-        TimeUtil.localDateTimeToDate(LocalDateTime.now());
-        System.out.println(TimeUtil.getDayStart(LocalDateTime.now()));
-        System.out.println(TimeUtil.getDayEnd(LocalDateTime.now()));
-        System.out.println(TimeUtil.localDateTimeToDate(LocalDateTime.now()));
-    }
 }
