@@ -8,7 +8,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
- * Created by zhangjiacheng on 2017/11/7.
+ * @ClassName : DemoTestController
+ * @Author : zhangjiacheng
+ * @Date : 2018/6/10
+ * @Description : 测试Controller
  */
 @Controller
 public class DemoTestController {
@@ -18,10 +21,12 @@ public class DemoTestController {
     @RequestMapping(value = "/hello")
     @ResponseBody
     @ThrowingMail
-    public Boolean sayHello(){
-       service.expire("ttt",10);
+    public Boolean sayHello() {
+        service.expire("ttt", 10);
+//        User user = new User();
+//        int userId = user.getUserId();
         long ss = 123;
-        //Boolean mm = service.setNX("zzzq",1111L);
+//        Boolean mm = service.setNX("zzzq",1111L);
         Boolean mm = true;
         return mm;
     }

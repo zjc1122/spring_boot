@@ -32,15 +32,15 @@
     <h2>邮件消息通知</h2>
     <table id="customers">
         <tr>
-            <th>MessageCode</th>
+            <th>MethodName</th>
             <th>MessageStatus</th>
             <th>Cause</th>
         </tr>
-        <#--<tr>-->
-            <#--<td>${(params.messageCode)!""}</td>-->
-            <#--<td>${(params.messageStatus)!""}</td>-->
-            <#--<td>${(params.cause)!""}</td>-->
-        <#--</tr>-->
+        <tr>
+            <td>${(params.methodName)!""}</td>
+            <td>${(params.messageStatus)!""}</td>
+            <td>${(params.cause)!""}</td>
+        </tr>
     </table>
 </div>
 </body>

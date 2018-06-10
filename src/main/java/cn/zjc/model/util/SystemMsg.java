@@ -1,4 +1,4 @@
-package cn.zjc.model;
+package cn.zjc.model.util;
 
 
 import lombok.AllArgsConstructor;
@@ -8,7 +8,10 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 /**
- * Created by zhangjiacheng on 2018/2/7.
+ * @ClassName : SystemMsg
+ * @Author : zhangjiacheng
+ * @Date : 2018/6/10
+ * @Description : 统一异常实体
  */
 @Data
 @Builder

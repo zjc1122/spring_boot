@@ -1,7 +1,8 @@
 package cn.zjc.controller;
 
-import cn.zjc.model.SystemMsg;
+import cn.zjc.model.util.SystemMsg;
 import cn.zjc.util.JsonResult;
+import cn.zjc.util.TimeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.web.ErrorAttributes;
 import org.springframework.boot.autoconfigure.web.ErrorController;
@@ -13,11 +14,15 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.Map;
 
+/**
+ * @ClassName : MainsiteErrorController
+ * @Author : zhangjiacheng
+ * @Date : 2018/6/10
+ * @Description : 统一异常Controller
+ */
 @Controller
 public class MainsiteErrorController implements ErrorController {
 
@@ -29,8 +34,6 @@ public class MainsiteErrorController implements ErrorController {
     @RequestMapping(value = ERROR_PATH)
     @ResponseBody
     public JsonResult handleError(HttpServletRequest request, HttpServletResponse response) throws Exception {
-
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("YYYY-MM-dd HH:mm:ss");
 
         Map<String, Object> errorAttributes = getErrorAttributes(request, true);
         String message = (String) errorAttributes.get("message");
@@ -44,7 +47,7 @@ public class MainsiteErrorController implements ErrorController {
                 .status(status)
                 .error(error)
                 .path(path)
-                .sysTime(formatter.format(timestamp.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime()))
+                .sysTime(TimeUtil.formatTime(TimeUtil.dateToLocalDateTime(timestamp)))
                 .build();
         String msg;
 

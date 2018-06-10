@@ -22,10 +22,10 @@ import java.util.Map;
  * @ClassName : MailServiceUtil
  * @Author : zhangjiacheng
  * @Date : 2018-06-09
- * @Description : 模板邮件
+ * @Description : 邮件模板
  */
 @Service
-public class MailTemplateUtil {
+public class MailServiceUtil {
 
     @Resource
     private JavaMailSender mailSender;

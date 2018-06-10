@@ -6,7 +6,10 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Created by zhangjiacheng on 2017/11/19
+ * @ClassName : ThrowingMail
+ * @Author : zhangjiacheng
+ * @Date : 2018/6/10
+ * @Description : 异常邮件注解
  */
 @Target({ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)

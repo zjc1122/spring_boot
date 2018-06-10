@@ -1,6 +1,9 @@
 package cn.zjc.aspect.throwing;
 
-import cn.zjc.util.MailTemplateUtil;
+import cn.zjc.model.util.EmailMessage;
+import cn.zjc.util.JsonResult;
+import cn.zjc.util.MailServiceUtil;
+import cn.zjc.util.TimeUtil;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Aspect;
@@ -13,12 +16,12 @@ import org.springframework.stereotype.Component;
 import javax.annotation.Resource;
 import java.io.File;
 import java.io.PrintStream;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 /**
- * Created by zhangjiacheng on 2017/11/19
- * 产生异常发送邮件通知
+ * @ClassName : ThrowMailAspect
+ * @Author : zhangjiacheng
+ * @Date : 2018/6/10
+ * @Description : 异常发送邮件通知
  */
 @Aspect
 @Component
@@ -53,7 +56,7 @@ public class ThrowMailAspect {
     private String path;
 
     @Resource
-    private MailTemplateUtil mailTemplateUtil;
+    private MailServiceUtil mailServiceUtil;
 
     @Pointcut("@annotation(cn.zjc.aspect.throwing.ThrowingMail) && execution(* cn.zjc..*(..))")
     private void lockPoint() {
@@ -64,8 +67,7 @@ public class ThrowMailAspect {
         String methodName = joinPoint.getSignature().getName();
         logger.info("The method :{},occurs excetion:{}", methodName, ex.toString());
         logger.info("抛异常了=========");
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
-        String dateString = formatter.format(LocalDateTime.now());
+        String dateString = TimeUtil.getCurrDateTime2();
         File file = new File(path + dateString + "Error.log");
         //不存在则创建父目录
         if (!file.getParentFile().exists()) {
@@ -76,8 +78,14 @@ public class ThrowMailAspect {
         PrintStream stream = new PrintStream(file);
         //将异常信息写入文件中
         ex.printStackTrace(stream);
+        EmailMessage message = EmailMessage
+                .builder()
+                .methodName(methodName)
+                .messageStatus(JsonResult.SYS_ERROR)
+                .cause(ex.toString())
+                .build();
         //将异常信息文件通过邮件附件方式发送
-        mailTemplateUtil.sendMessageMail(from, to, subject, template, true, fileName, file);
+        mailServiceUtil.sendMessageMail(from, to, subject, template, message, fileName, file);
         //关闭输出流
         stream.flush();
         stream.close();
