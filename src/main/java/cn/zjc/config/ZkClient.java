@@ -9,7 +9,10 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * Created by zhangjiacheng on 2017/11/12
+ * @ClassName : ZkClient
+ * @author : zhangjiacheng
+ * @date : 2018/6/11
+ * @Description : zk配置类
  */
 @Configuration
 public class ZkClient {

@@ -10,24 +10,29 @@ import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import javax.annotation.Resource;
 import java.lang.reflect.Method;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Created by zhangjiacheng on 2017/11/12
+ * @ClassName : ZkDistributedLockAspect
+ * @author : zhangjiacheng
+ * @date : 2018/6/11
+ * @Description : zk分布式锁切面类
  */
 @Aspect
 @Component
 public class ZkDistributedLockAspect {
     private static final Logger logger = LoggerFactory.getLogger(ZkDistributedLockAspect.class);
 
-    @Autowired
+    @Resource
     ZkClient zkClient;
 
     @Pointcut("@annotation(cn.zjc.aspect.zkdistributedlock.ZkDistributedLock) && execution(* cn.zjc..*(..))")
-    private void lockPoint(){}
+    private void lockPoint() {
+    }
 
     @Around("lockPoint()")
     public Object zkDistributedLock(ProceedingJoinPoint pjp) throws Throwable {
@@ -42,17 +47,17 @@ public class ZkDistributedLockAspect {
         InterProcessMutex lock = zkClient.getZkLock(client);
         Object obj = null;
         try {
-            if(lock.acquire(expireTime, TimeUnit.SECONDS)){
+            if (lock.acquire(expireTime, TimeUnit.SECONDS)) {
                 logger.info("得到锁...");
                 obj = pjp.proceed();
                 Thread.sleep(500);
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             try {
                 //判断是否持有锁
-                if(lock.isAcquiredInThisProcess()){
+                if (lock.isAcquiredInThisProcess()) {
                     logger.info("释放锁...");
                     lock.release();
                 }

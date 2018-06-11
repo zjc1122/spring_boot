@@ -15,7 +15,10 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 
 /**
- * Created by zhangjiacheng on 2017/12/27.
+ * @ClassName : EsTransportClient
+ * @author : zhangjiacheng
+ * @date : 2018/6/11
+ * @Description : ES配置类
  */
 @Configuration
 public class EsTransportClient implements FactoryBean<TransportClient>, InitializingBean, DisposableBean {

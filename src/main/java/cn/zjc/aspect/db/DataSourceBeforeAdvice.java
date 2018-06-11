@@ -16,7 +16,10 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 
 /**
- * Created by zhangjiacheng on 2017/12/13.
+ * @ClassName : DataSourceBeforeAdvice
+ * @author : zhangjiacheng
+ * @date : 2018/6/11
+ * @Description : 数据源切面
  */
 @Aspect
 @Component
@@ -42,20 +45,21 @@ public class DataSourceBeforeAdvice {
         //计算路由DB Group
         //处理数据源
         Annotation trsAnnotation = AnnotationUtils.getAnnotation(method, TargetDataSource.class);
-        if(trsAnnotation==null){
+        if (trsAnnotation == null) {
             trsAnnotation = AnnotationUtils.getAnnotation(target.getClass(), TargetDataSource.class);
         }
         if (trsAnnotation != null) {
-            DataBaseType dataBaseType = (DataBaseType)AnnotationUtils.getValue(trsAnnotation);
+            DataBaseType dataBaseType = (DataBaseType) AnnotationUtils.getValue(trsAnnotation);
             DataSourceContextHolder.setDbName(dataBaseType.get());
         } else {
             DataSourceContextHolder.setDbName(null);
         }
 //        return pjp.proceed();
     }
+
     //执行完切面后，将线程共享中的数据源名称清空
     @After("dataSourceMethodPointCut()")
-    public void after(JoinPoint joinPoint){
+    public void after(JoinPoint joinPoint) {
         DataSourceContextHolder.clearDbType();
     }
 }

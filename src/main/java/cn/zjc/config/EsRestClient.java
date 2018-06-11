@@ -13,7 +13,10 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * Created by zhangjiacheng on 2018/2/20.
+ * @ClassName : EsRestClient.java
+ * @author : zhangjiacheng
+ * @date : 2018/6/11
+ * @Description : ES配置类
  */
 @Configuration
 public class EsRestClient implements FactoryBean<RestHighLevelClient>, InitializingBean, DisposableBean {

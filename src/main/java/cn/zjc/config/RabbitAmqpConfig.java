@@ -28,7 +28,10 @@ import org.springframework.context.annotation.Scope;
 
 
 /**
- * Created by zhangjiacheng on 2017/12/1.
+ * @ClassName : RabbitAmqpConfig.java
+ * @author : zhangjiacheng
+ * @date : 2018/6/11
+ * @Description : rabbitMQ配置类
  */
 @Configuration
 public class RabbitAmqpConfig {

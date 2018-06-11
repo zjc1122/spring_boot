@@ -21,7 +21,7 @@ import java.io.PrintStream;
  * @ClassName : ThrowMailAspect
  * @Author : zhangjiacheng
  * @Date : 2018/6/10
- * @Description : 异常发送邮件通知
+ * @Description : 异常发送邮件通知切面类
  */
 @Aspect
 @Component

@@ -19,7 +19,10 @@ import redis.clients.jedis.JedisPoolConfig;
 import java.lang.reflect.Method;
 
 /**
- * Created by zhangjiacheng on 2017/11/9.
+ * @ClassName : RedisConfig
+ * @author : zhangjiacheng
+ * @date : 2018/6/11
+ * @Description : redis配置类
  */
 @Configuration
 @EnableCaching

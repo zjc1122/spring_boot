@@ -3,19 +3,21 @@ package cn.zjc.config;
 import com.alibaba.druid.pool.DruidDataSource;
 import com.alibaba.druid.support.http.StatViewServlet;
 import com.alibaba.druid.support.http.WebStatFilter;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
 import org.springframework.core.env.Environment;
 
+import javax.annotation.Resource;
 import java.sql.SQLException;
 
 /**
- * Created by zhangjiacheng on 2017/11/16.
+ * @ClassName : DataSourcesConfig
+ * @author : zhangjiacheng
+ * @date : 2018/6/11
+ * @Description : 数据源配置类
  */
 @Configuration
 public class DataSourcesConfig {
@@ -52,16 +54,18 @@ public class DataSourcesConfig {
     @Value("${data.druid.poolPreparedStatements}")
     private Boolean poolPreparedStatements;
     @Value("${data.druid.filters}")
-    private String  filters;
+    private String filters;
 
-    @Autowired
+    @Resource
     private Environment env;
+
     /**
      * druid初始化
+     *
      * @return
      * @throws SQLException
      */
-    @Bean(name = "defaultDataSource",destroyMethod = "close")
+    @Bean(name = "defaultDataSource", destroyMethod = "close")
     public DruidDataSource defaultDataSource() throws SQLException {
         DruidDataSource dataSource = new DruidDataSource();
         dataSource.setUrl(url);
@@ -97,7 +101,8 @@ public class DataSourcesConfig {
         }
         return dataSource;
     }
-    @Bean(name = "slaveDataSource",destroyMethod = "close")
+
+    @Bean(name = "slaveDataSource", destroyMethod = "close")
     public DruidDataSource slaveDataSource() throws SQLException {
         DruidDataSource dataSource = new DruidDataSource();
         dataSource.setUrl(env.getProperty("data.datasource.url"));
@@ -133,8 +138,10 @@ public class DataSourcesConfig {
         }
         return dataSource;
     }
+
     /**
      * druid监控
+     *
      * @return
      */
     @Bean
@@ -151,6 +158,7 @@ public class DataSourcesConfig {
 
     /**
      * druid监控过滤
+     *
      * @return
      */
     @Bean

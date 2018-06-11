@@ -9,25 +9,30 @@ import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
 import java.lang.reflect.Method;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
 /**
- * Created by zhangjiacheng on 2017/11/7.
+ * @ClassName : RedisLockAspect
+ * @author : zhangjiacheng
+ * @date : 2018/6/11
+ * @Description : redis分布式锁切面类
  */
 @Aspect
 @Component
-public class RedisLockAspect  {
+public class RedisLockAspect {
     private static final Logger logger = LoggerFactory.getLogger(ZkDistributedLockAspect.class);
 
-    @Autowired
+    @Resource
     private RedisUtil redisUtil;
+
     @Pointcut("@annotation(cn.zjc.aspect.redisdistributedlock.RedisLock) && execution(* cn.zjc..*(..))")
-    private void lockPoint(){}
+    private void lockPoint() {
+    }
 
     @Around("lockPoint()")
     public Object redisDistributedLock(ProceedingJoinPoint pjp) throws Throwable {
@@ -36,16 +41,16 @@ public class RedisLockAspect  {
         Method method = methodSignature.getMethod();
         RedisLock lockInfo = method.getAnnotation(RedisLock.class);
         String lockKey = lockInfo.value();
-        if (lockKey == null ||"".equals(lockKey)) {
+        if (lockKey == null || "".equals(lockKey)) {
             throw new IllegalArgumentException("配置参数错误,lockKey不能为空！");
         }
         // 持有锁超时时间换算为秒
         Integer lockExpire;
         //没有设置超时时间，给一个默认值30秒
-        if(lockInfo.keepMills() <= 0){
+        if (lockInfo.keepMills() <= 0) {
             lockExpire = 30;
-        }else{
-            lockExpire = (int)(lockInfo.keepMills() / 1000);
+        } else {
+            lockExpire = (int) (lockInfo.keepMills() / 1000);
         }
         boolean lock = false;
         Object obj = null;
@@ -59,7 +64,7 @@ public class RedisLockAspect  {
                 // 得到锁，没有人加过相同的锁
                 if (lock) {
                     //设置失效时间
-                    redisUtil.expire(lockKey,lockExpire);
+                    redisUtil.expire(lockKey, lockExpire);
                     logger.info("得到锁...");
                     obj = pjp.proceed();
                 }
@@ -96,7 +101,7 @@ public class RedisLockAspect  {
             // 如果获取到了锁，释放锁
             if (lock) {
                 //锁没有过期就删除key
-                if (System.currentTimeMillis() < (System.currentTimeMillis() + lockInfo.keepMills())){
+                if (System.currentTimeMillis() < (System.currentTimeMillis() + lockInfo.keepMills())) {
                     logger.info("释放锁...");
                     redisUtil.delete(lockKey);
                 }

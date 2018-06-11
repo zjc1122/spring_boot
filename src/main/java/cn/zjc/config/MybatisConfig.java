@@ -25,7 +25,10 @@ import javax.annotation.Resource;
 import javax.sql.DataSource;
 
 /**
- * Created by zhangjiacheng on 2017/11/16.
+ * @ClassName : MybatisConfig
+ * @author : zhangjiacheng
+ * @date : 2018/6/11
+ * @Description : mybatis配置类
  */
 @Configuration
 public class MybatisConfig implements TransactionManagementConfigurer {

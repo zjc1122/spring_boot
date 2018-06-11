@@ -5,7 +5,10 @@ import com.github.pagehelper.PageInfo;
 import java.util.List;
 
 /**
- * Created by zhangjiacheng on 2017/11/17.
+ * @ClassName : BaseServer
+ * @author : zhangjiacheng
+ * @date : 2018/6/11
+ * @Description : 基础server类
  */
 public interface BaseServer<T> {
     /**

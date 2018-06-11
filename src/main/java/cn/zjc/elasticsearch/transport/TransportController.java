@@ -41,7 +41,7 @@ import static org.elasticsearch.common.xcontent.XContentFactory.jsonBuilder;
 @RequestMapping(value = "/transport")
 public class TransportController {
 
-    @Autowired
+    @Resource
     private TransportClient transportClient;
 
     @Resource
