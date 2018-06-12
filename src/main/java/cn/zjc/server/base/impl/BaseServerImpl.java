@@ -4,6 +4,7 @@ import cn.zjc.mapper.BaseMapper;
 import cn.zjc.server.base.BaseServer;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -68,8 +69,10 @@ public abstract class BaseServerImpl<T> implements BaseServer<T> {
     public PageInfo<T> selectPageAll(Integer page, Integer rows, T record) {
         // 设置分页条件
         PageHelper.startPage(page, rows);
+        //排序(格式 : 字段 + 顺序)
+        PageHelper.orderBy("id desc");
         List<T> list = this.selectAll(record);
-        return new PageInfo<T>(list);
+        return new PageInfo<>(list);
     }
 
     /**

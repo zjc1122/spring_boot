@@ -15,7 +15,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -33,21 +32,21 @@ public class SysUserDetailsService implements UserDetailsService {
         SysUser user;
         try {
             user = sysUserService.getByUsername(userName);
-        }catch (Exception e){
+        } catch (Exception e) {
             throw new BadCredentialsException("查询用户异常!");
         }
         if (user != null) {
             //查询用户的权限
             List<GrantedAuthority> grantedAuthorities = Lists.newArrayList();
             List<SysRole> roles = sysRoleService.findRoleByUserId(Long.valueOf(user.getId()));
-            if(Objects.nonNull(roles)){
-                for (SysRole sysRole:roles) {
+            if (Objects.nonNull(roles)) {
+                for (SysRole sysRole : roles) {
                     GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(sysRole.getName());
                     grantedAuthorities.add(grantedAuthority);
                 }
             }
             return new User(user.getUsername(), user.getPassword(), grantedAuthorities);
-        }else {
+        } else {
             throw new BadCredentialsException(userName + "这个用户不存在!");
         }
     }

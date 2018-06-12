@@ -30,11 +30,11 @@ public class UserController {
     private UserService userService;
 
     @RequestMapping(value = "/findAllUser", method = RequestMethod.POST)
-    @Cacheable(value = "users", key = "'findAllUser'")
+    @Cacheable(value = "users", key = "#root.methodName")
     public PageInfo<User> findAllUser(@RequestParam("pageNo") Integer pageNo, @RequestParam("pageSize") Integer pageSize) {
+        logger.info("===========");
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = new User();
-        logger.info("===========");
         return userService.selectPageAll(pageNo, pageSize, user);
     }
 
