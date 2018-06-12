@@ -4,9 +4,11 @@ import cn.zjc.aspect.db.DynamicDataSource;
 import cn.zjc.enums.DataBaseType;
 import com.github.pagehelper.PageHelper;
 import com.google.common.collect.Maps;
+import org.apache.ibatis.plugin.Interceptor;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
+import org.mybatis.spring.annotation.MapperScan;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
@@ -17,20 +19,20 @@ import org.springframework.core.io.support.ResourcePatternResolver;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.TransactionManagementConfigurer;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Properties;
-import org.apache.ibatis.plugin.Interceptor;
+
 import javax.annotation.Resource;
 import javax.sql.DataSource;
+import java.util.Map;
+import java.util.Properties;
 
 /**
- * @ClassName : MybatisConfig
  * @author : zhangjiacheng
+ * @ClassName : MybatisConfig
  * @date : 2018/6/11
  * @Description : mybatis配置类
  */
 @Configuration
+@MapperScan("cn.zjc.mapper")
 public class MybatisConfig implements TransactionManagementConfigurer {
     @Resource(name = "defaultDataSource")
     DataSource defaultDataSource;
@@ -52,10 +54,11 @@ public class MybatisConfig implements TransactionManagementConfigurer {
             dataSource.setDefaultTargetDataSource(defaultDataSource);
             return dataSource;
         } catch (Exception e) {
-            logger.error(e.getMessage(),e);
+            logger.error(e.getMessage(), e);
         }
         return null;
     }
+
     /**
      * 事务管理,具体使用在service层加入@Transactional注解
      */
@@ -84,7 +87,7 @@ public class MybatisConfig implements TransactionManagementConfigurer {
         properties.setProperty("params", "count=countSql");
         pageHelper.setProperties(properties);
         //添加插件
-        bean.setPlugins(new Interceptor[]{ pageHelper});
+        bean.setPlugins(new Interceptor[]{pageHelper});
         //添加XML目录
         ResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
         try {
@@ -92,7 +95,7 @@ public class MybatisConfig implements TransactionManagementConfigurer {
             bean.setMapperLocations(resolver.getResources("classpath:mapping/*.xml"));
             return bean.getObject();
         } catch (Exception e) {
-            throw new RuntimeException("sqlSessionFactory init fail",e);
+            throw new RuntimeException("sqlSessionFactory init fail", e);
         }
     }
 }
