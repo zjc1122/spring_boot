@@ -4,19 +4,20 @@ import cn.zjc.mapper.BaseMapper;
 import cn.zjc.server.base.BaseServer;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.List;
 
 /**
- * @ClassName : BaseServerImpl
  * @author : zhangjiacheng
+ * @ClassName : BaseServerImpl
  * @date : 2018/6/11
  * @Description : 基础server实现类
  */
 @Service
+@Transactional(rollbackFor = Exception.class)
 public abstract class BaseServerImpl<T> implements BaseServer<T> {
 
     @Resource

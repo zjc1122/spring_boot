@@ -6,11 +6,13 @@ import cn.zjc.server.base.impl.BaseServerImpl;
 import cn.zjc.server.sysuser.SysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * Created by zhangjiacheng on 2018/2/2.
  */
 @Service
+@Transactional(rollbackFor = Exception.class)
 public class SysUserServiceImpl extends BaseServerImpl<SysUser> implements SysUserService {
 
     @Autowired
