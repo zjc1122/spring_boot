@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.cache.RedisCacheManager;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
-import org.springframework.data.redis.core.*;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.JdkSerializationRedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 import redis.clients.jedis.JedisPoolConfig;
@@ -19,14 +19,14 @@ import redis.clients.jedis.JedisPoolConfig;
 import java.lang.reflect.Method;
 
 /**
- * @ClassName : RedisConfig
  * @author : zhangjiacheng
+ * @ClassName : RedisConfig
  * @date : 2018/6/11
  * @Description : redis配置类
  */
 @Configuration
 @EnableCaching
-public class RedisConfig extends CachingConfigurerSupport{
+public class RedisConfig extends CachingConfigurerSupport {
 
 
     @Value("${redis.master.host}")
@@ -70,8 +70,10 @@ public class RedisConfig extends CachingConfigurerSupport{
 
     @Value("${redis.pool.nodes}")
     private String nodes;
+
     /**
      * 生成key的策略
+     *
      * @return
      */
     @Bean
@@ -117,6 +119,7 @@ public class RedisConfig extends CachingConfigurerSupport{
         factory.setTimeout(10000);
         return factory;
     }
+
     private JedisPoolConfig generatePoolConfig() {
         JedisPoolConfig poolConfig = new JedisPoolConfig();
         poolConfig.setMinIdle(minIdle);
@@ -131,6 +134,7 @@ public class RedisConfig extends CachingConfigurerSupport{
         poolConfig.setTestOnReturn(testOnReturn);
         return poolConfig;
     }
+
     @Bean(name = "redisConnectionFactory")
     RedisConnectionFactory factory() {
         return generateConnectionFactory();

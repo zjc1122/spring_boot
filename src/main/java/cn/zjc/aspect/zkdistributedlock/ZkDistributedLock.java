@@ -6,8 +6,8 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * @ClassName : ZkDistributedLock
  * @author : zhangjiacheng
+ * @ClassName : ZkDistributedLock
  * @date : 2018/6/11
  * @Description : zk分布式锁注解
  */

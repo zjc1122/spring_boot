@@ -6,8 +6,8 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * @ClassName : RedisLock
  * @author : zhangjiacheng
+ * @ClassName : RedisLock
  * @date : 2018/6/11
  * @Description :redis分布式锁注解类
  * 同步锁：

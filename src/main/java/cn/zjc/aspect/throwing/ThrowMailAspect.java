@@ -18,8 +18,8 @@ import java.io.File;
 import java.io.PrintStream;
 
 /**
- * @ClassName : ThrowMailAspect
  * @Author : zhangjiacheng
+ * @ClassName : ThrowMailAspect
  * @Date : 2018/6/10
  * @Description : 异常发送邮件通知切面类
  */

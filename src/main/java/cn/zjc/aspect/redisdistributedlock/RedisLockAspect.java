@@ -17,8 +17,8 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
 /**
- * @ClassName : RedisLockAspect
  * @author : zhangjiacheng
+ * @ClassName : RedisLockAspect
  * @date : 2018/6/11
  * @Description : redis分布式锁切面类
  */

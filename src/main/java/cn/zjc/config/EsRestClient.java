@@ -13,8 +13,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * @ClassName : EsRestClient.java
  * @author : zhangjiacheng
+ * @ClassName : EsRestClient
  * @date : 2018/6/11
  * @Description : ES配置类
  */
@@ -34,14 +34,14 @@ public class EsRestClient implements FactoryBean<RestHighLevelClient>, Initializ
     @Value("${esclient.connectPerRoute}")
     private Integer connectPerRoute;
 
-    private  RestHighLevelClient restHighLevelClient;
-    private  RestClientBuilder builder;
-    private  RestClient restClient;
-    private  HttpHost httpHost=null;
+    private RestHighLevelClient restHighLevelClient;
+    private RestClientBuilder builder;
+    private RestClient restClient;
+    private HttpHost httpHost = null;
 
-    private  final int CONNECT_TIME_OUT = 1000;
-    private  final int SOCKET_TIME_OUT = 30000;
-    private  final int CONNECTION_REQUEST_TIME_OUT = 500;
+    private final int CONNECT_TIME_OUT = 1000;
+    private final int SOCKET_TIME_OUT = 30000;
+    private final int CONNECTION_REQUEST_TIME_OUT = 500;
 
     @Override
     public void destroy() throws Exception {
@@ -75,8 +75,8 @@ public class EsRestClient implements FactoryBean<RestHighLevelClient>, Initializ
         buildClient();
     }
 
-    private void buildClient()  {
-        if(httpHost==null){
+    private void buildClient() {
+        if (httpHost == null) {
             builder = RestClient.builder(httpHost());
         }
         setConnectTimeOutConfig();
@@ -86,24 +86,25 @@ public class EsRestClient implements FactoryBean<RestHighLevelClient>, Initializ
         logger.info("ElasticsearchClient RestHighLevelClient 连接成功");
     }
 
-    private HttpHost httpHost(){
-        return new HttpHost(host,port,schema);
+    private HttpHost httpHost() {
+        return new HttpHost(host, port, schema);
     }
 
     /**
-     *  异步httpclient的连接数配置
+     * 异步httpclient的连接数配置
      */
-    private void setMutiConnectConfig(){
+    private void setMutiConnectConfig() {
         builder.setHttpClientConfigCallback(httpClientBuilder -> {
             httpClientBuilder.setMaxConnTotal(connectNum);
             httpClientBuilder.setMaxConnPerRoute(connectPerRoute);
             return httpClientBuilder;
         });
     }
+
     /**
      * 异步httpclient的连接延时配置
      */
-    private void setConnectTimeOutConfig(){
+    private void setConnectTimeOutConfig() {
         builder.setRequestConfigCallback(requestConfigBuilder -> {
             requestConfigBuilder.setConnectTimeout(CONNECT_TIME_OUT);
             requestConfigBuilder.setSocketTimeout(SOCKET_TIME_OUT);

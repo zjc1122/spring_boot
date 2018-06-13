@@ -9,8 +9,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * @ClassName : ZkClient
  * @author : zhangjiacheng
+ * @ClassName : ZkClient
  * @date : 2018/6/11
  * @Description : zk配置类
  */
@@ -27,16 +27,17 @@ public class ZkClient {
     @Value("${zk.sessionOutTime}")
     private Integer sessionOutTime;
 
-    public CuratorFramework getZkClient(){
-        RetryPolicy retryPolicy = new ExponentialBackoffRetry(tryTime,tryCount);
-        CuratorFramework client= CuratorFrameworkFactory.builder()
+    public CuratorFramework getZkClient() {
+        RetryPolicy retryPolicy = new ExponentialBackoffRetry(tryTime, tryCount);
+        CuratorFramework client = CuratorFrameworkFactory.builder()
                 .connectString(masterHost)
                 .sessionTimeoutMs(sessionOutTime)
                 .retryPolicy(retryPolicy)
                 .build();
         return client;
     }
-    public InterProcessMutex getZkLock(CuratorFramework client){
+
+    public InterProcessMutex getZkLock(CuratorFramework client) {
         InterProcessMutex lock = new InterProcessMutex(client, lockPath);
         return lock;
     }

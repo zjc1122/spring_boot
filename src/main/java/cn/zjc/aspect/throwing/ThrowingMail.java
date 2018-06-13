@@ -6,8 +6,8 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * @ClassName : ThrowingMail
  * @Author : zhangjiacheng
+ * @ClassName : ThrowingMail
  * @Date : 2018/6/10
  * @Description : 异常邮件注解
  */

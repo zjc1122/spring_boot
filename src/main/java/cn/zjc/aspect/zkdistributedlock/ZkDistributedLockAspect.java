@@ -17,8 +17,8 @@ import java.lang.reflect.Method;
 import java.util.concurrent.TimeUnit;
 
 /**
- * @ClassName : ZkDistributedLockAspect
  * @author : zhangjiacheng
+ * @ClassName : ZkDistributedLockAspect
  * @date : 2018/6/11
  * @Description : zk分布式锁切面类
  */

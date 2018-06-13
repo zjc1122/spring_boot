@@ -7,8 +7,8 @@ import org.springframework.stereotype.Component;
 
 
 /**
- * @ClassName : ScheduledTasks
  * @author : zhangjiacheng
+ * @ClassName : ScheduledTasks
  * @date : 2018/6/11
  * @Description : 定时任务类
  */

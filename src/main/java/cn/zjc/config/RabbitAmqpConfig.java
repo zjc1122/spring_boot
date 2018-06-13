@@ -28,8 +28,8 @@ import org.springframework.context.annotation.Scope;
 
 
 /**
- * @ClassName : RabbitAmqpConfig.java
  * @author : zhangjiacheng
+ * @ClassName : RabbitAmqpConfig.java
  * @date : 2018/6/11
  * @Description : rabbitMQ配置类
  */
@@ -90,7 +90,7 @@ public class RabbitAmqpConfig {
                 if (ack) {
                     loggere.info("消息成功消费");
                 } else {
-                    loggere.info("消息发送失败: {},重新发送", cause );
+                    loggere.info("消息发送失败: {},重新发送", cause);
                     throw new RuntimeException(SysUtilCode.MESSAGE_SEND_ERROR.getDesc() + cause);
                 }
             }
@@ -208,7 +208,7 @@ public class RabbitAmqpConfig {
             @Override
             public void onMessage(Message message, Channel channel) throws Exception {
                 byte[] body = message.getBody();
-                loggere.info("收到:{},队列的消息:{}", queue.getName() ,new String(body));
+                loggere.info("收到:{},队列的消息:{}", queue.getName(), new String(body));
                 //确认消息成功消费
                 channel.basicAck(message.getMessageProperties().getDeliveryTag(), false);
             }

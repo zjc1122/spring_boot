@@ -14,8 +14,8 @@ import javax.annotation.Resource;
 import java.sql.SQLException;
 
 /**
- * @ClassName : DataSourcesConfig
  * @author : zhangjiacheng
+ * @ClassName : DataSourcesConfig
  * @date : 2018/6/11
  * @Description : 数据源配置类
  */
