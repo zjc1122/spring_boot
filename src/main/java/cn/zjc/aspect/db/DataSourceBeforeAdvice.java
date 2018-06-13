@@ -16,8 +16,8 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 
 /**
- * @ClassName : DataSourceBeforeAdvice
  * @author : zhangjiacheng
+ * @ClassName : DataSourceBeforeAdvice
  * @date : 2018/6/11
  * @Description : 数据源切面
  */

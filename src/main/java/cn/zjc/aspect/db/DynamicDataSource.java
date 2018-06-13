@@ -5,8 +5,8 @@ import org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource;
 import java.util.logging.Logger;
 
 /**
- * @ClassName : DynamicDataSource
  * @author : zhangjiacheng
+ * @ClassName : DynamicDataSource
  * @date : 2018/6/11
  * @Description : 建立动态数据源
  */
