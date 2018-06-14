@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.Map;
 
 /**
- * @ClassName : JsonResult
  * @Author : zhangjiacheng
+ * @ClassName : JsonResult
  * @Date : 2018/6/10
  * @Description : 返回结果
  */
@@ -18,7 +18,7 @@ import java.util.Map;
 public class JsonResult implements View {
 
 
-    private static final String JSON_CONTENT_TYPE = "application/json;charset=UTF-8";
+    public static final String JSON_CONTENT_TYPE = "application/json;charset=UTF-8";
 
     public final static String SUCCESS_CODE = "0000";
     public final static String FAIL_CODE = "1111";
