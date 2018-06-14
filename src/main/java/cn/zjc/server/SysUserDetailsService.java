@@ -18,6 +18,12 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * @author : zhangjiacheng
+ * @ClassName : SysUserDetailsService
+ * @date : 2018/6/14
+ * @Description : SpringSecurity用户登录校验类
+ */
 @Service
 public class SysUserDetailsService implements UserDetailsService {
 
