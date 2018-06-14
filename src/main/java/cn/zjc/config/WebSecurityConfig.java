@@ -26,9 +26,11 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
-import javax.annotation.Resource;
-
 /**
+ * @author : zhangjiacheng
+ * @ClassName : WebSecurityConfig
+ * @date : 2018/6/13
+ * @Description :
  * @EnableWebSecurity: 禁用Boot的默认Security配置，配合@Configuration启用自定义配置（需要扩展WebSecurityConfigurerAdapter）
  * @EnableGlobalMethodSecurity(prePostEnabled = true): 启用Security注解，例如最常用的@PreAuthorize
  * configure(HttpSecurity): Request层面的配置，对应XML Configuration中的<http>元素
@@ -41,8 +43,6 @@ import javax.annotation.Resource;
 @EnableRedisHttpSession(maxInactiveIntervalInSeconds = 2 * 60)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Resource
-    private SessionRegistry sessionRegistry;
 
     private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
@@ -76,9 +76,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/login", "/register", "/transport/*", "/hello").permitAll()
                 .anyRequest().authenticated()
-                .and().sessionManagement().maximumSessions(1).sessionRegistry(sessionRegistry).expiredUrl("/login").and()
                 .and().logout().invalidateHttpSession(Boolean.TRUE).clearAuthentication(Boolean.TRUE).permitAll()
                 .and().httpBasic();
+        http
+                .sessionManagement()
+                .invalidSessionUrl("/session/invalid")
+                .maximumSessions(1)
+                //false之后登录踢掉之前登录,true则不允许之后登录
+                .maxSessionsPreventsLogin(false)
+                //登录被踢掉时的自定义操作
+                .expiredSessionStrategy(new ExpiredSessionStrategy())
+                .sessionRegistry(sessionRegistry())
+                .expiredUrl("/login");
     }
 
     @Override
@@ -86,13 +95,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         web.ignoring().antMatchers("/js/**", "/css/**", "/images/**", "/**/favicon.ico");
     }
 
-    @Bean
-    public SessionRegistry sessionRegistry() {
-        return new SessionRegistryImpl();
-    }
-
     /**
-     * 生成x-auth-token信息，如果生成SESSION则注释掉即可
+     * 生成x-auth-token信息,格式为(x-auth-token : 062e995b-6e21-4ad5-a96c-b837389d5f7e)
+     * 生成SESSION则注释掉即可，格式为(Cookie : SESSION=09cc4ffe-7ad5-4455-962b-148053effb34)
      *
      * @return
      */
@@ -106,6 +111,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
      */
     private SessionInformationExpiredStrategy sessionInformationExpiredStrategy() {
         return new SimpleRedirectSessionInformationExpiredStrategy("/login");
+    }
+
+    @Bean
+    public SessionRegistry sessionRegistry() {
+        return new SessionRegistryImpl();
     }
 
     /**
