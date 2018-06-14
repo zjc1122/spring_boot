@@ -1,6 +1,7 @@
 package cn.zjc.config;
 
 import cn.zjc.enums.SysUtilCode;
+import cn.zjc.server.ExpiredSessionService;
 import cn.zjc.server.SysUserDetailsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,8 +18,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.session.HttpSessionEventPublisher;
-import org.springframework.security.web.session.SessionInformationExpiredStrategy;
-import org.springframework.security.web.session.SimpleRedirectSessionInformationExpiredStrategy;
 import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
 import org.springframework.session.web.http.HeaderHttpSessionStrategy;
 import org.springframework.session.web.http.HttpSessionStrategy;
@@ -40,7 +39,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
-@EnableRedisHttpSession(maxInactiveIntervalInSeconds = 2 * 60)
+@EnableRedisHttpSession(maxInactiveIntervalInSeconds = 5 * 60)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 
@@ -74,43 +73,34 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/login", "/register", "/transport/*", "/hello").permitAll()
+                .antMatchers("/login", "/register", "/transport/*", "/test/*").permitAll()
                 .anyRequest().authenticated()
                 .and().logout().invalidateHttpSession(Boolean.TRUE).clearAuthentication(Boolean.TRUE).permitAll()
                 .and().httpBasic();
         http
                 .sessionManagement()
-                .invalidSessionUrl("/session/invalid")
                 .maximumSessions(1)
                 //false之后登录踢掉之前登录,true则不允许之后登录
                 .maxSessionsPreventsLogin(false)
-                //登录被踢掉时的自定义操作
-                .expiredSessionStrategy(new ExpiredSessionStrategy())
+                //登录被踢掉时的自定义操作(session失效)
+                .expiredSessionStrategy(new ExpiredSessionService())
                 .sessionRegistry(sessionRegistry())
                 .expiredUrl("/login");
     }
 
     @Override
-    public void configure(WebSecurity web) throws Exception {
+    public void configure(WebSecurity web) {
         web.ignoring().antMatchers("/js/**", "/css/**", "/images/**", "/**/favicon.ico");
     }
 
     /**
-     * 生成x-auth-token信息,格式为(x-auth-token : 062e995b-6e21-4ad5-a96c-b837389d5f7e)
-     * 生成SESSION则注释掉即可，格式为(Cookie : SESSION=09cc4ffe-7ad5-4455-962b-148053effb34)
-     *
-     * @return
+     * 生成x-auth-token头信息,格式为(x-auth-token : 062e995b-6e21-4ad5-a96c-b837389d5f7e)
+     * 注释掉此方法则生成session头信息，格式为(Cookie : SESSION=09cc4ffe-7ad5-4455-962b-148053effb34)
+     * 在postman用2个账号登录获得的session是一样的
      */
     @Bean
     public HttpSessionStrategy httpSessionStrategy() {
         return new HeaderHttpSessionStrategy();
-    }
-
-    /**
-     * session失效跳转
-     */
-    private SessionInformationExpiredStrategy sessionInformationExpiredStrategy() {
-        return new SimpleRedirectSessionInformationExpiredStrategy("/login");
     }
 
     @Bean

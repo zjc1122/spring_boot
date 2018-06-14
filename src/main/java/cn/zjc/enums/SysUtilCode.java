@@ -11,7 +11,9 @@ public enum SysUtilCode {
     //密码错误
     PASSWORD_ERROR(1, "密码错误"),
     //消息发送失败
-    MESSAGE_SEND_ERROR(2, "消息发送失败");
+    MESSAGE_SEND_ERROR(2, "消息发送失败"),
+    //SESSION过期
+    EXPIRED_SESSION(3, "你已经被踢下线");
 
     private Integer code;
     private String desc;

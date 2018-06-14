@@ -20,9 +20,9 @@ import org.elasticsearch.rest.RestStatus;
 import org.elasticsearch.search.SearchHit;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 import javax.annotation.Resource;
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -114,16 +114,18 @@ public class TransportController {
      * 创建索引
      */
     @RequestMapping("/createIndex")
-    public JsonResult createIndex(String index){
+    public JsonResult createIndex(String index) {
         Boolean index1 = client.createIndex(index);
-        if(!index1){
+        if (!index1) {
             return JsonResult.failed("添加失败");
         }
         return JsonResult.failed("添加成功");
     }
+
     /**
      * 创建type和mapping
      * type和mapping存在则进行更新
+     *
      * @param index
      * @param type
      * @return
@@ -141,6 +143,7 @@ public class TransportController {
 
     /**
      * 删除索引
+     *
      * @param index
      * @return
      */
@@ -156,6 +159,7 @@ public class TransportController {
 
     /**
      * 以json的格式添加文档数据
+     *
      * @param index
      * @param type
      * @return
@@ -171,6 +175,7 @@ public class TransportController {
 
     /**
      * 以XContentBuilder的格式添加文档数据
+     *
      * @param index
      * @param type
      * @return
@@ -202,6 +207,7 @@ public class TransportController {
 
     /**
      * 以Json的格式更新文档数据
+     *
      * @param index
      * @param type
      * @param id
@@ -218,6 +224,7 @@ public class TransportController {
 
     /**
      * 根据ID查询一条文档
+     *
      * @param index
      * @param type
      * @param id
@@ -233,6 +240,7 @@ public class TransportController {
 
     /**
      * 根据ID删除一条文档
+     *
      * @param index
      * @param type
      * @param id
@@ -248,8 +256,8 @@ public class TransportController {
     }
 
     @RequestMapping("/matchAllQuery")
-    public JsonResult matchAllQuery(String index,String type) throws Exception {
-        SearchResponse searchResponse = client.matchAllQuery(index,type);
+    public JsonResult matchAllQuery(String index, String type) throws Exception {
+        SearchResponse searchResponse = client.matchAllQuery(index, type);
         ArrayList<Article> list = Lists.newArrayList();
         for (SearchHit searchHit : searchResponse.getHits()) {
             String sourceAsString = searchHit.getSourceAsString();
@@ -261,10 +269,10 @@ public class TransportController {
     }
 
     @RequestMapping("/queryByFilter")
-    public JsonResult queryByFilter(String index,String type,String field,String value){
-        List<String> queryList = client.queryByFilter(index,type,field,value);
+    public JsonResult queryByFilter(String index, String type, String field, String value) {
+        List<String> queryList = client.queryByFilter(index, type, field, value);
         ArrayList<Article> articles = Lists.newArrayList();
-        for (String json: queryList) {
+        for (String json : queryList) {
             Article article = GsonHolder.getDateGson().fromJson(json, Article.class);
             articles.add(article);
         }
@@ -272,15 +280,16 @@ public class TransportController {
     }
 
     @RequestMapping("/deleteByQuery")
-    public JsonResult deleteByQuery(String index,String field,String value){
+    public JsonResult deleteByQuery(String index, String field, String value) {
         Long count = client.deleteByQuery(index, field, value);
-        if(count==0){
+        if (count == 0) {
             return JsonResult.success("没有符合条件的数据！");
         }
-        return JsonResult.success("删除"+count+"条数据！");
+        return JsonResult.success("删除" + count + "条数据！");
     }
+
     @RequestMapping("/min")
-    public JsonResult min(String index,String field){
+    public JsonResult min(String index, String field) {
         Double min = client.min(index, field);
         return JsonResult.success(min);
     }
