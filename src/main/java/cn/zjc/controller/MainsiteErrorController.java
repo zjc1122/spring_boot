@@ -53,6 +53,9 @@ public class MainsiteErrorController implements ErrorController {
 
         switch (response.getStatus()) {
 
+            case 400:
+                msg = "参数不足!";
+                break;
             case 401:
                 msg = "访问未授权!";
                 break;

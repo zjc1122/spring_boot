@@ -34,9 +34,9 @@ import java.util.Properties;
 @Configuration
 @MapperScan("cn.zjc.mapper")
 public class MybatisConfig implements TransactionManagementConfigurer {
-    @Resource(name = "defaultDataSource")
+    @Resource
     DataSource defaultDataSource;
-    @Resource(name = "slaveDataSource")
+    @Resource
     DataSource slaveDataSource;
     private static final Logger logger = LoggerFactory.getLogger(MybatisConfig.class);
 

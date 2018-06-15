@@ -17,7 +17,10 @@ import java.util.Objects;
 import java.util.UUID;
 
 /**
- * Created by zhangjiacheng on 2018/2/2.
+ * @author : zhangjiacheng
+ * @ClassName : SysUserController
+ * @date : 2018/6/15
+ * @Description : 系统用户Controller
  */
 @RestController
 public class SysUserController {
@@ -33,13 +36,13 @@ public class SysUserController {
             return JsonResult.success("退出成功!");
         }
         if (Objects.nonNull(sysUser)) {
-            return JsonResult.success("用户:"+sysUser.getUsername()+"登录成功!");
+            return JsonResult.success("用户:" + sysUser.getUsername() + "登录成功!");
         }
         return JsonResult.failed("登录失败!");
     }
 
-    @RequestMapping(value = "/register" , method = RequestMethod.POST)
-    public JsonResult register(@RequestParam("username") String username, @RequestParam("password") String password){
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    public JsonResult register(@RequestParam("username") String username, @RequestParam("password") String password) {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder(16);
         SysUser sysUser = new SysUser();
         sysUser.setLoginName(username);
@@ -47,6 +50,6 @@ public class SysUserController {
         sysUser.setPassword(passwordEncoder.encode(password));
         sysUser.setSalt(UUID.randomUUID().toString());
         sysUserService.save(sysUser);
-        return JsonResult.success("用户名:"+sysUser.getUsername()+"注册成功!");
+        return JsonResult.success("用户名:" + sysUser.getUsername() + "注册成功!");
     }
 }

@@ -5,8 +5,15 @@ import org.springframework.amqp.rabbit.support.CorrelationData;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.UUID;
 
+/**
+ * @author : zhangjiacheng
+ * @ClassName : TopicSender
+ * @date : 2018/6/15
+ * @Description : Topic发送
+ */
 @Component
 public class TopicSender {
 
@@ -15,9 +22,9 @@ public class TopicSender {
 
     public void send() {
         CorrelationData correlationData = new CorrelationData(UUID.randomUUID().toString());
-        String msg = "I am topic.mesaages msg=====";
-        System.out.println("发送消息: " + msg);
-        System.out.println("callbackSender UUID: " + correlationData.getId());
+        String msg = "I am topic.mesaages msg=====" + new Date();
+        System.out.println("Topic发送消息: " + msg);
+        System.out.println("Topic callbackSender UUID: " + correlationData.getId());
         rabbitTemplate.convertAndSend("topicExchange", "topicQueue", msg, correlationData);
     }
 

@@ -29,7 +29,7 @@ import org.springframework.context.annotation.Scope;
 
 /**
  * @author : zhangjiacheng
- * @ClassName : RabbitAmqpConfig.java
+ * @ClassName : RabbitAmqpConfig
  * @date : 2018/6/11
  * @Description : rabbitMQ配置类
  */
@@ -45,7 +45,8 @@ public class RabbitAmqpConfig {
     private String password;
     @Value("${rabbitmq.virtualHost}")
     private String virtualHost;
-    private static final Logger loggere = LoggerFactory.getLogger(RabbitAmqpConfig.class);
+
+    private static final Logger logger = LoggerFactory.getLogger(RabbitAmqpConfig.class);
 
     /**
      * 配置链接信息
@@ -78,7 +79,7 @@ public class RabbitAmqpConfig {
      */
     @Bean
     @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
-    public RabbitTemplate rabbitTemplatenew() {
+    public RabbitTemplate rabbitTemplate() {
         RabbitTemplate template = new RabbitTemplate(cachingConnectionFactory());
         //数据转换为json存入消息队列
         template.setMessageConverter(new Jackson2JsonMessageConverter());
@@ -88,9 +89,9 @@ public class RabbitAmqpConfig {
             @Override
             public void confirm(CorrelationData correlationData, boolean ack, String cause) {
                 if (ack) {
-                    loggere.info("消息成功消费");
+                    logger.info("消息成功消费");
                 } else {
-                    loggere.info("消息发送失败: {},重新发送", cause);
+                    logger.info("消息发送失败: {},重新发送", cause);
                     throw new RuntimeException(SysUtilCode.MESSAGE_SEND_ERROR.getDesc() + cause);
                 }
             }
@@ -101,10 +102,10 @@ public class RabbitAmqpConfig {
     /**
      * 配置消息交换机
      * 针对消费者配置
-     * FanoutExchange: 将消息分发到所有的绑定队列，无routingkey的概念
-     * HeadersExchange ：通过添加属性key-value匹配
-     * DirectExchange:按照routingkey分发到指定队列
-     * TopicExchange:多关键字匹配
+     * FanoutExchange : 将消息分发到所有的绑定队列，无routingKey的概念
+     * HeadersExchange : 通过添加属性key-value匹配
+     * DirectExchange : 按照routingKey分发到指定队列
+     * TopicExchange : 多关键字匹配
      */
     @Bean
     public DirectExchange directExchange() {
@@ -208,7 +209,7 @@ public class RabbitAmqpConfig {
             @Override
             public void onMessage(Message message, Channel channel) throws Exception {
                 byte[] body = message.getBody();
-                loggere.info("收到:{},队列的消息:{}", queue.getName(), new String(body));
+                logger.info("收到:{},队列的消息:{}", queue.getName(), new String(body));
                 //确认消息成功消费
                 channel.basicAck(message.getMessageProperties().getDeliveryTag(), false);
             }
