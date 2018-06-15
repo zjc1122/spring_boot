@@ -17,7 +17,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import javax.annotation.Resource;
 import java.util.concurrent.TimeUnit;
 
-//@RunWith(SpringRunner.class)
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest
 @EnableAutoConfiguration(exclude = {DataSourceAutoConfiguration.class})
