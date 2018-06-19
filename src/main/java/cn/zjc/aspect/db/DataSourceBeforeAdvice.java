@@ -24,26 +24,24 @@ import java.lang.reflect.Method;
 @Aspect
 @Component
 public class DataSourceBeforeAdvice {
+
     private static final Logger logger = LoggerFactory.getLogger(DataSourceBeforeAdvice.class);
 
     @Pointcut("execution(* cn.zjc.mapper..*(..))||execution(* cn.zjc.server..*(..))")
-    public void dataSourceMethodPointCut() throws Throwable {
+    public void dataSourceMethodPointCut() {
 
     }
-
     @Before("dataSourceMethodPointCut()")
-    public void doAround(JoinPoint pjp) throws Throwable {
-
+    public void doAround(JoinPoint pjp) {
+        //获得注解信息
         MethodSignature methodSignature = (MethodSignature) pjp.getSignature();
         Method method = methodSignature.getMethod();
         Object target = pjp.getTarget();
-        String name = "";
         if (logger.isInfoEnabled()) {
-            name = target.getClass().getName() + "#" + method.getName();
+            String name = target.getClass().getName() + "#" + method.getName();
+            logger.info("开始执行方法:{}", name);
         }
-
-        //计算路由DB Group
-        //处理数据源
+        //处理数据源,计算路由DB Group
         Annotation trsAnnotation = AnnotationUtils.getAnnotation(method, TargetDataSource.class);
         if (trsAnnotation == null) {
             trsAnnotation = AnnotationUtils.getAnnotation(target.getClass(), TargetDataSource.class);
@@ -57,9 +55,16 @@ public class DataSourceBeforeAdvice {
 //        return pjp.proceed();
     }
 
-    //执行完切面后，将线程共享中的数据源名称清空
+    /**
+     * 执行完切面后，将线程共享中的数据源名称清空
+     *
+     * @param pjp
+     */
     @After("dataSourceMethodPointCut()")
-    public void after(JoinPoint joinPoint) {
+    public void after(JoinPoint pjp) {
+        if (logger.isInfoEnabled()) {
+            logger.info("结束执行方法:{}", pjp.getTarget().getClass().getName() + "#" + ((MethodSignature) pjp.getSignature()).getMethod().getName());
+        }
         DataSourceContextHolder.clearDbType();
     }
 }
