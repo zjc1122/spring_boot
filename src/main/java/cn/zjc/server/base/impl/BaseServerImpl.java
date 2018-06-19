@@ -59,6 +59,15 @@ public abstract class BaseServerImpl<T> implements BaseServer<T> {
     }
 
     /**
+     * 根据id查询数据
+     * @param id
+     * @return
+     */
+    @Override
+    public T selectByPrimaryKey(Long id){
+        return (T) baseMapper.selectByPrimaryKey(id);
+    }
+    /**
      * 分页查询
      *
      * @param page
