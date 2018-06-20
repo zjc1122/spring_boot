@@ -14,6 +14,7 @@ import com.alicp.jetcache.support.JavaValueDecoder;
 import com.alicp.jetcache.support.JavaValueEncoder;
 import com.google.common.collect.Maps;
 import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import redis.clients.jedis.Jedis;
@@ -33,13 +34,18 @@ import java.util.Map;
 @EnableCreateCacheAnnotation
 public class JetCacheConfig {
 
+    @Value("${redis.master.host}")
+    private String host;
+    @Value("${redis.master.port}")
+    private int port;
+
     @Bean
     public Pool<Jedis> pool() {
         GenericObjectPoolConfig pc = new GenericObjectPoolConfig();
         pc.setMinIdle(2);
         pc.setMaxIdle(10);
         pc.setMaxTotal(10);
-        return new JedisPool(pc, "localhost", 6379);
+        return new JedisPool(pc, host, port);
     }
 
     @Bean
