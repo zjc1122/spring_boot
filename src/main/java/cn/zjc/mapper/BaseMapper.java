@@ -1,7 +1,5 @@
 package cn.zjc.mapper;
 
-import org.apache.ibatis.annotations.Mapper;
-
 import java.util.List;
 
 /**
@@ -10,21 +8,28 @@ import java.util.List;
  * @date : 2018/6/21
  * @Description : 基础Mapper
  */
-@Mapper
 public interface BaseMapper<T> {
 
     /**
      * 查询所有
+     *
+     * @return
      */
     List<T> selectAll();
 
     /**
      * 根据条件查询
+     *
+     * @param record
+     * @return
      */
     List<T> selectAll(T record);
 
     /**
      * 根据实体类不为null的字段查询总数,条件全部使用=号and条件
+     *
+     * @param record
+     * @return
      */
     int selectCount(T record);
 
@@ -60,6 +65,9 @@ public interface BaseMapper<T> {
 
     /**
      * 根据实体类中字段不为null的条件进行删除,条件全部使用=号and条件
+     *
+     * @param key
+     * @return
      */
     int delete(T key);
 

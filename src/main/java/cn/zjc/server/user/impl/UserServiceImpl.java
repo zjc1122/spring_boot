@@ -51,7 +51,7 @@ public class UserServiceImpl implements UserService {
      * @return
      */
     @Override
-    @Cached(name = "userCache", key = "#id", expire = 60, cacheNullValue = true)
+    @Cached(name = "userCache_", key = "#id", expire = 60, cacheNullValue = true)
     @CacheRefresh(refresh = 30, stopRefreshAfterLastAccess = 120)
     public User selectByPrimaryKey(Long id) {
         return userMapper.selectByPrimaryKey(id);
@@ -80,7 +80,7 @@ public class UserServiceImpl implements UserService {
      * @return
      */
     @Override
-    @CacheUpdate(name = "userCache", key = "#user.id", value = "#user")
+    @CacheUpdate(name = "userCache_", key = "#user.id", value = "#user")
     @Transactional(rollbackFor = Exception.class)
     public Integer update(User user) {
         return userMapper.updateByPrimaryKey(user);
@@ -93,7 +93,7 @@ public class UserServiceImpl implements UserService {
      * @return
      */
     @Override
-    @CacheInvalidate(name = "userCache", key = "#id")
+    @CacheInvalidate(name = "userCache_", key = "#id")
     @Transactional(rollbackFor = Exception.class)
     public Integer deleteById(Long id) {
         return userMapper.deleteByPrimaryKey(id);

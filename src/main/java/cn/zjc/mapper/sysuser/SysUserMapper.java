@@ -3,7 +3,7 @@ package cn.zjc.mapper.sysuser;
 
 import cn.zjc.mapper.BaseMapper;
 import cn.zjc.model.sysuser.SysUser;
-import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * @author : zhangjiacheng
@@ -11,7 +11,6 @@ import org.apache.ibatis.annotations.Mapper;
  * @date : 2018/6/21
  * @Description : 系统用户Mapper
  */
-@Mapper
 public interface SysUserMapper extends BaseMapper<SysUser> {
 
     /**
@@ -20,5 +19,5 @@ public interface SysUserMapper extends BaseMapper<SysUser> {
      * @param username
      * @return
      */
-    SysUser selectSysUserByUsername(String username);
+    SysUser selectSysUserByUsername(@Param("username") String username);
 }
