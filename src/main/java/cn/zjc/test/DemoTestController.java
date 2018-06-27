@@ -78,4 +78,8 @@ public class DemoTestController {
         userService.deleteById(id);
         return;
     }
+    @RequestMapping(value = "/list2", method = RequestMethod.POST)
+    public PageInfo<User> list(@RequestParam("pageNo") Integer pageNo, @RequestParam("pageSize") Integer pageSize) {
+        return userService.selectPageAll(pageNo,pageSize,new User());
+    }
 }

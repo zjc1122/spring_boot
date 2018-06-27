@@ -58,6 +58,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Cached(name = "userCache_", key = "#page", expire = 90, cacheNullValue = true)
     public PageInfo<User> selectPageAll(Integer page, Integer rows, User user) {
         // 设置分页条件
         PageHelper.startPage(page, rows);
