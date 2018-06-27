@@ -3,6 +3,7 @@ package cn.zjc.test;
 import cn.zjc.aspect.throwing.ThrowingMail;
 import cn.zjc.model.user.User;
 import cn.zjc.server.user.UserService;
+import cn.zjc.util.JsonResult;
 import cn.zjc.util.RedisUtil;
 import com.github.pagehelper.PageInfo;
 import org.slf4j.Logger;
@@ -10,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -56,5 +58,24 @@ public class DemoTestController {
         logger.info("分页查询");
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         return userService.selectPageAll(pageNo, pageSize, new User());
+    }
+
+    @RequestMapping(value = "/get/{id}", method = RequestMethod.POST)
+    public JsonResult findUser(@PathVariable("id") Long id) {
+        System.out.println(id);
+        logger.info("查询");
+        return JsonResult.success(userService.selectByPrimaryKey(id));
+    }
+
+    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    public JsonResult update(User user) {
+        userService.update(user);
+        return JsonResult.success(null);
+    }
+
+    @RequestMapping(value = "/delete", method = RequestMethod.POST)
+    public void delete(Long id) {
+        userService.deleteById(id);
+        return;
     }
 }
