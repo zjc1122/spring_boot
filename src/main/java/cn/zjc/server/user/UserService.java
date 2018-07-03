@@ -23,6 +23,7 @@ public interface UserService {
     /**
      * 根据条件查询数据
      *
+     * @param record
      * @return
      */
     List<User> selectAll(User record);

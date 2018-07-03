@@ -68,14 +68,9 @@
         </dependency>
         <!--zookeeper -->
         <dependency>
-            <groupId>org.apache.zookeeper</groupId>
-            <artifactId>zookeeper</artifactId>
-            <version>3.4.8</version>
-        </dependency>
-        <dependency>
             <groupId>org.apache.curator</groupId>
             <artifactId>curator-recipes</artifactId>
-            <version>2.9.1</version>
+            <version>4.0.1</version>
         </dependency>
         <!--Mybatis-->
         <dependency>
@@ -108,11 +103,6 @@
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
             <version>3.0</version>
-        </dependency>
-        <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-            <version>RELEASE</version>
         </dependency>
         <dependency>
             <groupId>com.google.code.gson</groupId>
