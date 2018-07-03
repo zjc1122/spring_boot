@@ -33,7 +33,7 @@ public class MainsiteErrorController implements ErrorController {
 
     @RequestMapping(value = ERROR_PATH)
     @ResponseBody
-    public JsonResult handleError(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public JsonResult handleError(HttpServletRequest request, HttpServletResponse response) {
 
         Map<String, Object> errorAttributes = getErrorAttributes(request, true);
         String message = (String) errorAttributes.get("message");
@@ -69,7 +69,7 @@ public class MainsiteErrorController implements ErrorController {
                 msg = "服务器错误!";
                 break;
             default:
-                msg = "系统繁忙";
+                msg = "系统繁忙!";
         }
         return JsonResult.failed(JsonResult.SYS_ERROR, msg, systemMsg);
     }
