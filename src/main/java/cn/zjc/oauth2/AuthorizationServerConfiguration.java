@@ -1,6 +1,6 @@
 //package cn.zjc.oauth2;
 //
-//import cn.zjc.server.ApplyClientDetailService;
+//import cn.zjc.oauth2.ApplyClientDetailService;
 //import org.slf4j.Logger;
 //import org.slf4j.LoggerFactory;
 //import org.springframework.beans.factory.annotation.Autowired;
