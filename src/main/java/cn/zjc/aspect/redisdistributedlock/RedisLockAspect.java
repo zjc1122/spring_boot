@@ -1,7 +1,7 @@
 package cn.zjc.aspect.redisdistributedlock;
 
 import cn.zjc.aspect.zkdistributedlock.ZkDistributedLockAspect;
-import cn.zjc.util.RedisUtil;
+import cn.zjc.server.util.RedisService;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -28,7 +28,7 @@ public class RedisLockAspect {
     private static final Logger logger = LoggerFactory.getLogger(ZkDistributedLockAspect.class);
 
     @Resource
-    private RedisUtil redisUtil;
+    private RedisService redisService;
 
     @Pointcut("@annotation(cn.zjc.aspect.redisdistributedlock.RedisLock) && execution(* cn.zjc..*(..))")
     private void lockPoint() {
@@ -60,17 +60,17 @@ public class RedisLockAspect {
             while (!lock) {
                 //持锁时间
                 Long keepMills = System.currentTimeMillis() + lockInfo.keepMills();
-                lock = redisUtil.setNX(lockKey, keepMills);
+                lock = redisService.setNX(lockKey, keepMills);
                 // 得到锁，没有人加过相同的锁
                 if (lock) {
                     //设置失效时间
-                    redisUtil.expire(lockKey, lockExpire);
+                    redisService.expire(lockKey, lockExpire);
                     logger.info("得到锁...");
                     obj = pjp.proceed();
                 }
                 // 已过期，并且getAndSet后旧的时间戳依然是过期的，可以认为获取到了锁
-                else if (System.currentTimeMillis() > redisUtil.get(lockKey) &&
-                        (System.currentTimeMillis() > redisUtil.getAndSet(lockKey, keepMills))) {
+                else if (System.currentTimeMillis() > redisService.get(lockKey) &&
+                        (System.currentTimeMillis() > redisService.getAndSet(lockKey, keepMills))) {
                     lock = true;
                     logger.info("得到锁...");
                     obj = pjp.proceed();
@@ -103,7 +103,7 @@ public class RedisLockAspect {
                 //锁没有过期就删除key
                 if (System.currentTimeMillis() < (System.currentTimeMillis() + lockInfo.keepMills())) {
                     logger.info("释放锁...");
-                    redisUtil.delete(lockKey);
+                    redisService.delete(lockKey);
                 }
 
             }

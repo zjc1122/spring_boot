@@ -1,4 +1,4 @@
-package cn.zjc.util;
+package cn.zjc.server.util;
 
 import org.springframework.data.redis.core.HashOperations;
 import org.springframework.data.redis.core.ListOperations;
@@ -21,7 +21,7 @@ import java.util.concurrent.TimeUnit;
  * @Description : redis操作
  */
 @Service
-public class RedisUtil {
+public class RedisService {
     @Resource(name = "redisTemplate")
     private RedisTemplate redisTemplate;
 

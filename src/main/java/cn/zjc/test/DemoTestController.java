@@ -4,7 +4,7 @@ import cn.zjc.aspect.throwing.ThrowingMail;
 import cn.zjc.model.user.User;
 import cn.zjc.server.user.UserService;
 import cn.zjc.util.JsonResult;
-import cn.zjc.util.RedisUtil;
+import cn.zjc.server.util.RedisService;
 import com.github.pagehelper.PageInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,7 +32,7 @@ public class DemoTestController {
 
     private static final Logger logger = LoggerFactory.getLogger(DemoTestController.class);
     @Resource
-    private RedisUtil redisUtil;
+    private RedisService redisService;
     @Resource
     private UserService userService;
 
@@ -43,7 +43,7 @@ public class DemoTestController {
     public Boolean sayHello() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 //        Boolean mm = redisUtil.setNX("zzzq",1111L);
-        redisUtil.expire("ttt", 10);
+        redisService.expire("ttt", 10);
         //测试异常邮件
         User user = new User();
         int userId = user.getUserId();

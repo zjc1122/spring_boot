@@ -1,4 +1,4 @@
-package cn.zjc.util;
+package cn.zjc.server.util;
 
 import com.google.common.collect.Maps;
 import freemarker.template.Template;
@@ -25,7 +25,7 @@ import java.util.Map;
  * @Description : 邮件模板
  */
 @Service
-public class MailServiceUtil {
+public class MailService {
 
     @Resource
     private JavaMailSender mailSender;

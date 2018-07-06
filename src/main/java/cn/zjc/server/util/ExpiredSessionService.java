@@ -1,4 +1,4 @@
-package cn.zjc.server;
+package cn.zjc.server.util;
 
 
 import cn.zjc.enums.SysUtilCode;
@@ -6,6 +6,7 @@ import cn.zjc.util.JsonResult;
 import com.google.gson.GsonBuilder;
 import org.springframework.security.web.session.SessionInformationExpiredEvent;
 import org.springframework.security.web.session.SessionInformationExpiredStrategy;
+import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 
@@ -15,6 +16,7 @@ import java.io.IOException;
  * @date : 2018/6/14
  * @Description : 登录被踢掉时返回信息
  */
+@Service
 public class ExpiredSessionService implements SessionInformationExpiredStrategy {
     @Override
     public void onExpiredSessionDetected(SessionInformationExpiredEvent eventØ) throws IOException {

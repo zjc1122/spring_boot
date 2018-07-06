@@ -8,5 +8,11 @@ import cn.zjc.server.base.BaseServer;
  */
 public interface SysUserService extends BaseServer<SysUser> {
 
+    /**
+     * 根据名称查询用户
+     *
+     * @param username
+     * @return
+     */
     SysUser getByUsername(String username);
 }

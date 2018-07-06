@@ -1,4 +1,4 @@
-package cn.zjc.util;
+package cn.zjc.server.util;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;

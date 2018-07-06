@@ -13,7 +13,7 @@ public enum SysUtilCode {
     //消息发送失败
     MESSAGE_SEND_ERROR(2, "消息发送失败"),
     //SESSION过期
-    EXPIRED_SESSION(3, "你已经被踢下线");
+    EXPIRED_SESSION(3, "你已下线,请重新登录");
 
     private Integer code;
     private String desc;

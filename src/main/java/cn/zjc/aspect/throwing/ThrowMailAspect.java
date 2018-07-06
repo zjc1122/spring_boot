@@ -2,7 +2,7 @@ package cn.zjc.aspect.throwing;
 
 import cn.zjc.model.util.EmailMessage;
 import cn.zjc.util.JsonResult;
-import cn.zjc.util.MailServiceUtil;
+import cn.zjc.server.util.MailService;
 import cn.zjc.util.TimeUtil;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterThrowing;
@@ -56,7 +56,7 @@ public class ThrowMailAspect {
     private String path;
 
     @Resource
-    private MailServiceUtil mailServiceUtil;
+    private MailService mailService;
 
     @Pointcut("@annotation(cn.zjc.aspect.throwing.ThrowingMail) && execution(* cn.zjc..*(..))")
     private void lockPoint() {
@@ -85,7 +85,7 @@ public class ThrowMailAspect {
                 .cause(ex.toString())
                 .build();
         //将异常信息文件通过邮件附件方式发送
-        mailServiceUtil.sendMessageMail(from, to, subject, template, message, fileName, file);
+        mailService.sendMessageMail(from, to, subject, template, message, fileName, file);
         //关闭输出流
         stream.flush();
         stream.close();

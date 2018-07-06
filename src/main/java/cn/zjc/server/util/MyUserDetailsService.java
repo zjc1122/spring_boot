@@ -1,4 +1,4 @@
-package cn.zjc.server;
+package cn.zjc.server.util;
 
 import cn.zjc.model.sysrole.SysRole;
 import cn.zjc.model.sysuser.SysUser;
@@ -20,12 +20,12 @@ import java.util.Objects;
 
 /**
  * @author : zhangjiacheng
- * @ClassName : SysUserDetailsService
+ * @ClassName : MyUserDetailsService
  * @date : 2018/6/14
  * @Description : SpringSecurity用户登录校验类
  */
 @Service
-public class SysUserDetailsService implements UserDetailsService {
+public class MyUserDetailsService implements UserDetailsService {
 
     @Autowired
     private SysUserService sysUserService;
