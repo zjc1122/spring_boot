@@ -19,8 +19,12 @@ import java.util.Date;
 import java.util.Properties;
 
 /**
- * Created by zhangjiacheng on 2017/11/19
+ * @ClassName : MailUtil
+ * @Author : zhangjiacheng
+ * @Date : 2018-06-09
+ * @Description : 邮件发送工具类，现在用MailService代替
  */
+@Deprecated
 @Service
 public class MailUtil {
 

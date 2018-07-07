@@ -1,6 +1,7 @@
 package cn.zjc.config;
 
 import cn.zjc.enums.SysUtilCode;
+import cn.zjc.server.util.ExpiredSessionService;
 import cn.zjc.server.util.MyUserDetailsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,15 +18,12 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.session.HttpSessionEventPublisher;
-import org.springframework.security.web.session.SessionInformationExpiredStrategy;
 import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
 import org.springframework.session.web.http.HeaderHttpSessionStrategy;
 import org.springframework.session.web.http.HttpSessionStrategy;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
-
-import javax.annotation.Resource;
 
 /**
  * @author : zhangjiacheng
@@ -44,9 +42,7 @@ import javax.annotation.Resource;
 @EnableRedisHttpSession(maxInactiveIntervalInSeconds = 5 * 60)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Resource
-    private SessionInformationExpiredStrategy sessionInformationExpiredStrategy;
-    private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+    private BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 
     @Bean
     UserDetailsService sysUserService() {
@@ -58,15 +54,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         auth.userDetailsService(sysUserService()).passwordEncoder(new PasswordEncoder() {
             @Override
             public String encode(CharSequence rawPassword) {
-                return encoder.encode(rawPassword);
+                return bCryptPasswordEncoder.encode(rawPassword);
             }
 
             @Override
             public boolean matches(CharSequence rawPassword, String encodedPassword) {
-                if (!encoder.matches(rawPassword, encodedPassword)) {
+                if (!bCryptPasswordEncoder.matches(rawPassword, encodedPassword)) {
                     throw new BadCredentialsException(SysUtilCode.PASSWORD_ERROR.getDesc());
                 }
-                return encoder.matches(rawPassword, encodedPassword);
+                return bCryptPasswordEncoder.matches(rawPassword, encodedPassword);
             }
         });
     }
@@ -86,7 +82,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 //false之后登录踢掉之前登录,true则不允许之后登录
                 .maxSessionsPreventsLogin(false)
                 //登录被踢掉时的自定义操作(session失效)
-                .expiredSessionStrategy(sessionInformationExpiredStrategy)
+                .expiredSessionStrategy(new ExpiredSessionService())
                 .sessionRegistry(sessionRegistry())
                 .expiredUrl("/login");
     }
