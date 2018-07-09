@@ -16,8 +16,6 @@ import org.springframework.data.redis.serializer.JdkSerializationRedisSerializer
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 import redis.clients.jedis.JedisPoolConfig;
 
-import java.lang.reflect.Method;
-
 /**
  * @author : zhangjiacheng
  * @ClassName : RedisConfig
@@ -79,17 +77,14 @@ public class RedisConfig extends CachingConfigurerSupport {
     @Bean
     @Override
     public KeyGenerator keyGenerator() {
-        return new KeyGenerator() {
-            @Override
-            public Object generate(Object target, Method method, Object... params) {
-                StringBuilder sb = new StringBuilder();
-                sb.append(target.getClass().getName());
-                sb.append(method.getName());
-                for (Object obj : params) {
-                    sb.append(obj.toString());
-                }
-                return sb.toString();
+        return (target, method, params) -> {
+            StringBuilder sb = new StringBuilder();
+            sb.append(target.getClass().getName());
+            sb.append(method.getName());
+            for (Object obj : params) {
+                sb.append(obj.toString());
             }
+            return sb.toString();
         };
     }
 
@@ -159,14 +154,14 @@ public class RedisConfig extends CachingConfigurerSupport {
     @Bean(name = "stringRedisTemplate")
     public RedisTemplate<String, Long> stringRedisTemplate(
             RedisConnectionFactory factory) {
-        final RedisTemplate<String, Long> template = new RedisTemplate<>();
+        RedisTemplate<String, Long> redisTemplate = new RedisTemplate<>();
         StringRedisSerializer stringRedisSerializer = new StringRedisSerializer();
-        template.setEnableTransactionSupport(false);
-        template.setKeySerializer(stringRedisSerializer);
-        template.setHashKeySerializer(stringRedisSerializer);
-        template.setValueSerializer(stringRedisSerializer);
-        template.setDefaultSerializer(stringRedisSerializer);
-        template.setConnectionFactory(factory);
-        return template;
+        redisTemplate.setEnableTransactionSupport(false);
+        redisTemplate.setKeySerializer(stringRedisSerializer);
+        redisTemplate.setHashKeySerializer(stringRedisSerializer);
+        redisTemplate.setValueSerializer(stringRedisSerializer);
+        redisTemplate.setDefaultSerializer(stringRedisSerializer);
+        redisTemplate.setConnectionFactory(factory);
+        return redisTemplate;
     }
 }
