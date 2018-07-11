@@ -35,37 +35,30 @@ public class RedisConfig extends CachingConfigurerSupport {
     private String masterName;
     @Value("${redis.master.password}")
     private String masterPass;
+    @Value("${redis.master.timeout}")
+    private int timeOut;
     @Value("${redis.sentinel1.host}")
     private String sentinel1Host;
     @Value("${redis.sentinel1.port}")
     private int sentinel1port;
     @Value("${redis.pool.maxTotal}")
     private int maxTotal;
-
     @Value("${redis.pool.minIdle}")
     private int minIdle;
-
     @Value("${redis.pool.maxIdle}")
     private int maxIdle;
-
     @Value("${redis.pool.maxWaitMillis}")
     private int maxWaitMillis;
-
     @Value("${redis.pool.timeBetweenEvictionRunsMillis}")
     private long timeBetweenEvictionRunsMillis;
-
     @Value("${redis.pool.numTestsPerEvictionRun}")
     private int numTestsPerEvictionRun;
-
     @Value("${redis.pool.testWhileIdle}")
     private Boolean testWhileIdle;
-
     @Value("${redis.pool.testOnBorrow}")
     private Boolean testOnBorrow;
-
     @Value("${redis.pool.testOnReturn}")
     private Boolean testOnReturn;
-
     @Value("${redis.pool.nodes}")
     private String nodes;
 
@@ -111,7 +104,7 @@ public class RedisConfig extends CachingConfigurerSupport {
         JedisPoolConfig poolConfig = generatePoolConfig();
         factory.setPoolConfig(poolConfig);
         factory.afterPropertiesSet();
-        factory.setTimeout(10000);
+        factory.setTimeout(timeOut);
         return factory;
     }
 
