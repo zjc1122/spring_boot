@@ -3,11 +3,12 @@ package cn.zjc.test;
 import cn.zjc.aspect.throwing.ThrowingMail;
 import cn.zjc.model.user.User;
 import cn.zjc.server.user.UserService;
-import cn.zjc.util.JsonResult;
 import cn.zjc.server.util.RedisService;
+import cn.zjc.server.util.RedissonService;
+import cn.zjc.util.JsonResult;
 import com.github.pagehelper.PageInfo;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
+import org.redisson.api.RLock;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @ClassName : DemoTestController
@@ -28,26 +30,29 @@ import javax.annotation.Resource;
  */
 @RestController
 @RequestMapping(value = "/test")
+@Slf4j
 public class DemoTestController {
 
-    private static final Logger logger = LoggerFactory.getLogger(DemoTestController.class);
     @Resource
     private RedisService redisService;
     @Resource
     private UserService userService;
+    @Resource
+    private RedissonService redissonService;
 
 
     @ResponseBody
     @ThrowingMail
     @RequestMapping(value = "/hello")
-    public Boolean sayHello() {
+    public Boolean sayHello(String code) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 //        Boolean mm = redisUtil.setNX("zzzq",1111L);
         redisService.expire("ttt", 10);
         //测试异常邮件
-        User user = new User();
-        int userId = user.getUserId();
-        long ss = 123;
+//        User user = new User();
+//        int userId = user.getUserId();
+//        long ss = 123;
+        System.out.println(code);
         Boolean mm = true;
         return mm;
     }
@@ -55,7 +60,7 @@ public class DemoTestController {
     @RequestMapping(value = "/list", method = RequestMethod.POST)
     @Cacheable(value = "users", key = "#root.caches[0].name")
     public PageInfo<User> findAllUser(@RequestParam("pageNo") Integer pageNo, @RequestParam("pageSize") Integer pageSize) {
-        logger.info("分页查询");
+        log.info("分页查询");
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         return userService.selectPageAll(pageNo, pageSize, new User());
     }
@@ -63,7 +68,7 @@ public class DemoTestController {
     @RequestMapping(value = "/get/{id}", method = RequestMethod.POST)
     public JsonResult findUser(@PathVariable("id") Long id) {
         System.out.println(id);
-        logger.info("查询");
+        log.info("查询");
         return JsonResult.success(userService.selectByPrimaryKey(id));
     }
 
@@ -78,8 +83,29 @@ public class DemoTestController {
         userService.deleteById(id);
         return;
     }
-    @RequestMapping(value = "/list2", method = RequestMethod.POST)
-    public PageInfo<User> list(@RequestParam("pageNo") Integer pageNo, @RequestParam("pageSize") Integer pageSize) {
-        return userService.selectPageAll(pageNo,pageSize,new User());
+
+    @RequestMapping(value = "/test", method = RequestMethod.GET)
+    public JsonResult list() {
+        return JsonResult.success(null);
+    }
+
+    @RequestMapping(value = "/lock")
+    @ResponseBody
+    public void test(String recordId) {
+        RLock lock = redissonService.getRLock(recordId);
+        try {
+            boolean bs = lock.tryLock(5, 6, TimeUnit.SECONDS);
+            if (bs) {
+                // 业务代码
+                log.info("进入业务代码: " + recordId);
+
+                lock.unlock();
+            } else {
+                Thread.sleep(300);
+            }
+        } catch (Exception e) {
+            log.error("", e);
+            lock.unlock();
+        }
     }
 }
