@@ -1,20 +1,17 @@
-package cn.zjc.util;
+package cn.zjc.server.util;
 
-import lombok.extern.slf4j.Slf4j;
-import org.redisson.api.RAtomicLong;
-import org.redisson.api.RedissonClient;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.stereotype.Service;
-
-import javax.annotation.Resource;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
+import javax.annotation.Resource;
+import lombok.extern.slf4j.Slf4j;
+import org.redisson.api.RAtomicLong;
+import org.redisson.api.RedissonClient;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.stereotype.Service;
 
 /**
  * @author yangbo
@@ -44,12 +41,9 @@ public class IdGeneratorService {
      */
     private static final LocalDate BASE_DATE = LocalDate.of(2018, 1, 1);
 
-    @Value("${server.port}")
-    private String port;
 
-    @Resource
-    @Qualifier("redisTemplate")
-    private RedisTemplate<String, Object> redisTemplate;
+    @Resource(name = "redisTemplate")
+    private RedisTemplate redisTemplate;
 
     @Autowired
     private RedissonClient redisson;
