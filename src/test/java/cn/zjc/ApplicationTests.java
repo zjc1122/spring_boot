@@ -74,6 +74,10 @@ public class ApplicationTests {
         System.out.println(zjc001);
     }
 
+    /**
+     * 线程池例子
+     * @param now
+     */
     public void threadTest(Timestamp now) {
         //使用guava定义ThreadFactory,禁止使用Executors的静态方法创建线程池
         ThreadFactory namedThreadFactory = new ThreadFactoryBuilder().setNameFormat("urgeDispatcher-pool-%d").build();
