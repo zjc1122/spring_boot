@@ -2,8 +2,8 @@ package cn.zjc;
 
 import cn.zjc.rabbitmq.sender.direct.DirectSender;
 import cn.zjc.rabbitmq.sender.topic.TopicSender;
-import cn.zjc.test.DistributedTest;
 import cn.zjc.server.util.IdGeneratorService;
+import cn.zjc.test.DistributedTest;
 import com.google.common.collect.Lists;
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import java.sql.Timestamp;
@@ -50,15 +50,12 @@ public class ApplicationTests {
     @Test
     public void secKill() throws InterruptedException {
         for (int i = 0; i < 10; i++) {
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    try {
-                        distributedTest.getGoods("123456", 111111);
-                        Thread.sleep(10000);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
+            new Thread(() -> {
+                try {
+                    distributedTest.getGoods("123456", 111111);
+                    Thread.sleep(10000);
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
             }).start();
             Thread.sleep(1000);
@@ -70,12 +67,14 @@ public class ApplicationTests {
     public void send() {
         String zjc000 = idGeneratorService.generateAlipayOrderNumber("zjc000");
         String zjc001 = idGeneratorService.generateTMallOrderNumber("zjc001");
+
         System.out.println(zjc000);
         System.out.println(zjc001);
     }
 
     /**
      * 线程池例子
+     *
      * @param now
      */
     public void threadTest(Timestamp now) {

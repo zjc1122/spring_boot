@@ -22,7 +22,7 @@ import java.util.Properties;
  * @ClassName : MailUtil
  * @Author : zhangjiacheng
  * @Date : 2018-06-09
- * @Description : 邮件发送工具类，现在用MailService代替
+ * @Description : 邮件发送工具类，现在用MailService代替(此类弃用)
  */
 @Deprecated
 @Service

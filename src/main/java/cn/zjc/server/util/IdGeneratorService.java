@@ -14,8 +14,10 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 /**
- * @author yangbo
- * @date 2018/7/3
+ * @author : zhangjiacheng
+ * @ClassName : IdGeneratorService
+ * @date : 2018/8/28
+ * @Description : 生成天猫或者支付宝的订单号
  */
 @Slf4j
 @Service
