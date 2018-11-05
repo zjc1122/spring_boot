@@ -55,11 +55,7 @@ public class MailService {
             helper.setText(text, true);
             helper.addAttachment(fileName, file);
             mailSender.send(mimeMessage);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (MessagingException e) {
-            e.printStackTrace();
-        } catch (TemplateException e) {
+        } catch (IOException | MessagingException | TemplateException e) {
             e.printStackTrace();
         }
     }
