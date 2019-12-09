@@ -2,11 +2,11 @@ package cn.zjc.enums;
 
 /**
  * @Author : zhangjiacheng
- * @ClassName : SysUtilCode
+ * @ClassName : SysUtilCodeEnum
  * @Date : 2018/6/8
  * @Description : 错误编码枚举类
  */
-public enum SysUtilCode {
+public enum SysUtilCodeEnum {
 
     //密码错误
     PASSWORD_ERROR(1, "密码错误"),
@@ -18,7 +18,7 @@ public enum SysUtilCode {
     private Integer code;
     private String desc;
 
-    SysUtilCode(Integer code, String desc) {
+    SysUtilCodeEnum(Integer code, String desc) {
         this.code = code;
         this.desc = desc;
     }

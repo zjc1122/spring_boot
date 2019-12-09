@@ -1,7 +1,7 @@
 package cn.zjc.aspect.db;
 
 
-import cn.zjc.enums.DataBaseType;
+import cn.zjc.enums.DataBaseTypeEnum;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
@@ -22,5 +22,5 @@ import java.lang.annotation.Target;
 @Inherited
 @Documented
 public @interface TargetDataSource {
-    DataBaseType value() default DataBaseType.Default_DB;//此处接收的是数据源的名称
+    DataBaseTypeEnum value() default DataBaseTypeEnum.Default_DB;//此处接收的是数据源的名称
 }
