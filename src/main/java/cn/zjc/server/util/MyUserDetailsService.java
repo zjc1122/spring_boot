@@ -5,6 +5,8 @@ import cn.zjc.model.sysuser.SysUser;
 import cn.zjc.server.sysrole.SysRoleService;
 import cn.zjc.server.sysuser.SysUserService;
 import com.google.common.collect.Lists;
+import java.util.List;
+import java.util.Objects;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.GrantedAuthority;
@@ -14,9 +16,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.Objects;
 
 /**
  * @author : zhangjiacheng
@@ -41,19 +40,17 @@ public class MyUserDetailsService implements UserDetailsService {
         } catch (Exception e) {
             throw new BadCredentialsException("查询用户异常!");
         }
-        if (user != null) {
-            //查询用户的权限
-            List<GrantedAuthority> grantedAuthorities = Lists.newArrayList();
-            List<SysRole> roles = sysRoleService.findRoleByUserId(Long.valueOf(user.getId()));
-            if (Objects.nonNull(roles)) {
-                for (SysRole sysRole : roles) {
-                    GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(sysRole.getName());
-                    grantedAuthorities.add(grantedAuthority);
-                }
-            }
-            return new User(user.getUsername(), user.getPassword(), grantedAuthorities);
-        } else {
+        if (user == null) {
             throw new BadCredentialsException(userName + "这个用户不存在!");
         }
+        //查询用户的权限
+        List<GrantedAuthority> grantedAuthorities = Lists.newArrayList();
+        List<SysRole> roles = sysRoleService.findRoleByUserId(user.getId());
+        if (Objects.nonNull(roles)) {
+            for (SysRole sysRole : roles) {
+                grantedAuthorities.add(new SimpleGrantedAuthority(sysRole.getName()));
+            }
+        }
+        return new User(user.getUsername(), user.getPassword(), grantedAuthorities);
     }
 }
