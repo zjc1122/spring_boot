@@ -1,7 +1,7 @@
 package cn.zjc.aspect.db;
 
 
-import cn.zjc.enums.DataBaseType;
+import cn.zjc.enums.DataBaseTypeEnum;
 import org.apache.commons.lang3.StringUtils;
 
 /**
@@ -12,8 +12,8 @@ import org.apache.commons.lang3.StringUtils;
  */
 public class DataSourceContextHolder {
     private static final ThreadLocal<String> contextHolder = new ThreadLocal<>();
-    private static String defaultDBName = DataBaseType.Default_DB.get();
-    private static String slaveDBName = DataBaseType.Slave_DB.get();
+    private static String defaultDBName = DataBaseTypeEnum.Default_DB.get();
+    private static String slaveDBName = DataBaseTypeEnum.Slave_DB.get();
 
     public static void setDbName(String dbType) {
         contextHolder.set(dbType);

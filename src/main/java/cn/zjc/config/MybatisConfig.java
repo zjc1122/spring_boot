@@ -1,7 +1,7 @@
 package cn.zjc.config;
 
 import cn.zjc.aspect.db.DynamicDataSource;
-import cn.zjc.enums.DataBaseType;
+import cn.zjc.enums.DataBaseTypeEnum;
 import com.github.pagehelper.PageHelper;
 import com.google.common.collect.Maps;
 import org.apache.ibatis.plugin.Interceptor;
@@ -45,8 +45,8 @@ public class MybatisConfig implements TransactionManagementConfigurer {
     public DynamicDataSource dataSource() {
         try {
             Map<Object, Object> targetDataSources = Maps.newHashMap();
-            targetDataSources.put(DataBaseType.Default_DB.get(), defaultDataSource);
-            targetDataSources.put(DataBaseType.Slave_DB.get(), slaveDataSource);
+            targetDataSources.put(DataBaseTypeEnum.Default_DB.get(), defaultDataSource);
+            targetDataSources.put(DataBaseTypeEnum.Slave_DB.get(), slaveDataSource);
             DynamicDataSource dataSource = new DynamicDataSource();
             // 该方法是AbstractRoutingDataSource的方法
             dataSource.setTargetDataSources(targetDataSources);

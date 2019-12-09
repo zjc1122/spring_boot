@@ -1,6 +1,6 @@
 package cn.zjc.aspect.db;
 
-import cn.zjc.enums.DataBaseType;
+import cn.zjc.enums.DataBaseTypeEnum;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Aspect;
@@ -47,8 +47,8 @@ public class DataSourceBeforeAdvice {
             trsAnnotation = AnnotationUtils.getAnnotation(target.getClass(), TargetDataSource.class);
         }
         if (trsAnnotation != null) {
-            DataBaseType dataBaseType = (DataBaseType) AnnotationUtils.getValue(trsAnnotation);
-            DataSourceContextHolder.setDbName(dataBaseType.get());
+            DataBaseTypeEnum dataBaseTypeEnum = (DataBaseTypeEnum) AnnotationUtils.getValue(trsAnnotation);
+            DataSourceContextHolder.setDbName(dataBaseTypeEnum.get());
         } else {
             DataSourceContextHolder.setDbName(null);
         }
