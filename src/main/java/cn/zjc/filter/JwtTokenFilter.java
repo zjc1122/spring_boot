@@ -3,7 +3,6 @@ package cn.zjc.filter;
 import cn.zjc.enums.SystemCodeEnum;
 import cn.zjc.util.JwtTokenUtil;
 import java.io.IOException;
-import java.util.Objects;
 import javax.annotation.Resource;
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -34,66 +33,6 @@ public class JwtTokenFilter extends OncePerRequestFilter {
     @Autowired
     private JwtTokenUtil jwtTokenUtil;
 
-
-//    @Override
-//    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws ServletException, IOException {
-//
-//        String authHeader = request.getHeader(HEADER_STRING);
-//        if (authHeader == null || !authHeader.startsWith(TOKEN_PREFIX)){
-//            chain.doFilter(request, response);
-//            return;
-//        }
-//
-//        final String authToken = authHeader.substring(TOKEN_PREFIX.length()).trim();
-//        Boolean tokenExpired = jwtTokenUtil.isTokenExpired(authToken);
-//        if (!tokenExpired){
-//            throw new IOException(SystemCodeEnum.EXPIRED_TOKEN.getDesc());
-//        }
-//        String username = jwtTokenUtil.getUsernameFromToken(authToken);
-//        if (Objects.isNull(username)) {
-//            throw new IOException(SystemCodeEnum.EXPIRED_TOKEN.getDesc());
-//        }
-//        if (SecurityContextHolder.getContext().getAuthentication() == null) {
-//            UserDetails userDetails = userDetailsService.loadUserByUsername(username);
-//            if (jwtTokenUtil.validateToken(authToken, userDetails)) {
-//                UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
-//                        userDetails, null, userDetails.getAuthorities());
-//                authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(
-//                        request));
-//                SecurityContextHolder.getContext().setAuthentication(authentication);
-//                chain.doFilter(request, response);
-//            }
-//        }
-//        System.out.println("校验成功");
-//    }
-
-//    @Override
-//    protected void doFilterInternaERROR_TOKENl(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws ServletException, IOException {
-//        String authHeader = request.getHeader(HEADER_STRING);
-//        if (authHeader == null || !authHeader.startsWith(TOKEN_PREFIX)) {
-//            throw new IOException(SystemCodeEnum.ERROR_TOKEN.getDesc());
-//        }
-//        final String authToken = authHeader.substring(TOKEN_PREFIX.length()).trim();
-//        Boolean tokenExpired = jwtTokenUtil.isTokenExpired(authToken);
-//        if (!tokenExpired) {
-//            throw new IOException(SystemCodeEnum.EXPIRED_TOKEN.getDesc());
-//        }
-//        String username = jwtTokenUtil.getUsernameFromToken(authToken);
-//        if (Objects.isNull(username)) {
-//            throw new IOException(SystemCodeEnum.EXPIRED_TOKEN.getDesc());
-//        }
-//        if (SecurityContextHolder.getContext().getAuthentication() == null) {
-//            UserDetails userDetails = userDetailsService.loadUserByUsername(username);
-//            if (jwtTokenUtil.validateToken(authToken, userDetails)) {
-//                UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
-//                        userDetails, null, userDetails.getAuthorities());
-//                authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(
-//                        request));
-//                SecurityContextHolder.getContext().setAuthentication(authentication);
-//            }
-//        }
-//        chain.doFilter(request, response);
-//    }
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws ServletException, IOException {
