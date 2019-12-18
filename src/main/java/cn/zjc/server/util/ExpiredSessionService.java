@@ -1,7 +1,7 @@
 package cn.zjc.server.util;
 
 
-import cn.zjc.enums.SysUtilCodeEnum;
+import cn.zjc.enums.SystemCodeEnum;
 import cn.zjc.util.JsonResult;
 import com.google.gson.GsonBuilder;
 import org.springframework.security.web.session.SessionInformationExpiredEvent;
@@ -22,6 +22,6 @@ public class ExpiredSessionService implements SessionInformationExpiredStrategy 
     public void onExpiredSessionDetected(SessionInformationExpiredEvent eventØ) throws IOException {
         eventØ.getResponse().setContentType(JsonResult.JSON_CONTENT_TYPE);
         eventØ.getResponse().setCharacterEncoding("UTF-8");
-        eventØ.getResponse().getWriter().write(new GsonBuilder().serializeNulls().create().toJson(JsonResult.failed(SysUtilCodeEnum.EXPIRED_SESSION.getDesc())));
+        eventØ.getResponse().getWriter().write(new GsonBuilder().serializeNulls().create().toJson(JsonResult.failed(SystemCodeEnum.EXPIRED_SESSION.getDesc())));
     }
 }

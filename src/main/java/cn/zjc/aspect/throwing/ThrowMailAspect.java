@@ -1,5 +1,6 @@
 package cn.zjc.aspect.throwing;
 
+import cn.zjc.enums.SystemCodeEnum;
 import cn.zjc.model.util.EmailMessage;
 import cn.zjc.util.JsonResult;
 import cn.zjc.server.util.MailService;
@@ -81,7 +82,7 @@ public class ThrowMailAspect {
         EmailMessage message = EmailMessage
                 .builder()
                 .methodName(methodName)
-                .messageStatus(JsonResult.SYS_ERROR)
+                .messageStatus(SystemCodeEnum.ERROR.getCode())
                 .cause(ex.toString())
                 .build();
         //将异常信息文件通过邮件附件方式发送

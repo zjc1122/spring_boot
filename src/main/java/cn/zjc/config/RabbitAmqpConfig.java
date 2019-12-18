@@ -1,6 +1,6 @@
 package cn.zjc.config;
 
-import cn.zjc.enums.SysUtilCodeEnum;
+import cn.zjc.enums.SystemCodeEnum;
 import com.rabbitmq.client.Channel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -92,7 +92,7 @@ public class RabbitAmqpConfig {
                     logger.info("消息成功消费");
                 } else {
                     logger.info("消息发送失败: {},重新发送", cause);
-                    throw new RuntimeException(SysUtilCodeEnum.MESSAGE_SEND_ERROR.getDesc() + cause);
+                    throw new RuntimeException(SystemCodeEnum.MESSAGE_SEND_ERROR.getDesc() + cause);
                 }
             }
         });

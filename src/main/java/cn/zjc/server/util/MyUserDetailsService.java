@@ -1,5 +1,6 @@
 package cn.zjc.server.util;
 
+import cn.zjc.enums.SystemCodeEnum;
 import cn.zjc.model.sysrole.SysRole;
 import cn.zjc.model.sysuser.SysUser;
 import cn.zjc.server.sysrole.SysRoleService;
@@ -38,10 +39,10 @@ public class MyUserDetailsService implements UserDetailsService {
         try {
             user = sysUserService.getByUsername(userName);
         } catch (Exception e) {
-            throw new BadCredentialsException("查询用户异常!");
+            throw new BadCredentialsException(SystemCodeEnum.USER_ERROR.getDesc());
         }
         if (user == null) {
-            throw new BadCredentialsException(userName + "这个用户不存在!");
+            throw new BadCredentialsException(userName + SystemCodeEnum.USER_NOT_EXIST.getDesc());
         }
         //查询用户的权限
         List<GrantedAuthority> grantedAuthorities = Lists.newArrayList();

@@ -21,7 +21,7 @@ public class EmailMessage {
 
     private String methodName;
 
-    private String messageStatus;
+    private Integer messageStatus;
 
     private String cause;
 }

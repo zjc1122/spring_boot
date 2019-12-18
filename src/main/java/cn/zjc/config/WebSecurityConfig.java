@@ -1,10 +1,12 @@
 package cn.zjc.config;
 
-import cn.zjc.enums.SysUtilCode;
-import cn.zjc.server.util.ExpiredSessionService;
-import cn.zjc.server.util.MyUserDetailsService;
+import cn.zjc.enums.SystemCodeEnum;
+import cn.zjc.filter.JwtTokenFilter;
+import cn.zjc.server.util.CustomLogoutSuccessHandler;
+import javax.annotation.Resource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -12,11 +14,14 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.session.SessionRegistry;
 import org.springframework.security.core.session.SessionRegistryImpl;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 import org.springframework.security.web.session.HttpSessionEventPublisher;
 import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
 import org.springframework.session.web.http.HeaderHttpSessionStrategy;
@@ -42,55 +47,18 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 @EnableRedisHttpSession(maxInactiveIntervalInSeconds = 5 * 60)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
+    private static final String[] AUTH_WHITELIST = {
+            "/login",
+            "/logout",
+            "/register",
+            "/transport/*",
+            "/test/**"
+    };
+
     private BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 
-    @Bean
-    UserDetailsService sysUserService() {
-        return new MyUserDetailsService();
-    }
-
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(sysUserService()).passwordEncoder(new PasswordEncoder() {
-            @Override
-            public String encode(CharSequence rawPassword) {
-                return bCryptPasswordEncoder.encode(rawPassword);
-            }
-
-            @Override
-            public boolean matches(CharSequence rawPassword, String encodedPassword) {
-                if (!bCryptPasswordEncoder.matches(rawPassword, encodedPassword)) {
-                    throw new BadCredentialsException(SysUtilCode.PASSWORD_ERROR.getDesc());
-                }
-                return bCryptPasswordEncoder.matches(rawPassword, encodedPassword);
-            }
-        });
-    }
-
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http
-                .csrf().disable()
-                .authorizeRequests()
-                .antMatchers("/login", "/register", "/transport/*", "/test/**").permitAll()
-                .anyRequest().authenticated()
-                .and().logout().invalidateHttpSession(Boolean.TRUE).clearAuthentication(Boolean.TRUE).permitAll()
-                .and().httpBasic();
-        http
-                .sessionManagement()
-                .maximumSessions(1)
-                //false之后登录踢掉之前登录,true则不允许之后登录
-                .maxSessionsPreventsLogin(false)
-                //登录被踢掉时的自定义操作(session失效)
-                .expiredSessionStrategy(new ExpiredSessionService())
-                .sessionRegistry(sessionRegistry())
-                .expiredUrl("/login");
-    }
-
-    @Override
-    public void configure(WebSecurity web) {
-        web.ignoring().antMatchers("/js/**", "/css/**", "/images/**", "/**/favicon.ico");
-    }
+    @Resource
+    private UserDetailsService userDetailsService;
 
     /**
      * 生成x-auth-token头信息,格式为(x-auth-token : 062e995b-6e21-4ad5-a96c-b837389d5f7e)
@@ -129,4 +97,87 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             }
         };
     }
+
+    @Bean
+    public JwtTokenFilter authenticationTokenFilterBean(){
+        return new JwtTokenFilter();
+    }
+
+    @Bean
+    @Override
+    public AuthenticationManager authenticationManagerBean() throws Exception {
+        return super.authenticationManagerBean();
+    }
+
+    @Bean
+    public LogoutSuccessHandler getLogoutSuccessHandler(){
+        return new CustomLogoutSuccessHandler();
+    }
+
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(userDetailsService).passwordEncoder(new PasswordEncoder() {
+            @Override
+            public String encode(CharSequence rawPassword) {
+                return bCryptPasswordEncoder.encode(rawPassword);
+            }
+
+            @Override
+            public boolean matches(CharSequence rawPassword, String encodedPassword) {
+                if (!bCryptPasswordEncoder.matches(rawPassword, encodedPassword)) {
+                    throw new BadCredentialsException(SystemCodeEnum.PASSWORD_ERROR.getDesc());
+                }
+                return bCryptPasswordEncoder.matches(rawPassword, encodedPassword);
+            }
+        });
+    }
+
+    /**
+     * 生成session格式的登录方式
+     * @throws Exception
+     */
+//    @Override
+//    protected void configure(HttpSecurity http) throws Exception {
+//        http
+//                .csrf().disable()
+//                .authorizeRequests()
+//                .antMatchers("/login", "/register", "/transport/*", "/test/**").permitAll()
+//                .anyRequest().authenticated()
+//                .and().logout().invalidateHttpSession(Boolean.TRUE).clearAuthentication(Boolean.TRUE).permitAll()
+//                .and().httpBasic();
+//        http
+//                .sessionManagement()
+//                .maximumSessions(1)
+//                //false之后登录踢掉之前登录,true则不允许之后登录
+//                .maxSessionsPreventsLogin(false)
+//                //登录被踢掉时的自定义操作(session失效)
+//                .expiredSessionStrategy(new ExpiredSessionService())
+//                .sessionRegistry(sessionRegistry())
+//                .expiredUrl("/login");
+//    }
+
+    /**
+     * 生成jwt的token登录方式
+     * @param http
+     * @throws Exception
+     */
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http
+                .csrf().disable()
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and().authorizeRequests()
+                .antMatchers(AUTH_WHITELIST).permitAll()
+                .anyRequest().authenticated()
+                .and()
+                .addFilterBefore(authenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter.class);
+        http
+                .logout().logoutUrl("/logout").logoutSuccessUrl("/login").logoutSuccessHandler(getLogoutSuccessHandler()).permitAll();
+    }
+
+    @Override
+    public void configure(WebSecurity web) {
+        web.ignoring().antMatchers("/js/**", "/css/**", "/images/**", "/**/favicon.ico");
+    }
+
 }

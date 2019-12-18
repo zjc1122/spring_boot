@@ -23,8 +23,6 @@ import javax.annotation.Resource;
  * @Description : User权限登录以及配置缓存(示例)
  */
 @RestController
-@RequestMapping(value = "/user")
-@PreAuthorize("hasRole('USER')")
 public class UserController {
 
     private static final Logger logger = LoggerFactory.getLogger(UserController.class);
@@ -40,8 +38,9 @@ public class UserController {
      * @param pageSize
      * @return
      */
-    @RequestMapping(value = "/findAllUser", method = RequestMethod.POST)
-    @Cacheable(value = "users", key = "#root.caches[0].name")
+    @RequestMapping(value = "/user/findAllUser", method = RequestMethod.POST)
+//    @Cacheable(value = "users", key = "#root.caches[0].name")
+//    @PreAuthorize("hasRole('USER')")
     public PageInfo<User> findAllUser(@RequestParam("pageNo") Integer pageNo, @RequestParam("pageSize") Integer pageSize) {
         logger.info("分页查询");
         return userService.selectPageAll(pageNo, pageSize, new User());
@@ -54,7 +53,7 @@ public class UserController {
      *
      * @return
      */
-    @RequestMapping(value = "/addUser", method = RequestMethod.POST)
+    @RequestMapping(value = "/user/addUser", method = RequestMethod.POST)
     @PreAuthorize("hasRole('ADMIN')")
     @CacheEvict(value = "users", key = "#root.caches[0].name")
     public JsonResult addUser() {

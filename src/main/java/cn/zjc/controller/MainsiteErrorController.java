@@ -1,5 +1,6 @@
 package cn.zjc.controller;
 
+import cn.zjc.enums.SystemCodeEnum;
 import cn.zjc.model.util.SystemMsg;
 import cn.zjc.util.JsonResult;
 import cn.zjc.util.TimeUtil;
@@ -54,24 +55,27 @@ public class MainsiteErrorController implements ErrorController {
         switch (response.getStatus()) {
 
             case 400:
-                msg = "参数不足!";
+                msg = "参数不足";
                 break;
             case 401:
-                msg = "访问未授权!";
+                msg = "访问未授权";
                 break;
             case 404:
-                msg = "找不到页面!";
+                msg = "找不到页面";
                 break;
             case 403:
-                msg = "访问被拒绝!";
+                msg = "访问被拒绝";
                 break;
             case 500:
-                msg = "服务器错误!";
+                msg = "服务器错误";
+                break;
+            case 405:
+                msg = "请求方式错误";
                 break;
             default:
-                msg = "系统繁忙!";
+                msg = "系统繁忙";
         }
-        return JsonResult.failed(JsonResult.SYS_ERROR, msg, systemMsg);
+        return JsonResult.failed(SystemCodeEnum.ERROR.getCode(), msg, systemMsg);
     }
 
     @Override

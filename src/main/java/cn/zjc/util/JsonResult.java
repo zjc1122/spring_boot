@@ -1,5 +1,6 @@
 package cn.zjc.util;
 
+import cn.zjc.enums.SystemCodeEnum;
 import com.google.gson.GsonBuilder;
 import lombok.Getter;
 import org.springframework.web.servlet.View;
@@ -19,47 +20,41 @@ public class JsonResult implements View {
 
 
     public static final String JSON_CONTENT_TYPE = "application/json;charset=UTF-8";
+    public static final JsonResult EMPTY_SUCCESS = JsonResult.success(null);
+    public static final JsonResult SYS_REQUEST_ERROR = JsonResult.failed(SystemCodeEnum.ERROR.getCode(), SystemCodeEnum.ERROR.getDesc(), "系统发生错误");
 
-    public final static String SUCCESS_CODE = "0000";
-    public final static String FAIL_CODE = "1111";
-    public final static String SYS_ERROR = "9999";
-    public final static String SUCCESS_MSG = "success";
-    public final static String FAILED_MSG = "failed";
-    public static final JsonResult EMPTY_SUCCESS = success(null);
-    public static final JsonResult SYS_REQUEST_ERROR = JsonResult.failed(SYS_ERROR, "系统发生错误!");
-
-    private final String code;
-    private final String Msg;
+    private final Integer code;
+    private final String msg;
     private final Object data;
 
-    private JsonResult(String code, String Msg, Object data) {
+    private JsonResult(Integer code, String msg, Object data) {
         this.code = code;
-        this.Msg = Msg;
+        this.msg = msg;
         this.data = data;
     }
 
     public static JsonResult success(Object data) {
-        return new JsonResult(SUCCESS_CODE, SUCCESS_MSG, data);
+        return new JsonResult(SystemCodeEnum.SUCCESS.getCode(), SystemCodeEnum.SUCCESS.getDesc(), data);
     }
 
-    public static JsonResult success(String succeMsg, Object data) {
-        return new JsonResult(SUCCESS_CODE, succeMsg, data);
+    public static JsonResult success(String msg, Object data) {
+        return new JsonResult(SystemCodeEnum.SUCCESS.getCode(), msg, data);
     }
 
-    public static JsonResult success(String code, String message, Object data) {
-        return new JsonResult(code, message, data);
+    public static JsonResult success(Integer code, String msg, Object data) {
+        return new JsonResult(code, msg, data);
     }
 
     public static JsonResult failed(Object data) {
-        return new JsonResult(FAIL_CODE, FAILED_MSG, data);
+        return new JsonResult(SystemCodeEnum.ERROR.getCode(), SystemCodeEnum.ERROR.getDesc(), data);
     }
 
-    public static JsonResult failed(String message, Object data) {
-        return JsonResult.failed(FAIL_CODE, message, data);
+    public static JsonResult failed(String msg, Object data) {
+        return JsonResult.failed(SystemCodeEnum.ERROR.getCode(), msg, data);
     }
 
-    public static JsonResult failed(String code, String message, Object data) {
-        return new JsonResult(code, message, data);
+    public static JsonResult failed(Integer code, String msg, Object data) {
+        return new JsonResult(code, msg, data);
     }
 
     @Override
