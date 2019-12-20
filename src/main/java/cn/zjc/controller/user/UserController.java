@@ -26,7 +26,7 @@ import javax.annotation.Resource;
 public class UserController {
 
     private static final Logger logger = LoggerFactory.getLogger(UserController.class);
-
+    private static final String[] ROLES = {"USER","ADMIN"};
     @Resource
     private UserService userService;
 
@@ -39,8 +39,8 @@ public class UserController {
      * @return
      */
     @RequestMapping(value = "/user/findAllUser", method = RequestMethod.POST)
-//    @Cacheable(value = "users", key = "#root.caches[0].name")
-//    @PreAuthorize("hasRole('USER')")
+    @Cacheable(value = "users", key = "#root.caches[0].name")
+    @PreAuthorize("hasAnyRole('USER','ADMIN')")
     public PageInfo<User> findAllUser(@RequestParam("pageNo") Integer pageNo, @RequestParam("pageSize") Integer pageSize) {
         logger.info("分页查询");
         return userService.selectPageAll(pageNo, pageSize, new User());

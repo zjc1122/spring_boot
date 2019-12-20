@@ -64,7 +64,7 @@ public class MainsiteErrorController implements ErrorController {
                 msg = "找不到页面";
                 break;
             case 403:
-                msg = "访问被拒绝";
+                msg = "访问无权限";
                 break;
             case 500:
                 msg = "服务器错误";
