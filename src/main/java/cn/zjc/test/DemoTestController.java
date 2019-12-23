@@ -1,12 +1,14 @@
 package cn.zjc.test;
 
 import cn.zjc.aspect.throwing.ThrowingMail;
+import cn.zjc.designmode.strategy.ModelService;
 import cn.zjc.model.user.User;
 import cn.zjc.server.user.UserService;
 import cn.zjc.server.util.RedisService;
 import cn.zjc.server.util.RedissonService;
 import cn.zjc.util.JsonResult;
 import com.github.pagehelper.PageInfo;
+import java.util.Map;
 import lombok.extern.slf4j.Slf4j;
 import org.redisson.api.RLock;
 import org.springframework.cache.annotation.Cacheable;
@@ -39,6 +41,8 @@ public class DemoTestController {
     private UserService userService;
     @Resource
     private RedissonService redissonService;
+    @Resource
+    private Map<Integer, ModelService> modelMap;
 
 
     @ResponseBody
@@ -107,5 +111,13 @@ public class DemoTestController {
             log.error("", e);
             lock.unlock();
         }
+    }
+
+    @RequestMapping(value = "/type")
+    @ResponseBody
+    public void test1() {
+        ModelService modelService = modelMap.get(3);
+        Integer integer = modelService.queryByType();
+        System.out.println(integer);
     }
 }

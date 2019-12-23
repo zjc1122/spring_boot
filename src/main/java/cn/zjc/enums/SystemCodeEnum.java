@@ -1,5 +1,8 @@
 package cn.zjc.enums;
 
+import com.google.common.collect.Maps;
+import java.util.Map;
+
 /**
  * @Author : zhangjiacheng
  * @ClassName : SystemCodeEnum
@@ -40,7 +43,15 @@ public enum SystemCodeEnum {
         return desc;
     }
 
-    public void setDesc(String desc) {
-        this.desc = desc;
+    private static final Map<Integer, SystemCodeEnum> map = Maps.newHashMap();
+    static {
+        for (SystemCodeEnum systemCodeEnum : values()) {
+            map.put(systemCodeEnum.getCode(), systemCodeEnum);
+        }
     }
+
+    public static SystemCodeEnum getCode(Integer code) {
+        return map.get(code);
+    }
+
 }
