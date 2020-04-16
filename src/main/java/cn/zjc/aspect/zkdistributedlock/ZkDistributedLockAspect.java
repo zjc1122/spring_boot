@@ -40,7 +40,7 @@ public class ZkDistributedLockAspect {
         MethodSignature methodSignature = (MethodSignature) pjp.getSignature();
         Method method = methodSignature.getMethod();
         ZkDistributedLock lockInfo = method.getAnnotation(ZkDistributedLock.class);
-        Integer expireTime = lockInfo.expireTime();
+        int expireTime = lockInfo.expireTime();
 
         CuratorFramework client = zkClient.getZkClient();
         client.start();

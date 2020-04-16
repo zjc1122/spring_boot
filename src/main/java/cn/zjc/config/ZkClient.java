@@ -37,6 +37,11 @@ public class ZkClient {
         return client;
     }
 
+    /**
+     * 获取zk分布式锁（顺序临时节点）
+     * @param client
+     * @return
+     */
     public InterProcessMutex getZkLock(CuratorFramework client) {
         InterProcessMutex lock = new InterProcessMutex(client, lockPath);
         return lock;
