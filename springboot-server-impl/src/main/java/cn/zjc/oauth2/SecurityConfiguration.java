@@ -1,4 +1,4 @@
-//package cn.zjc.oauth2;
+package cn.zjc.oauth2;//package cn.zjc.oauth2;
 //
 //import cn.zjc.oauth2.ApplyClientDetailService;
 //import org.springframework.beans.factory.annotation.Autowired;
