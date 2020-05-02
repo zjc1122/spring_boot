@@ -4,11 +4,15 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.example</groupId>
-    <artifactId>spring_boot</artifactId>
+    <artifactId>spring-boot</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>jar</packaging>
+    <modules>
+        <module>springboot-server-api</module>
+        <module>springboot-server-impl</module>
+    </modules>
+    <packaging>pom</packaging>
 
-    <name>spring_boot</name>
+    <name>spring-boot</name>
     <description>Demo project for Spring Boot</description>
 
     <parent>
