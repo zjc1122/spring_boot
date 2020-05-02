@@ -17,7 +17,6 @@ import org.springframework.amqp.rabbit.core.ChannelAwareMessageListener;
 import org.springframework.amqp.rabbit.core.RabbitAdmin;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer;
-import org.springframework.amqp.rabbit.support.CorrelationData;
 import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
@@ -84,16 +83,13 @@ public class RabbitAmqpConfig {
         //数据转换为json存入消息队列
         template.setMessageConverter(new Jackson2JsonMessageConverter());
         //发布确认
-        template.setConfirmCallback(new RabbitTemplate.ConfirmCallback() {
-            //消息发送到queue时就执行
-            @Override
-            public void confirm(CorrelationData correlationData, boolean ack, String cause) {
-                if (ack) {
-                    logger.info("消息成功消费");
-                } else {
-                    logger.info("消息发送失败: {},重新发送", cause);
-                    throw new RuntimeException(SystemCodeEnum.MESSAGE_SEND_ERROR.getDesc() + cause);
-                }
+        //消息发送到queue时就执行
+        template.setConfirmCallback((correlationData, ack, cause) -> {
+            if (ack) {
+                logger.info("消息成功消费");
+            } else {
+                logger.info("消息发送失败: {},重新发送", cause);
+                throw new RuntimeException(SystemCodeEnum.MESSAGE_SEND_ERROR.getDesc() + cause);
             }
         });
         return template;
