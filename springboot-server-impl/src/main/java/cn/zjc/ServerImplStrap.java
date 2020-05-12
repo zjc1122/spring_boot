@@ -20,9 +20,9 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableAsync
 @EnableScheduling
 @EnableTransactionManagement
-public class SpringBootstrap {
+public class ServerImplStrap {
 
     public static void main(String[] args) {
-        SpringApplication.run(SpringBootstrap.class, args);
+        SpringApplication.run(ServerImplStrap.class, args);
     }
 }
