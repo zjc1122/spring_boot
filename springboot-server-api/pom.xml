@@ -10,7 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>springboot-server-api</artifactId>
-    <name>springboot-server-api</name>
+    <name>springboot-service-api</name>
 
     <build>
         <plugins>

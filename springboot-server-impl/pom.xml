@@ -10,13 +10,19 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>springboot-server-impl</artifactId>
-    <name>springboot-server-impl</name>
+    <name>springboot-service-impl</name>
 
     <dependencies>
         <dependency>
             <groupId>com.example</groupId>
             <artifactId>springboot-server-api</artifactId>
             <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jetbrains</groupId>
+            <artifactId>annotations</artifactId>
+            <version>17.0.0</version>
+            <scope>compile</scope>
         </dependency>
     </dependencies>
 

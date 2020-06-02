@@ -81,7 +81,7 @@ A步骤中，客户端申请认证的URI，包含以下参数：
 
     GET /authorize?response_type=code&client_id=s6BhdRkqt3&state=xyz
         &redirect_uri=https%3A%2F%2Fclient%2Eexample%2Ecom%2Fcb HTTP/1.1
-    Host: server.example.com
+    Host: service.example.com
 
 C步骤中，服务器回应客户端的URI，包含以下参数：
 * code：表示授权码，必选项。该码的有效期应该很短，通常设为10分钟，客户端只能使用该码一次，否则会被授权服务器拒绝。该码与客户端ID和重定向URI，是一一对应关系。
@@ -103,7 +103,7 @@ D步骤中，客户端向认证服务器申请令牌的HTTP请求，包含以下
 下面是一个例子。
 
     POST /token HTTP/1.1
-    Host: server.example.com
+    Host: service.example.com
     Authorization: Basic czZCaGRSa3F0MzpnWDFmQmF0M2JW
     Content-Type: application/x-www-form-urlencoded
 
@@ -163,7 +163,7 @@ A步骤中，客户端发出的HTTP请求，包含以下参数：
 
     GET /authorize?response_type=token&client_id=s6BhdRkqt3&state=xyz
         &redirect_uri=https%3A%2F%2Fclient%2Eexample%2Ecom%2Fcb HTTP/1.1
-    Host: server.example.com
+    Host: service.example.com
 
 
 C步骤中，认证服务器回应客户端的URI，包含以下参数：
@@ -203,7 +203,7 @@ B步骤中，客户端发出的HTTP请求，包含以下参数：
 下面是一个例子。
 
     POST /token HTTP/1.1
-    Host: server.example.com
+    Host: service.example.com
     Authorization: Basic czZCaGRSa3F0MzpnWDFmQmF0M2JW
     Content-Type: application/x-www-form-urlencoded
 
@@ -244,7 +244,7 @@ A步骤中，客户端发出的HTTP请求，包含以下参数：
 
 ```
 POST /token HTTP/1.1
-Host: server.example.com
+Host: service.example.com
 Authorization: Basic czZCaGRSa3F0MzpnWDFmQmF0M2JW
 Content-Type: application/x-www-form-urlencoded
 
@@ -279,7 +279,7 @@ B步骤中，认证服务器向客户端发送访问令牌，下面是一个例�
 下面是一个例子。
 
     POST /token HTTP/1.1
-    Host: server.example.com
+    Host: service.example.com
     Authorization: Basic czZCaGRSa3F0MzpnWDFmQmF0M2JW
     Content-Type: application/x-www-form-urlencoded
 
