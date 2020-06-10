@@ -1,15 +1,17 @@
 package cn.zjc.model.sysuser;
 
-import cn.zjc.model.BaseEntity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import lombok.Data;
+import cn.zjc.model.sysrole.SysRole;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.apache.commons.lang3.math.NumberUtils;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.Table;
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 @Table(name = "sys_user")
 public class SysUser implements UserDetails {
@@ -34,12 +36,13 @@ public class SysUser implements UserDetails {
 
     private Date updatedAt;
 
-    private Collection<? extends GrantedAuthority> authorities;
+    private List<SysRole> roles;
 
     public SysUser() {
 
     }
 
+    @JsonIgnore
     @Override
     public boolean isAccountNonExpired() {
         return true;
@@ -67,7 +70,7 @@ public class SysUser implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return authorities;
+        return roles;
     }
 
     @Override
@@ -131,7 +134,11 @@ public class SysUser implements UserDetails {
         this.updatedAt = updatedAt;
     }
 
-    public void setAuthorities(Collection<? extends GrantedAuthority> authorities) {
-        this.authorities = authorities;
+    public List<SysRole> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<SysRole> roles) {
+        this.roles = roles;
     }
 }

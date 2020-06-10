@@ -12,46 +12,53 @@ import java.util.Map;
 public enum SystemCodeEnum {
 
     //成功
-    SUCCESS(0000, "success"),
+    SUCCESS(0, "success","ok"),
     //错误
-    ERROR(9999, "error"),
+    ERROR(9999, "error","系统发生错误"),
     //密码错误
-    PASSWORD_ERROR(1, "密码错误"),
+    PASSWORD_ERROR(1, "密码错误","error"),
     //消息发送失败
-    MESSAGE_SEND_ERROR(2, "消息发送失败"),
+    MESSAGE_SEND_ERROR(2, "消息发送失败","error"),
     //SESSION过期
-    EXPIRED_SESSION(3, "你已下线,请重新登录"),
-    EXPIRED_TOKEN(4, "Token已经过期"),
-    USER_ERROR(5, "查询用户异常"),
-    USER_NOT_EXIST(6, "用户不存在"),
-    ERROR_USER(7, "用户信息不正确"),
+    EXPIRED_SESSION(3, "请重新登录","error"),
+    EXPIRED_TOKEN(4, "Token已经过期","error"),
+    USER_ERROR(5, "获取用户异常","error"),
+    USER_NOT_EXIST(6, "用户不存在","error"),
+    VERIFY_ERROR(7, "用户名或密码错误","登录失败"),
+    ACCESS_ERROR(8, "访问无权限","error"),
     ;
 
     private Integer code;
-    private String desc;
+    private String name;
+    private String info;
 
-    SystemCodeEnum(Integer code, String desc) {
+    SystemCodeEnum(Integer code, String name, String info) {
         this.code = code;
-        this.desc = desc;
+        this.name = name;
+        this.info = info;
     }
 
     public Integer getCode() {
         return code;
     }
 
-    public String getDesc() {
-        return desc;
+    public String getName() {
+        return name;
     }
 
-    private static final Map<Integer, SystemCodeEnum> map = Maps.newHashMap();
+    public String getInfo() {
+        return info;
+    }
+
+    private static final Map<Integer, SystemCodeEnum> MAP = Maps.newHashMap();
     static {
         for (SystemCodeEnum systemCodeEnum : values()) {
-            map.put(systemCodeEnum.getCode(), systemCodeEnum);
+            MAP.put(systemCodeEnum.getCode(), systemCodeEnum);
         }
     }
 
     public static SystemCodeEnum getCode(Integer code) {
-        return map.get(code);
+        return MAP.get(code);
     }
 
 }

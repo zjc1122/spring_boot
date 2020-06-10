@@ -1,0 +1,77 @@
+Index: pom.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project xmlns=\"http://maven.apache.org/POM/4.0.0\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\r\n         xsi:schemaLocation=\"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd\">\r\n    <modelVersion>4.0.0</modelVersion>\r\n\r\n    <groupId>com.example</groupId>\r\n    <artifactId>spring_boot</artifactId>\r\n    <version>0.0.1-SNAPSHOT</version>\r\n    <packaging>jar</packaging>\r\n\r\n    <name>spring_boot</name>\r\n    <description>Demo project for Spring Boot</description>\r\n\r\n    <parent>\r\n        <groupId>org.springframework.boot</groupId>\r\n        <artifactId>spring-boot-starter-parent</artifactId>\r\n        <version>1.5.8.RELEASE</version>\r\n        <relativePath/>\r\n    </parent>\r\n\r\n    <properties>\r\n        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>\r\n        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>\r\n        <java.version>1.8</java.version>\r\n        <maven.test.skip>true</maven.test.skip>\r\n    </properties>\r\n\r\n    <dependencies>\r\n        <!--SpringBoot-->\r\n        <dependency>\r\n            <groupId>org.springframework.boot</groupId>\r\n            <artifactId>spring-boot-starter-web</artifactId>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>org.springframework.boot</groupId>\r\n            <artifactId>spring-boot-starter-aop</artifactId>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>org.springframework.boot</groupId>\r\n            <artifactId>spring-boot-starter-security</artifactId>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>org.springframework.boot</groupId>\r\n            <artifactId>spring-boot-starter-data-jpa</artifactId>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>org.springframework.boot</groupId>\r\n            <artifactId>spring-boot-starter-test</artifactId>\r\n            <scope>test</scope>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>org.springframework.boot</groupId>\r\n            <artifactId>spring-boot-starter-freemarker</artifactId>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>org.springframework.boot</groupId>\r\n            <artifactId>spring-boot-starter-amqp</artifactId>\r\n        </dependency>\r\n        <!--Spring-->\r\n        <dependency>\r\n            <groupId>org.springframework.session</groupId>\r\n            <artifactId>spring-session-data-redis</artifactId>\r\n            <version>1.3.3.RELEASE</version>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>org.springframework.security.oauth</groupId>\r\n            <artifactId>spring-security-oauth2</artifactId>\r\n        </dependency>\r\n        <!--zookeeper -->\r\n        <dependency>\r\n            <groupId>org.apache.curator</groupId>\r\n            <artifactId>curator-recipes</artifactId>\r\n            <version>4.0.1</version>\r\n        </dependency>\r\n        <!--Mybatis-->\r\n        <dependency>\r\n            <groupId>org.mybatis.spring.boot</groupId>\r\n            <artifactId>mybatis-spring-boot-starter</artifactId>\r\n            <version>2.1.2</version>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>mysql</groupId>\r\n            <artifactId>mysql-connector-java</artifactId>\r\n            <version>5.1.44</version>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>mysql</groupId>\r\n            <artifactId>mysql-connector-java</artifactId>\r\n            <scope>runtime</scope>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>com.alibaba</groupId>\r\n            <artifactId>druid</artifactId>\r\n            <version>1.0.15</version>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>com.github.pagehelper</groupId>\r\n            <artifactId>pagehelper</artifactId>\r\n            <version>4.1.6</version>\r\n        </dependency>\r\n        <!--工具类-->\r\n        <dependency>\r\n            <groupId>org.apache.commons</groupId>\r\n            <artifactId>commons-lang3</artifactId>\r\n            <version>3.5</version>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>org.apache.commons</groupId>\r\n            <artifactId>commons-collections4</artifactId>\r\n            <version>4.1</version>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>com.google.code.gson</groupId>\r\n            <artifactId>gson</artifactId>\r\n            <version>2.8.5</version>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>org.projectlombok</groupId>\r\n            <artifactId>lombok</artifactId>\r\n            <version>1.16.6</version>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>javax.mail</groupId>\r\n            <artifactId>mail</artifactId>\r\n            <version>1.4</version>\r\n        </dependency>\r\n        <!--elasticsearch-->\r\n        <dependency>\r\n            <groupId>org.elasticsearch.client</groupId>\r\n            <artifactId>transport</artifactId>\r\n            <version>5.6.0</version>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>org.elasticsearch.client</groupId>\r\n            <artifactId>elasticsearch-rest-high-level-client</artifactId>\r\n            <version>5.6.0</version>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>org.elasticsearch.client</groupId>\r\n            <artifactId>elasticsearch-rest-client</artifactId>\r\n            <version>5.6.0</version>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>org.elasticsearch</groupId>\r\n            <artifactId>elasticsearch</artifactId>\r\n            <version>5.6.0</version>\r\n        </dependency>\r\n        <!--redisson-->\r\n        <dependency>\r\n            <groupId>org.redisson</groupId>\r\n            <artifactId>redisson</artifactId>\r\n            <version>3.6.5</version>\r\n        </dependency>\r\n        <!--JetCache-->\r\n        <dependency>\r\n            <groupId>com.alicp.jetcache</groupId>\r\n            <artifactId>jetcache-starter-redis</artifactId>\r\n            <version>2.4.4</version>\r\n        </dependency>\r\n        <!--SpringBoot热部署-->\r\n        <dependency>\r\n            <groupId>org.springframework.boot</groupId>\r\n            <artifactId>spring-boot-devtools</artifactId>\r\n            <optional>true</optional>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>org.springframework</groupId>\r\n            <artifactId>springloaded</artifactId>\r\n            <version>1.2.6.RELEASE</version>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>io.jsonwebtoken</groupId>\r\n            <artifactId>jjwt</artifactId>\r\n            <version>0.9.0</version>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>org.openjdk.jol</groupId>\r\n            <artifactId>jol-core</artifactId>\r\n            <version>0.10</version>\r\n        </dependency>\r\n    </dependencies>\r\n\r\n    <build>\r\n        <plugins>\r\n            <plugin>\r\n                <groupId>org.springframework.boot</groupId>\r\n                <artifactId>spring-boot-maven-plugin</artifactId>\r\n                <dependencies>\r\n                    <!-- spring热部署 -->\r\n                    <dependency>\r\n                        <groupId>org.springframework</groupId>\r\n                        <artifactId>springloaded</artifactId>\r\n                        <version>1.2.6.RELEASE</version>\r\n                    </dependency>\r\n                </dependencies>\r\n            </plugin>\r\n            <!-- mybatis generator 自动生成代码插件 -->\r\n            <plugin>\r\n                <groupId>org.mybatis.generator</groupId>\r\n                <artifactId>mybatis-generator-maven-plugin</artifactId>\r\n                <version>1.3.2</version>\r\n                <configuration>\r\n                    <configurationFile>${basedir}/src/main/resources/generatorConfig.xml</configurationFile>\r\n                    <overwrite>true</overwrite>\r\n                    <verbose>true</verbose>\r\n                </configuration>\r\n            </plugin>\r\n            <plugin>\r\n                <groupId>org.apache.maven.plugins</groupId>\r\n                <artifactId>maven-compiler-plugin</artifactId>\r\n                <configuration>\r\n                    <source>8</source>\r\n                    <target>8</target>\r\n                </configuration>\r\n            </plugin>\r\n        </plugins>\r\n    </build>\r\n\r\n</project>\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- pom.xml	(revision 8a9194adb47f5798acc0710e160b6bb53850ddc9)
++++ pom.xml	(date 1588425508470)
+@@ -4,11 +4,15 @@
+     <modelVersion>4.0.0</modelVersion>
+ 
+     <groupId>com.example</groupId>
+-    <artifactId>spring_boot</artifactId>
++    <artifactId>spring-boot</artifactId>
+     <version>0.0.1-SNAPSHOT</version>
+-    <packaging>jar</packaging>
++    <modules>
++        <module>springboot-server-api</module>
++        <module>springboot-server-impl</module>
++    </modules>
++    <packaging>pom</packaging>
+ 
+-    <name>spring_boot</name>
++    <name>spring-boot</name>
+     <description>Demo project for Spring Boot</description>
+ 
+     <parent>
+Index: springboot-server-impl/pom.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- springboot-server-impl/pom.xml	(date 1588425218679)
++++ springboot-server-impl/pom.xml	(date 1588425218679)
+@@ -0,0 +1,16 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project xmlns="http://maven.apache.org/POM/4.0.0"
++         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
++         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
++    <parent>
++        <artifactId>spring_boot</artifactId>
++        <groupId>com.example</groupId>
++        <version>0.0.1-SNAPSHOT</version>
++    </parent>
++    <modelVersion>4.0.0</modelVersion>
++
++    <artifactId>springboot-server-impl</artifactId>
++    <name>springboot-server-impl</name>
++
++
++</project>
+\ No newline at end of file
+Index: springboot-server-api/pom.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- springboot-server-api/pom.xml	(date 1588425218651)
++++ springboot-server-api/pom.xml	(date 1588425218651)
+@@ -0,0 +1,15 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project xmlns="http://maven.apache.org/POM/4.0.0"
++         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
++         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
++    <parent>
++        <artifactId>spring_boot</artifactId>
++        <groupId>com.example</groupId>
++        <version>0.0.1-SNAPSHOT</version>
++    </parent>
++    <modelVersion>4.0.0</modelVersion>
++
++    <artifactId>springboot-server-api</artifactId>
++    <name>springboot-server-api</name>
++
++</project>
+\ No newline at end of file

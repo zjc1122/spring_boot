@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.springframework.security.core.GrantedAuthority;
 
 import java.util.Date;
 
@@ -12,11 +13,13 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class SysRole extends BaseEntity {
+public class SysRole extends BaseEntity implements GrantedAuthority {
 
     private static final long serialVersionUID = 1L;
 
     private String name;
+
+    private String desc;
 
     private Integer enable;
 
@@ -24,4 +27,8 @@ public class SysRole extends BaseEntity {
 
     private Date updatedAt;
 
+    @Override
+    public String getAuthority() {
+        return name;
+    }
 }

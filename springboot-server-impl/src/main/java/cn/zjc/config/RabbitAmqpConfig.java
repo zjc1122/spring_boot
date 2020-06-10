@@ -89,7 +89,7 @@ public class RabbitAmqpConfig {
                 logger.info("消息成功消费");
             } else {
                 logger.info("消息发送失败: {},重新发送", cause);
-                throw new RuntimeException(SystemCodeEnum.MESSAGE_SEND_ERROR.getDesc() + cause);
+                throw new RuntimeException(SystemCodeEnum.MESSAGE_SEND_ERROR.getName() + cause);
             }
         });
         return template;

@@ -20,8 +20,9 @@ public class JsonResult implements View {
 
 
     public static final String JSON_CONTENT_TYPE = "application/json;charset=UTF-8";
+    public static final String CHARACTER_ENCODING = "UTF-8";
     public static final JsonResult EMPTY_SUCCESS = JsonResult.success(null);
-    public static final JsonResult SYS_REQUEST_ERROR = JsonResult.failed(SystemCodeEnum.ERROR.getCode(), SystemCodeEnum.ERROR.getDesc(), "系统发生错误");
+    public static final JsonResult SYS_REQUEST_ERROR = JsonResult.failed(SystemCodeEnum.ERROR.getCode(), SystemCodeEnum.ERROR.getName(), SystemCodeEnum.ERROR.getInfo());
 
     private final Integer code;
     private final String msg;
@@ -33,8 +34,11 @@ public class JsonResult implements View {
         this.data = data;
     }
 
+    public static JsonResult success() {
+        return new JsonResult(SystemCodeEnum.SUCCESS.getCode(), SystemCodeEnum.SUCCESS.getName(), SystemCodeEnum.SUCCESS.getInfo());
+    }
     public static JsonResult success(Object data) {
-        return new JsonResult(SystemCodeEnum.SUCCESS.getCode(), SystemCodeEnum.SUCCESS.getDesc(), data);
+        return new JsonResult(SystemCodeEnum.SUCCESS.getCode(), SystemCodeEnum.SUCCESS.getName(), data);
     }
 
     public static JsonResult success(String msg, Object data) {
@@ -45,8 +49,11 @@ public class JsonResult implements View {
         return new JsonResult(code, msg, data);
     }
 
+    public static JsonResult failed() {
+        return new JsonResult(SystemCodeEnum.ERROR.getCode(), SystemCodeEnum.ERROR.getName(), SystemCodeEnum.ERROR.getInfo());
+    }
     public static JsonResult failed(Object data) {
-        return new JsonResult(SystemCodeEnum.ERROR.getCode(), SystemCodeEnum.ERROR.getDesc(), data);
+        return new JsonResult(SystemCodeEnum.ERROR.getCode(), SystemCodeEnum.ERROR.getName(), data);
     }
 
     public static JsonResult failed(String msg, Object data) {
@@ -65,7 +72,7 @@ public class JsonResult implements View {
     @Override
     public void render(Map<String, ?> model, HttpServletRequest request, HttpServletResponse response) throws Exception {
         response.setContentType(JSON_CONTENT_TYPE);
-        response.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding(CHARACTER_ENCODING);
         response.getWriter().write(new GsonBuilder().serializeNulls().create().toJson(this));
     }
 }

@@ -3,7 +3,7 @@ package cn.zjc.elasticsearch.transport;
 
 import cn.zjc.model.es.Article;
 import cn.zjc.model.es.ArticleUser;
-import cn.zjc.util.GsonHolder;
+import cn.zjc.util.GsonUtil;
 import cn.zjc.util.JsonResult;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
@@ -168,7 +168,7 @@ public class TransportController {
     @RequestMapping("/addDocumentforJson")
     public JsonResult addDocumentforJson(String index, String type) {
         Article article = Article.builder().articleId(11L).author("zzz").content("jjj").title("ccc").date(LocalDateTime.now()).userId(333L).build();
-        String json = GsonHolder.getLocalDateGson().toJson(article);
+        String json = GsonUtil.getLocalDateGson().toJson(article);
         String indexAndDocument = client.createIndexAndDocument(index, type, json);
         return JsonResult.success(indexAndDocument, "添加成功");
     }
@@ -216,7 +216,7 @@ public class TransportController {
     @RequestMapping("/updateDocumentforJson")
     public JsonResult updateDocumentforJson(String index, String type, String id) {
         Article article = Article.builder().articleId(11L).author("yyy").content("yyy").title("yyy").date(LocalDateTime.now()).userId(2L).build();
-        String json = GsonHolder.getLocalDateGson().toJson(article);
+        String json = GsonUtil.getLocalDateGson().toJson(article);
         client.updateDocumentforJson(index, type, id, json);
 
         return JsonResult.success("更新成功");
@@ -262,7 +262,7 @@ public class TransportController {
         for (SearchHit searchHit : searchResponse.getHits()) {
             String sourceAsString = searchHit.getSourceAsString();
             System.out.println(sourceAsString);
-            Article article = GsonHolder.getLocalDateGson().fromJson(sourceAsString, Article.class);
+            Article article = GsonUtil.getLocalDateGson().fromJson(sourceAsString, Article.class);
             list.add(article);
         }
         return JsonResult.success(list);
@@ -273,7 +273,7 @@ public class TransportController {
         List<String> queryList = client.queryByFilter(index, type, field, value);
         ArrayList<Article> articles = Lists.newArrayList();
         for (String json : queryList) {
-            Article article = GsonHolder.getDateGson().fromJson(json, Article.class);
+            Article article = GsonUtil.getDateGson().fromJson(json, Article.class);
             articles.add(article);
         }
         return JsonResult.success(articles);

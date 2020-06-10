@@ -1,6 +1,6 @@
 package cn.zjc.aspect.zkdistributedlock;
 
-import cn.zjc.config.ZkClient;
+import cn.zjc.config.ZkConfig;
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.recipes.locks.InterProcessMutex;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -28,7 +28,7 @@ public class ZkDistributedLockAspect {
     private static final Logger logger = LoggerFactory.getLogger(ZkDistributedLockAspect.class);
 
     @Resource
-    ZkClient zkClient;
+    ZkConfig zkConfig;
 
     @Pointcut("@annotation(cn.zjc.aspect.zkdistributedlock.ZkDistributedLock) && execution(* cn.zjc..*(..))")
     private void lockPoint() {
@@ -42,9 +42,9 @@ public class ZkDistributedLockAspect {
         ZkDistributedLock lockInfo = method.getAnnotation(ZkDistributedLock.class);
         int expireTime = lockInfo.expireTime();
 
-        CuratorFramework client = zkClient.getZkClient();
+        CuratorFramework client = zkConfig.getZkClient();
         client.start();
-        InterProcessMutex lock = zkClient.getZkLock(client);
+        InterProcessMutex lock = zkConfig.getZkLock(client);
         Object obj = null;
         try {
             if (lock.acquire(expireTime, TimeUnit.SECONDS)) {
