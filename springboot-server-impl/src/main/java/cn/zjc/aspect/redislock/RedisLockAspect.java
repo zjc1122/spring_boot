@@ -1,7 +1,8 @@
-package cn.zjc.aspect.redisdistributedlock;
+package cn.zjc.aspect.redislock;
 
-import cn.zjc.aspect.zkdistributedlock.ZkDistributedLockAspect;
-import cn.zjc.server.util.RedisService;
+import cn.zjc.aspect.zklock.ZkDistributedLockAspect;
+import cn.zjc.server.util.JedisService;
+import org.apache.commons.lang3.StringUtils;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -26,11 +27,11 @@ import java.util.concurrent.TimeoutException;
 @Component
 public class RedisLockAspect {
     private static final Logger logger = LoggerFactory.getLogger(ZkDistributedLockAspect.class);
-
+    private static final String VALUE = "1";
     @Resource
-    private RedisService redisService;
+    private JedisService jedisService;
 
-    @Pointcut("@annotation(cn.zjc.aspect.redisdistributedlock.RedisLock) && execution(* cn.zjc..*(..))")
+    @Pointcut("@annotation(cn.zjc.aspect.redislock.RedisLock) && execution(* cn.zjc..*(..))")
     private void lockPoint() {
     }
 
@@ -41,36 +42,27 @@ public class RedisLockAspect {
         Method method = methodSignature.getMethod();
         RedisLock lockInfo = method.getAnnotation(RedisLock.class);
         String lockKey = lockInfo.value();
-        if (lockKey == null || "".equals(lockKey)) {
+        if (StringUtils.isBlank(lockKey)) {
             throw new IllegalArgumentException("配置参数错误,lockKey不能为空！");
-        }
-        // 持有锁超时时间换算为秒
-        Integer lockExpire;
-        //没有设置超时时间，给一个默认值30秒
-        if (lockInfo.keepMills() <= 0) {
-            lockExpire = 30;
-        } else {
-            lockExpire = (int) (lockInfo.keepMills() / 1000);
         }
         boolean lock = false;
         Object obj = null;
         try {
             // 获取锁的最大超时时间
-            Long maxSleepMills = System.currentTimeMillis() + lockInfo.maxSleepMills();
+            long maxSleepMills = System.currentTimeMillis() + lockInfo.maxSleepMills();
             while (!lock) {
                 //持锁时间
-                Long keepMills = System.currentTimeMillis() + lockInfo.keepMills();
-                lock = redisService.setNX(lockKey, keepMills);
+                String keepMills = String.valueOf(System.currentTimeMillis() + lockInfo.keepMills());
+                //上锁
+                lock = jedisService.setNX(lockKey, keepMills, lockInfo.keepMills());
                 // 得到锁，没有人加过相同的锁
                 if (lock) {
-                    //设置失效时间
-                    redisService.expire(lockKey, lockExpire);
                     logger.info("得到锁...");
                     obj = pjp.proceed();
                 }
                 // 已过期，并且getAndSet后旧的时间戳依然是过期的，可以认为获取到了锁
-                else if (System.currentTimeMillis() > redisService.get(lockKey) &&
-                        (System.currentTimeMillis() > redisService.getAndSet(lockKey, keepMills))) {
+                else if (System.currentTimeMillis() > jedisService.get(lockKey) &&
+                        (System.currentTimeMillis() > jedisService.getAndSet(lockKey, keepMills))) {
                     lock = true;
                     logger.info("得到锁...");
                     obj = pjp.proceed();
@@ -85,9 +77,8 @@ public class RedisLockAspect {
                             throw new TimeoutException("获取锁资源等待超时");
                         }
                         TimeUnit.MILLISECONDS.sleep(lockInfo.sleepMills());
-                    }
-                    // 放弃等待
-                    else {
+                    } else {
+                        // 放弃等待
                         logger.info("放弃锁...");
                         break;
                     }
@@ -103,7 +94,7 @@ public class RedisLockAspect {
                 //锁没有过期就删除key
                 if (System.currentTimeMillis() < (System.currentTimeMillis() + lockInfo.keepMills())) {
                     logger.info("释放锁...");
-                    redisService.delete(lockKey);
+                    jedisService.delete(lockKey);
                 }
 
             }

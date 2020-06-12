@@ -15,7 +15,7 @@ import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 /**
- * @ClassName : RedisUtil
+ * @ClassName : RedisService
  * @Author : zhangjiacheng
  * @Date : 2018/6/10
  * @Description : redis操作
@@ -26,7 +26,7 @@ public class RedisService {
     private RedisTemplate redisTemplate;
 
     /**
-     * 判断key是否存在
+     * 判断key是否存在,不在则赋值
      *
      * @param key
      * @param value

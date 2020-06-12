@@ -1,4 +1,4 @@
-package cn.zjc.aspect.zkdistributedlock;
+package cn.zjc.aspect.zklock;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

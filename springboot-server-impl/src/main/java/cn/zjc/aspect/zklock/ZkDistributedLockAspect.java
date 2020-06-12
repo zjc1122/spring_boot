@@ -1,4 +1,4 @@
-package cn.zjc.aspect.zkdistributedlock;
+package cn.zjc.aspect.zklock;
 
 import cn.zjc.config.ZkConfig;
 import org.apache.curator.framework.CuratorFramework;
@@ -30,7 +30,7 @@ public class ZkDistributedLockAspect {
     @Resource
     ZkConfig zkConfig;
 
-    @Pointcut("@annotation(cn.zjc.aspect.zkdistributedlock.ZkDistributedLock) && execution(* cn.zjc..*(..))")
+    @Pointcut("@annotation(cn.zjc.aspect.zklock.ZkDistributedLock) && execution(* cn.zjc..*(..))")
     private void lockPoint() {
     }
 

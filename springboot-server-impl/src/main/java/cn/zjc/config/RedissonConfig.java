@@ -32,9 +32,10 @@ public class RedissonConfig {
     private int minIdle;
 
     @Bean
-    public RedissonClient redissonSingle() {
+    public RedissonClient getSingleClient() {
         Config config = new Config();
         SingleServerConfig singleServerConfig = config
+                .setLockWatchdogTimeout(30000L)
                 .useSingleServer()
                 .setAddress("redis://" + host + ":" + port)
                 .setTimeout(timeOut)

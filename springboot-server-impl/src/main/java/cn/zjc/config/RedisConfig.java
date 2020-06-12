@@ -14,6 +14,7 @@ import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.JdkSerializationRedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
+import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
 
 /**
@@ -61,6 +62,11 @@ public class RedisConfig extends CachingConfigurerSupport {
     private Boolean testOnReturn;
     @Value("${redis.pool.nodes}")
     private String nodes;
+
+    @Bean(name = "redisConnectionFactory")
+    public RedisConnectionFactory factory() {
+        return generateConnectionFactory();
+    }
 
     /**
      * 生成key的策略
@@ -112,6 +118,7 @@ public class RedisConfig extends CachingConfigurerSupport {
         JedisPoolConfig poolConfig = new JedisPoolConfig();
         poolConfig.setMinIdle(minIdle);
         poolConfig.setMaxTotal(maxTotal);
+        poolConfig.setMaxIdle(maxIdle);
         poolConfig.setMaxWaitMillis(maxWaitMillis);
         // 半个小时后清除掉多余的空闲链接  避免redis服务器连接数过多挂掉
         poolConfig.setTimeBetweenEvictionRunsMillis(timeBetweenEvictionRunsMillis);
@@ -120,12 +127,11 @@ public class RedisConfig extends CachingConfigurerSupport {
         poolConfig.setTestWhileIdle(testWhileIdle);
         poolConfig.setTestOnBorrow(testOnBorrow);
         poolConfig.setTestOnReturn(testOnReturn);
+        // 连接耗尽时是否阻塞, false报异常,true阻塞直到超时, 默认true
+        poolConfig.setBlockWhenExhausted(true);
+        // 是否开启jmx监控, 默认true
+        poolConfig.setJmxEnabled(true);
         return poolConfig;
-    }
-
-    @Bean(name = "redisConnectionFactory")
-    RedisConnectionFactory factory() {
-        return generateConnectionFactory();
     }
 
     /**
@@ -157,4 +163,10 @@ public class RedisConfig extends CachingConfigurerSupport {
         redisTemplate.setConnectionFactory(factory);
         return redisTemplate;
     }
+
+    @Bean
+    public JedisPool redisPoolFactory() {
+        return new JedisPool(generatePoolConfig(), masterHost, masterPort);
+    }
+
 }
