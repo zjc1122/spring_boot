@@ -2,54 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2891f993-faff-46cd-b542-b0c6b24148cb" name="Default" comment="update">
-      <change afterPath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/aspect/redissonlock/RedissonLock.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/aspect/redissonlock/RedissonLockAspect.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/server/util/JedisService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/spring-boot.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/spring-boot.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spi-example/spi-api/spi-api.iml" beforeDir="false" afterPath="$PROJECT_DIR$/spi-example/spi-api/spi-api.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spi-example/spi-example.iml" beforeDir="false" afterPath="$PROJECT_DIR$/spi-example/spi-example.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spi-example/spi-server-dog/spi-server-dog.iml" beforeDir="false" afterPath="$PROJECT_DIR$/spi-example/spi-server-dog/spi-server-dog.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spi-example/spi-server-pig/spi-server-pig.iml" beforeDir="false" afterPath="$PROJECT_DIR$/spi-example/spi-server-pig/spi-server-pig.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spi-example/spi-test/spi-test.iml" beforeDir="false" afterPath="$PROJECT_DIR$/spi-example/spi-test/spi-test.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-ioc/spring-ioc.iml" beforeDir="false" afterPath="$PROJECT_DIR$/spring-ioc/spring-ioc.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/springboot-server-api/springboot-server-api.iml" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server-api/springboot-server-api.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-api/src/main/java/cn/zjc/ServerApiStrap.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server-api/src/main/java/cn/zjc/ServerApiStrap.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-api/target/classes/cn/zjc/ServerApiStrap.class" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server-api/target/classes/cn/zjc/ServerApiStrap.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/springboot-server-impl.iml" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server-impl/springboot-server-impl.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/aspect/redisdistributedlock/RedisLock.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/aspect/redislock/RedisLock.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/aspect/redisdistributedlock/RedisLockAspect.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/aspect/redislock/RedisLockAspect.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/aspect/zkdistributedlock/ZkDistributedLock.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/aspect/zklock/ZkDistributedLock.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/aspect/zkdistributedlock/ZkDistributedLockAspect.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/aspect/zklock/ZkDistributedLockAspect.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/config/EsTransportClientConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/config/RedisConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/config/RedisConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/config/RedissonConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/config/RedissonConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/elasticsearch/transport/TransportClientRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/elasticsearch/transport/TransportController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/oauth2/ApplyClientDetailService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/oauth2/AuthorizationServerConfiguration.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/oauth2/CustomAuthenticationEntryPoint.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/oauth2/CustomLogoutSuccessHandler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/oauth2/ResourceServerConfiguration.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/oauth2/SecurityConfiguration.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/server/util/RedisService.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/server/util/RedisService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/test/DistributedTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/test/DistributedTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/target/classes/META-INF/springboot-server-impl.kotlin_module" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/target/classes/cn/zjc/aspect/redisdistributedlock/RedisLock$LockFailAction.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/target/classes/cn/zjc/aspect/redisdistributedlock/RedisLock.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/target/classes/cn/zjc/aspect/redisdistributedlock/RedisLockAspect.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/target/classes/cn/zjc/aspect/zkdistributedlock/ZkDistributedLock.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/target/classes/cn/zjc/aspect/zkdistributedlock/ZkDistributedLockAspect.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/target/classes/cn/zjc/config/EsTransportClientConfig.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/target/classes/cn/zjc/config/RedisConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server-impl/target/classes/cn/zjc/config/RedisConfig.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/target/classes/cn/zjc/config/RedissonConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server-impl/target/classes/cn/zjc/config/RedissonConfig.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/target/classes/cn/zjc/elasticsearch/transport/TransportClientRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/target/classes/cn/zjc/elasticsearch/transport/TransportController$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/target/classes/cn/zjc/elasticsearch/transport/TransportController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/target/classes/cn/zjc/test/DistributedTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server-impl/target/classes/cn/zjc/test/DistributedTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/target/classes/cn/zjc/util/JsonResult.class" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server-impl/target/classes/cn/zjc/util/JsonResult.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/target/classes/cn/zjc/util/JwtTokenUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server-impl/target/classes/cn/zjc/util/JwtTokenUtil.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -116,6 +70,7 @@
     <property name="RequestMappingsPanelWidth2" value="75" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file://E:/spring_boot/src/main/java/cn/zjc/aspect/redisdistributedlock/RedisLock.java" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
@@ -329,11 +284,11 @@
       <item itemvalue="Application.CreateSecrteKey" />
       <item itemvalue="Application.JwtTokenUtil" />
       <item itemvalue="JUnit.MyTest.test (1)" />
+      <item itemvalue="JUnit.ApplicationTests.test" />
+      <item itemvalue="JUnit.ApplicationTests.secKill" />
       <item itemvalue="Maven.generator" />
       <item itemvalue="Spring Boot.ServerImplStrap" />
       <item itemvalue="Spring Boot.ServerApiStrap" />
-      <item itemvalue="JUnit.ApplicationTests.test" />
-      <item itemvalue="JUnit.ApplicationTests.secKill" />
     </list>
     <recent_temporary>
       <list>
@@ -445,14 +400,8 @@
       <workItem from="1591502951612" duration="6352000" />
       <workItem from="1591540709300" duration="45132000" />
       <workItem from="1591782107448" duration="601000" />
-      <workItem from="1591799663176" duration="51072000" />
-    </task>
-    <task id="LOCAL-00005" summary="mybatis">
-      <created>1510760108501</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1510760108501</updated>
+      <workItem from="1591799663176" duration="51390000" />
+      <workItem from="1592152902604" duration="61000" />
     </task>
     <task id="LOCAL-00006" summary="mybatis">
       <created>1510760179571</created>
@@ -790,7 +739,14 @@
       <option name="project" value="LOCAL" />
       <updated>1591774288863</updated>
     </task>
-    <option name="localTasksCounter" value="54" />
+    <task id="LOCAL-00054" summary="update">
+      <created>1591985435872</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1591985435872</updated>
+    </task>
+    <option name="localTasksCounter" value="55" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -892,10 +848,10 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="286" y="236" key="#xdebugger.evaluate/0.0.1536.834@0.0.1536.834" timestamp="1591856179783" />
-    <state x="371" y="0" key="CommitChangelistDialog2" timestamp="1591774286145">
+    <state x="368" y="0" key="CommitChangelistDialog2" timestamp="1591985432570">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="371" y="0" key="CommitChangelistDialog2/0.0.1536.834@0.0.1536.834" timestamp="1591774286145" />
+    <state x="368" y="0" key="CommitChangelistDialog2/0.0.1536.834@0.0.1536.834" timestamp="1591985432570" />
     <state width="792" height="466" key="DebuggerActiveHint" timestamp="1591941563168">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
@@ -904,38 +860,38 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="549" y="172" key="FileChooserDialogImpl/0.0.1536.834@0.0.1536.834" timestamp="1591864785459" />
-    <state width="1224" height="425" key="GridCell.Tab.0.bottom" timestamp="1591985213438">
+    <state width="1224" height="425" key="GridCell.Tab.0.bottom" timestamp="1591985397684">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1224" height="425" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1591985213438" />
-    <state width="1224" height="425" key="GridCell.Tab.0.center" timestamp="1591985213438">
+    <state width="1224" height="425" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1591985397684" />
+    <state width="1224" height="425" key="GridCell.Tab.0.center" timestamp="1591985397684">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1224" height="425" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1591985213438" />
-    <state width="1224" height="425" key="GridCell.Tab.0.left" timestamp="1591985213438">
+    <state width="1224" height="425" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1591985397684" />
+    <state width="1224" height="425" key="GridCell.Tab.0.left" timestamp="1591985397684">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1224" height="425" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1591985213438" />
-    <state width="1224" height="425" key="GridCell.Tab.0.right" timestamp="1591985213438">
+    <state width="1224" height="425" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1591985397684" />
+    <state width="1224" height="425" key="GridCell.Tab.0.right" timestamp="1591985397684">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1224" height="425" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1591985213438" />
-    <state width="1224" height="425" key="GridCell.Tab.1.bottom" timestamp="1591985213438">
+    <state width="1224" height="425" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1591985397684" />
+    <state width="1224" height="425" key="GridCell.Tab.1.bottom" timestamp="1591985397684">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1224" height="425" key="GridCell.Tab.1.bottom/0.0.1536.834@0.0.1536.834" timestamp="1591985213438" />
-    <state width="1224" height="425" key="GridCell.Tab.1.center" timestamp="1591985213438">
+    <state width="1224" height="425" key="GridCell.Tab.1.bottom/0.0.1536.834@0.0.1536.834" timestamp="1591985397684" />
+    <state width="1224" height="425" key="GridCell.Tab.1.center" timestamp="1591985397684">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1224" height="425" key="GridCell.Tab.1.center/0.0.1536.834@0.0.1536.834" timestamp="1591985213438" />
-    <state width="1224" height="425" key="GridCell.Tab.1.left" timestamp="1591985213438">
+    <state width="1224" height="425" key="GridCell.Tab.1.center/0.0.1536.834@0.0.1536.834" timestamp="1591985397684" />
+    <state width="1224" height="425" key="GridCell.Tab.1.left" timestamp="1591985397684">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1224" height="425" key="GridCell.Tab.1.left/0.0.1536.834@0.0.1536.834" timestamp="1591985213438" />
-    <state width="1224" height="425" key="GridCell.Tab.1.right" timestamp="1591985213438">
+    <state width="1224" height="425" key="GridCell.Tab.1.left/0.0.1536.834@0.0.1536.834" timestamp="1591985397684" />
+    <state width="1224" height="425" key="GridCell.Tab.1.right" timestamp="1591985397684">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1224" height="425" key="GridCell.Tab.1.right/0.0.1536.834@0.0.1536.834" timestamp="1591985213438" />
+    <state width="1224" height="425" key="GridCell.Tab.1.right/0.0.1536.834@0.0.1536.834" timestamp="1591985397684" />
     <state width="1224" height="243" key="GridCell.Tab.2.bottom" timestamp="1591606406430">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
@@ -968,10 +924,10 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state width="530" height="448" key="SwitcherDM/0.0.1536.834@0.0.1536.834" timestamp="1591460431772" />
-    <state x="361" y="150" key="Vcs.Push.Dialog.v2" timestamp="1591774291083">
+    <state x="361" y="150" key="Vcs.Push.Dialog.v2" timestamp="1591985438552">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="361" y="150" key="Vcs.Push.Dialog.v2/0.0.1536.834@0.0.1536.834" timestamp="1591774291083" />
+    <state x="361" y="150" key="Vcs.Push.Dialog.v2/0.0.1536.834@0.0.1536.834" timestamp="1591985438552" />
     <state x="565" y="195" key="chooseDestDirectoryDialog" timestamp="1589767632472">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
