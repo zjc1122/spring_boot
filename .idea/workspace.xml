@@ -2,17 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2891f993-faff-46cd-b542-b0c6b24148cb" name="Default" comment="update">
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/spring-boot.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/spring-boot.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spi-example/spi-api/spi-api.iml" beforeDir="false" afterPath="$PROJECT_DIR$/spi-example/spi-api/spi-api.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spi-example/spi-example.iml" beforeDir="false" afterPath="$PROJECT_DIR$/spi-example/spi-example.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spi-example/spi-server-dog/spi-server-dog.iml" beforeDir="false" afterPath="$PROJECT_DIR$/spi-example/spi-server-dog/spi-server-dog.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spi-example/spi-server-pig/spi-server-pig.iml" beforeDir="false" afterPath="$PROJECT_DIR$/spi-example/spi-server-pig/spi-server-pig.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spi-example/spi-test/spi-test.iml" beforeDir="false" afterPath="$PROJECT_DIR$/spi-example/spi-test/spi-test.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-ioc/spring-ioc.iml" beforeDir="false" afterPath="$PROJECT_DIR$/spring-ioc/spring-ioc.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/aspect/redislock/RedisLockAspect.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/aspect/redislock/RedisLockAspect.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/server/util/JedisService.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/server/util/JedisService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/config/RedisConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/config/RedisConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/target/classes/cn/zjc/config/RedisConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server-impl/target/classes/cn/zjc/config/RedisConfig.class" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -89,7 +81,7 @@
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Console Font" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -320,6 +312,27 @@
       </list>
     </recent_temporary>
   </component>
+  <component name="ServiceViewManager">
+    <option name="allServicesViewState">
+      <serviceView>
+        <option name="contentProportion" value="0.17076503" />
+        <treeState>
+          <expand>
+            <path>
+              <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@cc3f04fe" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+            </path>
+            <path>
+              <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@cc3f04fe" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@35334471" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+            </path>
+          </expand>
+          <select />
+        </treeState>
+      </serviceView>
+    </option>
+  </component>
   <component name="SvnConfiguration">
     <configuration>C:\Users\DELL\AppData\Roaming\Subversion</configuration>
   </component>
@@ -424,6 +437,7 @@
       <workItem from="1592152902604" duration="61000" />
       <workItem from="1592153024037" duration="88000" />
       <workItem from="1592211472114" duration="2921000" />
+      <workItem from="1592228971981" duration="844000" />
     </task>
     <task id="LOCAL-00007" summary="mybatis">
       <created>1510760402392</created>
