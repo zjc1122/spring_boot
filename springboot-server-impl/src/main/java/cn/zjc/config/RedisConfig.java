@@ -1,6 +1,6 @@
 package cn.zjc.config;
 
-import org.springframework.beans.factory.annotation.Qualifier;
+import lombok.extern.log4j.Log4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.CachingConfigurerSupport;
@@ -12,6 +12,7 @@ import org.springframework.data.redis.cache.RedisCacheManager;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.serializer.JdkSerializationRedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 import redis.clients.jedis.JedisPool;
@@ -25,6 +26,7 @@ import redis.clients.jedis.JedisPoolConfig;
  */
 @Configuration
 @EnableCaching
+@Log4j
 public class RedisConfig extends CachingConfigurerSupport {
 
 
@@ -91,7 +93,7 @@ public class RedisConfig extends CachingConfigurerSupport {
      * 管理缓存
      */
     @Bean
-    public CacheManager cacheManager(@Qualifier("redisTemplate") RedisTemplate<String, Object> redisTemplate) {
+    public CacheManager cacheManager(RedisTemplate<String, Object> redisTemplate) {
         RedisCacheManager rcm = new RedisCacheManager(redisTemplate);
         //设置缓存过期时间
         rcm.setDefaultExpiration(5 * 60);
@@ -151,17 +153,17 @@ public class RedisConfig extends CachingConfigurerSupport {
     }
 
     @Bean(name = "stringRedisTemplate")
-    public RedisTemplate<String, Long> stringRedisTemplate(
+    public StringRedisTemplate stringRedisTemplate(
             RedisConnectionFactory factory) {
-        RedisTemplate<String, Long> redisTemplate = new RedisTemplate<>();
+        StringRedisTemplate stringRedisTemplate = new StringRedisTemplate();
         StringRedisSerializer stringRedisSerializer = new StringRedisSerializer();
-        redisTemplate.setEnableTransactionSupport(false);
-        redisTemplate.setKeySerializer(stringRedisSerializer);
-        redisTemplate.setHashKeySerializer(stringRedisSerializer);
-        redisTemplate.setValueSerializer(stringRedisSerializer);
-        redisTemplate.setDefaultSerializer(stringRedisSerializer);
-        redisTemplate.setConnectionFactory(factory);
-        return redisTemplate;
+        stringRedisTemplate.setEnableTransactionSupport(false);
+        stringRedisTemplate.setKeySerializer(stringRedisSerializer);
+        stringRedisTemplate.setHashKeySerializer(stringRedisSerializer);
+        stringRedisTemplate.setValueSerializer(stringRedisSerializer);
+        stringRedisTemplate.setDefaultSerializer(stringRedisSerializer);
+        stringRedisTemplate.setConnectionFactory(factory);
+        return stringRedisTemplate;
     }
 
     @Bean
