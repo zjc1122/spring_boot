@@ -131,7 +131,7 @@ public class JedisService {
      * @param jedis
      *
      */
-    public void returnResource(Jedis jedis) {
+    private void returnResource(Jedis jedis) {
         if (jedis != null) {
             jedisPool.returnResource(jedis);
         }

@@ -27,7 +27,6 @@ import java.util.concurrent.TimeoutException;
 @Component
 public class RedisLockAspect {
     private static final Logger logger = LoggerFactory.getLogger(ZkDistributedLockAspect.class);
-    private static final String VALUE = "1";
     @Resource
     private JedisService jedisService;
 

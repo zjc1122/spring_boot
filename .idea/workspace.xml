@@ -2,9 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2891f993-faff-46cd-b542-b0c6b24148cb" name="Default" comment="update">
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/spring-boot.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/spring-boot.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-api/springboot-server-api.iml" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server-api/springboot-server-api.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spi-example/spi-api/spi-api.iml" beforeDir="false" afterPath="$PROJECT_DIR$/spi-example/spi-api/spi-api.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spi-example/spi-example.iml" beforeDir="false" afterPath="$PROJECT_DIR$/spi-example/spi-example.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spi-example/spi-server-dog/spi-server-dog.iml" beforeDir="false" afterPath="$PROJECT_DIR$/spi-example/spi-server-dog/spi-server-dog.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spi-example/spi-server-pig/spi-server-pig.iml" beforeDir="false" afterPath="$PROJECT_DIR$/spi-example/spi-server-pig/spi-server-pig.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spi-example/spi-test/spi-test.iml" beforeDir="false" afterPath="$PROJECT_DIR$/spi-example/spi-test/spi-test.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-ioc/spring-ioc.iml" beforeDir="false" afterPath="$PROJECT_DIR$/spring-ioc/spring-ioc.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/aspect/redislock/RedisLockAspect.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/aspect/redislock/RedisLockAspect.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/server/util/JedisService.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/server/util/JedisService.java" afterDir="false" />
     </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -45,6 +55,7 @@
     </option>
     <option name="importingSettings">
       <MavenImportingSettings>
+        <option name="importAutomatically" value="true" />
         <option name="vmOptionsForImporter" value="-Xmx768m" />
       </MavenImportingSettings>
     </option>
@@ -74,7 +85,7 @@
     <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file://E:/spring_boot/src/main/java/cn/zjc/aspect/redisdistributedlock/RedisLock.java" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/aspect/redissonlock" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -108,14 +119,23 @@
         <option value="SpringBootApplicationConfigurationType" />
       </set>
     </option>
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
   </component>
   <component name="RunManager" selected="Spring Boot.ServerImplStrap">
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
+    <configuration default="true" type="Applet">
       <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <module />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
     <configuration name="CreateSecrteKey" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="cn.zjc.util.CreateSecrteKey" />
@@ -209,7 +229,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="JetRunConfigurationType">
+    <configuration default="true" type="JetRunConfigurationType" factoryName="Kotlin">
       <module name="demo" />
       <option name="VM_PARAMETERS" />
       <option name="PROGRAM_PARAMETERS" />
@@ -402,13 +422,8 @@
       <workItem from="1591782107448" duration="601000" />
       <workItem from="1591799663176" duration="51390000" />
       <workItem from="1592152902604" duration="61000" />
-    </task>
-    <task id="LOCAL-00006" summary="mybatis">
-      <created>1510760179571</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1510760179571</updated>
+      <workItem from="1592153024037" duration="88000" />
+      <workItem from="1592211472114" duration="2921000" />
     </task>
     <task id="LOCAL-00007" summary="mybatis">
       <created>1510760402392</created>
@@ -746,11 +761,18 @@
       <option name="project" value="LOCAL" />
       <updated>1591985435872</updated>
     </task>
-    <option name="localTasksCounter" value="55" />
+    <task id="LOCAL-00055" summary="update">
+      <created>1592153097719</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1592153097720</updated>
+    </task>
+    <option name="localTasksCounter" value="56" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="2" />
+    <option name="version" value="1" />
   </component>
   <component name="Vcs.Log.History.Properties">
     <option name="COLUMN_ORDER">
@@ -767,12 +789,13 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="redis 分布式锁" />
@@ -848,10 +871,10 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="286" y="236" key="#xdebugger.evaluate/0.0.1536.834@0.0.1536.834" timestamp="1591856179783" />
-    <state x="368" y="0" key="CommitChangelistDialog2" timestamp="1591985432570">
+    <state x="368" y="0" key="CommitChangelistDialog2" timestamp="1592153096570">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="368" y="0" key="CommitChangelistDialog2/0.0.1536.834@0.0.1536.834" timestamp="1591985432570" />
+    <state x="368" y="0" key="CommitChangelistDialog2/0.0.1536.834@0.0.1536.834" timestamp="1592153096570" />
     <state width="792" height="466" key="DebuggerActiveHint" timestamp="1591941563168">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
@@ -924,10 +947,10 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state width="530" height="448" key="SwitcherDM/0.0.1536.834@0.0.1536.834" timestamp="1591460431772" />
-    <state x="361" y="150" key="Vcs.Push.Dialog.v2" timestamp="1591985438552">
+    <state x="361" y="150" key="Vcs.Push.Dialog.v2" timestamp="1592153099669">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="361" y="150" key="Vcs.Push.Dialog.v2/0.0.1536.834@0.0.1536.834" timestamp="1591985438552" />
+    <state x="361" y="150" key="Vcs.Push.Dialog.v2/0.0.1536.834@0.0.1536.834" timestamp="1592153099669" />
     <state x="565" y="195" key="chooseDestDirectoryDialog" timestamp="1589767632472">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
