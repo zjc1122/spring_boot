@@ -3,8 +3,18 @@
   <component name="ChangeListManager">
     <list default="true" id="2891f993-faff-46cd-b542-b0c6b24148cb" name="Default" comment="update">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/config/RedisConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/config/RedisConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/target/classes/cn/zjc/config/RedisConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server-impl/target/classes/cn/zjc/config/RedisConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spi-example/target/classes/META-INF/spi-example.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spi-example/target/test-classes/META-INF/spi-example.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-ioc/target/classes/AutoWiredTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-ioc/target/classes/META-INF/spring-demo.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-ioc/target/classes/MyTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-ioc/target/classes/UserController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-ioc/target/classes/UserService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-api/target/classes/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-api/target/classes/cn/zjc/ServerApiStrap.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-api/target/classes/logback-spring.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-api/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-api/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -320,12 +330,12 @@
           <expand>
             <path>
               <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@cc3f04fe" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@b85476d9" type="7427dc5b:ServiceModel$ServiceGroupNode" />
             </path>
             <path>
               <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@cc3f04fe" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@35334471" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@b85476d9" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@aaa3ba27" type="7427dc5b:ServiceModel$ServiceGroupNode" />
             </path>
           </expand>
           <select />
@@ -438,13 +448,6 @@
       <workItem from="1592153024037" duration="88000" />
       <workItem from="1592211472114" duration="2921000" />
       <workItem from="1592228971981" duration="844000" />
-    </task>
-    <task id="LOCAL-00007" summary="mybatis">
-      <created>1510760402392</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1510760402392</updated>
     </task>
     <task id="LOCAL-00008" summary="mybatis">
       <created>1510849913766</created>
@@ -782,7 +785,14 @@
       <option name="project" value="LOCAL" />
       <updated>1592153097720</updated>
     </task>
-    <option name="localTasksCounter" value="56" />
+    <task id="LOCAL-00056" summary="update">
+      <created>1592304909339</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1592304909340</updated>
+    </task>
+    <option name="localTasksCounter" value="57" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
