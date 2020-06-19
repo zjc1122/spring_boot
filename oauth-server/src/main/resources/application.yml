@@ -1,0 +1,19 @@
+server:
+  port: 9002
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/zjc?useUnicode=true&characterEncoding=UTF8&allowMultiQueries=true&zeroDateTimeBehavior=convertToNull
+    username: root
+    password: root
+  main:
+    allow-bean-definition-overriding: true #允许我们自己覆盖spring放入到IOC容器的对象
+  session:
+    store-type: none
+logging:
+  level:
+    com.zjc: debug
+mybatis:
+  type-aliases-package: com.zjc.domain
+  configuration:
+    map-underscore-to-camel-case: true

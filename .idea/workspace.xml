@@ -2,19 +2,180 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2891f993-faff-46cd-b542-b0c6b24148cb" name="Default" comment="update">
+      <change afterPath="$PROJECT_DIR$/oauth-resource/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/oauth-resource/src/main/java/com/zjc/OauthResourceStrap.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/oauth-resource/src/main/java/com/zjc/config/OauthResourceConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/oauth-resource/src/main/java/com/zjc/controller/UserController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/oauth-resource/src/main/java/com/zjc/dao/UserDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/oauth-resource/src/main/java/com/zjc/entity/sysrole/SysRole.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/oauth-resource/src/main/java/com/zjc/entity/sysuser/SysUser.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/oauth-resource/src/main/java/com/zjc/service/IUserServer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/oauth-resource/src/main/java/com/zjc/service/impl/UserServerImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/oauth-resource/src/main/java/com/zjc/user/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/oauth-resource/src/main/resources/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/oauth-resource/src/test/java/OauthResourceTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/oauth-server/oauth-server.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/oauth-server/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/oauth-server/src/main/java/com/zjc/OauthServerApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/oauth-server/src/main/java/com/zjc/config/WebSecurityConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/oauth-server/src/main/java/com/zjc/domain/SysRole.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/oauth-server/src/main/java/com/zjc/domain/SysUser.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/oauth-server/src/main/java/com/zjc/mapper/RoleMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/oauth-server/src/main/java/com/zjc/mapper/UserMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/oauth-server/src/main/java/com/zjc/server/IUserService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/oauth-server/src/main/java/com/zjc/server/UserServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/oauth-server/src/main/resources/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/security/MyAccessDeniedHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/security/MyLoginUrlAuthenticationEntryPoint.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/security/MyUsernamePasswordAuthenticationFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/security/OauthServerConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/springboot_server_impl_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/springboot_server_impl_war_exploded.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spi-example/target/classes/META-INF/spi-example.kotlin_module" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spi-example/target/test-classes/META-INF/spi-example.kotlin_module" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-ioc/target/classes/AutoWiredTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-ioc/target/classes/META-INF/spring-demo.kotlin_module" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-ioc/target/classes/MyTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-ioc/target/classes/UserController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-ioc/target/classes/UserService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-api/target/classes/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-api/target/classes/cn/zjc/ServerApiStrap.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-api/target/classes/logback-spring.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-api/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-api/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-api/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-api/src/main/java/cn/zjc/ServerApiStrap.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-api/src/main/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-api/src/main/resources/logback-spring.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/springboot-server-impl.iml" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/springboot-server.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/ServerImplStrap.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/SpringBootStrap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/aspect/db/DataSourceBeforeAdvice.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/aspect/db/DataSourceBeforeAdvice.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/aspect/db/DataSourceContextHolder.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/aspect/db/DataSourceContextHolder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/aspect/db/DynamicDataSource.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/aspect/db/DynamicDataSource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/aspect/db/TargetDataSource.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/aspect/db/TargetDataSource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/aspect/demo/Demo.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/aspect/demo/Demo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/aspect/demo/DemoAspect.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/aspect/demo/DemoAspect.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/aspect/redislock/RedisLock.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/aspect/redislock/RedisLock.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/aspect/redislock/RedisLockAspect.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/aspect/redislock/RedisLockAspect.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/aspect/redissonlock/RedissonLock.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/aspect/redissonlock/RedissonLock.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/aspect/redissonlock/RedissonLockAspect.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/aspect/redissonlock/RedissonLockAspect.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/aspect/throwing/ThrowMailAspect.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/aspect/throwing/ThrowMailAspect.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/aspect/throwing/ThrowingMail.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/aspect/throwing/ThrowingMail.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/aspect/zklock/ZkDistributedLock.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/aspect/zklock/ZkDistributedLock.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/aspect/zklock/ZkDistributedLockAspect.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/aspect/zklock/ZkDistributedLockAspect.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/autotask/ScheduledTasks.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/autotask/ScheduledTasks.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/config/DataSourcesConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/config/DataSourcesConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/config/EsRestConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/config/EsRestConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/config/JetCacheConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/config/JetCacheConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/config/MybatisConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/config/MybatisConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/config/RabbitAmqpConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/config/RabbitAmqpConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/config/RedisConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/config/RedisConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/config/RedissonConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/config/RedissonConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/config/ZkConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/config/ZkConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/controller/MyErrorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/controller/MyErrorController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/controller/sysuser/SysUserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/controller/sysuser/SysUserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/controller/user/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/controller/user/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/designmode/chain/MyFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/designmode/chain/MyFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/designmode/chain/MyFilter1Impl.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/designmode/chain/MyFilter1Impl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/designmode/chain/MyFilter2Impl.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/designmode/chain/MyFilter2Impl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/designmode/chain/MyFilterChain.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/designmode/chain/MyFilterChain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/designmode/chain/MyRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/designmode/chain/MyRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/designmode/chain/MyResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/designmode/chain/MyResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/designmode/chain/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/designmode/chain/Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/designmode/factory/AbstractFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/designmode/factory/AbstractFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/designmode/factory/AppleFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/designmode/factory/AppleFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/designmode/factory/ApplePhone.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/designmode/factory/ApplePhone.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/designmode/factory/FactoryProducer.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/designmode/factory/FactoryProducer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/designmode/factory/IPC.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/designmode/factory/IPC.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/designmode/factory/IPhone.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/designmode/factory/IPhone.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/designmode/factory/MAC.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/designmode/factory/MAC.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/designmode/factory/MyTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/designmode/factory/MyTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/designmode/factory/XiaoMiFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/designmode/factory/XiaoMiFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/designmode/factory/XiaoMiPC.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/designmode/factory/XiaoMiPC.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/designmode/factory/XiaoMiPhone.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/designmode/factory/XiaoMiPhone.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/designmode/strategy/Model1ServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/designmode/strategy/Model1ServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/designmode/strategy/Model2ServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/designmode/strategy/Model2ServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/designmode/strategy/Model3ServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/designmode/strategy/Model3ServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/designmode/strategy/ModelConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/designmode/strategy/ModelConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/designmode/strategy/ModelService.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/designmode/strategy/ModelService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/elasticsearch/ESearchTypeColumn.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/elasticsearch/ESearchTypeColumn.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/enums/DataBaseTypeEnum.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/enums/DataBaseTypeEnum.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/enums/SystemCodeEnum.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/enums/SystemCodeEnum.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/handler/MyInterceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/handler/MyInterceptor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/handler/WebConfigurerAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/handler/WebConfigurerAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/mapper/BaseMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/mapper/BaseMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/mapper/sysrole/SysRoleMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/mapper/sysrole/SysRoleMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/mapper/sysuser/SysUserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/mapper/sysuser/SysUserMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/mapper/user/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/mapper/user/UserMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/md/OAuth2.0.md" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/md/OAuth2.0.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/model/BaseEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/model/BaseEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/model/es/Article.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/model/es/Article.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/model/es/ArticleUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/model/es/ArticleUser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/model/sysrole/SysRole.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/model/sysrole/SysRole.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/model/sysuser/SysUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/model/sysuser/SysUser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/model/user/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/model/user/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/model/util/EmailMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/model/util/EmailMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/model/util/SystemMsg.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/model/util/SystemMsg.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/rabbitmq/receive/direct/DirectReceive.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/rabbitmq/receive/direct/DirectReceive.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/rabbitmq/receive/topic/TopicReceiver.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/rabbitmq/receive/topic/TopicReceiver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/rabbitmq/sender/direct/DirectSender.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/rabbitmq/sender/direct/DirectSender.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/rabbitmq/sender/topic/TopicSender.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/rabbitmq/sender/topic/TopicSender.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/security/ExpiredSessionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/security/ExpiredSessionService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/security/JwtAuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/security/JwtAuthenticationFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/security/JwtVerifyFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/security/JwtVerifyFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/security/MyUserDetailsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/security/MyUserDetailsService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/security/UserLoginFailHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/security/UserLoginFailHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/security/UserLoginSuccessHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/security/UserLoginSuccessHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/security/UserLogoutSuccessHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/security/UserLogoutSuccessHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/security/WebSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/security/WebSecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/server/base/BaseServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/server/base/BaseServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/server/base/impl/BaseServerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/server/base/impl/BaseServerImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/server/sysrole/SysRoleService.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/server/sysrole/SysRoleService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/server/sysrole/impl/SysRoleServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/server/sysrole/impl/SysRoleServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/server/sysuser/SysUserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/server/sysuser/SysUserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/server/sysuser/impl/SysUserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/server/sysuser/impl/SysUserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/server/user/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/server/user/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/server/user/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/server/user/impl/UserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/server/util/IdGeneratorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/server/util/IdGeneratorService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/server/util/JedisService.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/server/util/JedisService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/server/util/MailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/server/util/MailService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/server/util/MailUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/server/util/MailUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/server/util/RedisService.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/server/util/RedisService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/server/util/RedissonService.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/server/util/RedissonService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/test/DemoTestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/test/DemoTestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/test/DistributedTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/test/DistributedTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/test/SendTestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/test/SendTestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/util/GsonUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/util/GsonUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/util/IdGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/util/IdGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/util/JsonResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/util/JsonResult.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/util/JwtTokenUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/util/JwtTokenUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/util/TimeUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/util/TimeUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/util/rsa/JsonUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/util/rsa/JsonUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/util/rsa/JwtUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/util/rsa/JwtUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/util/rsa/Payload.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/util/rsa/Payload.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/util/rsa/RsaUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/util/rsa/RsaUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/resources/banner.txt" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/resources/banner.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/resources/datasources.properties" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/resources/datasources.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/resources/generatorConfig.xml" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/resources/generatorConfig.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/resources/log4j.properties" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/resources/log4j.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/resources/logback-spring.xml" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/resources/logback-spring.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/resources/mapping/SysRoleMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/resources/mapping/SysRoleMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/resources/mapping/SysUserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/resources/mapping/SysUserMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/resources/mapping/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/resources/mapping/UserMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/resources/rabbitmq.properties" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/resources/rabbitmq.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/resources/redis.properties" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/resources/redis.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/resources/templates/message.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/resources/templates/message.ftl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/resources/zk.properties" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/resources/zk.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/test/java/cn/zjc/ApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/test/java/cn/zjc/ApplicationTests.java" afterDir="false" />
+    </list>
+    <list id="0737b33e-3a59-4e82-b497-4a4d56e6c0d3" name="不提交文件" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_security_oauth_spring_security_oauth2_2_0_14_RELEASE.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_security_oauth_spring_security_oauth2_2_3_5_RELEASE.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/spring-boot.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/spring-boot.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spi-example/spi-api/spi-api.iml" beforeDir="false" afterPath="$PROJECT_DIR$/spi-example/spi-api/spi-api.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spi-example/spi-example.iml" beforeDir="false" afterPath="$PROJECT_DIR$/spi-example/spi-example.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spi-example/spi-server-dog/spi-server-dog.iml" beforeDir="false" afterPath="$PROJECT_DIR$/spi-example/spi-server-dog/spi-server-dog.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spi-example/spi-server-pig/spi-server-pig.iml" beforeDir="false" afterPath="$PROJECT_DIR$/spi-example/spi-server-pig/spi-server-pig.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spi-example/spi-test/spi-test.iml" beforeDir="false" afterPath="$PROJECT_DIR$/spi-example/spi-test/spi-test.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-ioc/spring-ioc.iml" beforeDir="false" afterPath="$PROJECT_DIR$/spring-ioc/spring-ioc.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server-api/springboot-server-api.iml" beforeDir="false" afterPath="$PROJECT_DIR$/oauth-resource/oauth-resource.iml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -31,9 +192,9 @@
         <option value="FxmlFile" />
         <option value="Enum" />
         <option value="AnnotationType" />
+        <option value="HTML File" />
         <option value="Interface" />
         <option value="Class" />
-        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -47,6 +208,34 @@
     <push-targets>
       <push-target-info target-remote="origin" target-branch="master" repo="$PROJECT_DIR$" source="master" />
     </push-targets>
+  </component>
+  <component name="LineStatusTrackerManager">
+    <file path="$PROJECT_DIR$/.idea/encodings.xml">
+      <ranges>
+        <range start1="4" end1="4" start2="4" end2="6" changelist="0737b33e-3a59-4e82-b497-4a4d56e6c0d3" />
+        <range start1="16" end1="16" start2="18" end2="19" changelist="2891f993-faff-46cd-b542-b0c6b24148cb" />
+        <range start1="18" end1="20" start2="21" end2="22" changelist="2891f993-faff-46cd-b542-b0c6b24148cb" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/.idea/modules.xml">
+      <ranges>
+        <range start1="4" end1="4" start2="4" end2="6" changelist="0737b33e-3a59-4e82-b497-4a4d56e6c0d3" />
+        <range start1="11" end1="13" start2="13" end2="14" changelist="2891f993-faff-46cd-b542-b0c6b24148cb" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/.idea/compiler.xml">
+      <ranges>
+        <range start1="9" end1="9" start2="9" end2="10" changelist="0737b33e-3a59-4e82-b497-4a4d56e6c0d3" />
+        <range start1="10" end1="12" start2="11" end2="13" changelist="2891f993-faff-46cd-b542-b0c6b24148cb" />
+        <range start1="14" end1="15" start2="15" end2="15" changelist="2891f993-faff-46cd-b542-b0c6b24148cb" />
+        <range start1="16" end1="17" start2="16" end2="18" changelist="2891f993-faff-46cd-b542-b0c6b24148cb" />
+        <range start1="20" end1="20" start2="21" end2="23" changelist="2891f993-faff-46cd-b542-b0c6b24148cb" />
+        <range start1="28" end1="28" start2="31" end2="32" changelist="2891f993-faff-46cd-b542-b0c6b24148cb" />
+        <range start1="29" end1="30" start2="33" end2="33" changelist="2891f993-faff-46cd-b542-b0c6b24148cb" />
+        <range start1="43" end1="43" start2="46" end2="47" changelist="2891f993-faff-46cd-b542-b0c6b24148cb" />
+        <range start1="44" end1="45" start2="48" end2="48" changelist="2891f993-faff-46cd-b542-b0c6b24148cb" />
+      </ranges>
+    </file>
   </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
@@ -87,32 +276,33 @@
     <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file://E:/spring_boot/src/main/java/cn/zjc/aspect/redisdistributedlock/RedisLock.java" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/oauth-server/src/main/java/com/zjc/config" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="E:\spring-boot\springboot-server-impl\src\main\java\cn\zjc\security" />
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.zjc.service" />
+      <recent name="service.impl" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="E:\spring-boot\springboot-server-impl\src\main\java\cn\zjc\aspect\redissonlock" />
-      <recent name="E:\spring-boot\springboot-server-impl\src\main\java\cn\zjc\util" />
-      <recent name="E:\spring-boot\springboot-server-impl\src\main\webapp" />
-      <recent name="E:\spring-boot\spi-example\spi-server-pig\src\main\resources\META-INF\services" />
-      <recent name="E:\spring-boot\spi-example\spi-server-pig\src\main\resources\MEAT-INF" />
+      <recent name="E:\spring-boot\oauth-server\src\main\java\com\zjc\config" />
+      <recent name="E:\spring-boot\oauth-server\src\main\java\com\zjc" />
+      <recent name="E:\spring-boot\oauth-server\src" />
+      <recent name="E:\spring-boot\oauth-server\src\main\java\com\zjc\mapper" />
+      <recent name="E:\spring-boot\oauth-server\src\main\java\com\zjc\server" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="cn.zjc.server.util" />
-      <recent name="cn.zjc.handler" />
-      <recent name="cn.zjc.designmode.factory" />
-      <recent name="service.impl" />
-      <recent name="impl" />
+      <recent name="cn.zjc.security" />
+      <recent name="com.zjc.server" />
+      <recent name="com.zjc.domain" />
+      <recent name="com.zjc.controller" />
+      <recent name="" />
     </key>
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="service.impl" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\spring-boot\springboot-server-impl\src\main\java\cn\zjc\security" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -132,37 +322,9 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.ServerImplStrap">
+  <component name="RunManager" selected="Spring Boot.SpringBootStrap">
     <configuration default="true" type="Applet">
       <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="CreateSecrteKey" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="cn.zjc.util.CreateSecrteKey" />
-      <module name="springboot-server-impl" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="cn.zjc.util.rsa.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="JwtTokenUtil" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="cn.zjc.util.JwtTokenUtil" />
-      <module name="springboot-server-impl" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="cn.zjc.util.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -174,7 +336,7 @@
       </method>
     </configuration>
     <configuration name="ApplicationTests.secKill" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="springboot-server-impl" />
+      <module name="springboot-server" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="cn.zjc.*" />
@@ -190,35 +352,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ApplicationTests.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="springboot-server-impl" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="cn.zjc.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="cn.zjc" />
-      <option name="MAIN_CLASS_NAME" value="cn.zjc.ApplicationTests" />
-      <option name="METHOD_NAME" value="test" />
+    <configuration name="OauthResourceTests.send" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="oauth-resource" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="OauthResourceTests" />
+      <option name="METHOD_NAME" value="send" />
       <option name="TEST_OBJECT" value="method" />
-      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="MyTest.test (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="springboot-server-impl" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="cn.zjc.designmode.factory.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="cn.zjc.designmode.factory" />
-      <option name="MAIN_CLASS_NAME" value="cn.zjc.designmode.factory.MyTest" />
-      <option name="METHOD_NAME" value="test" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="PARAMETERS" value="" />
       <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -270,16 +410,41 @@
       </MavenSettings>
       <method v="2" />
     </configuration>
-    <configuration name="ServerApiStrap" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-      <module name="springboot-server-api" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="cn.zjc.ServerApiStrap" />
+    <configuration name="OauthResourceStrap" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="oauth-resource" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.zjc.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.zjc.OauthResourceStrap" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ServerImplStrap" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-      <module name="springboot-server-impl" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="cn.zjc.ServerImplStrap" />
+    <configuration name="OauthServerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="oauth-server" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.zjc.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.zjc.OauthServerApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SpringBootStrap" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="springboot-server" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="cn.zjc.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="SPRING_BOOT_MAIN_CLASS" value="cn.zjc.SpringBootStrap" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -303,22 +468,20 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.CreateSecrteKey" />
-      <item itemvalue="Application.JwtTokenUtil" />
-      <item itemvalue="JUnit.MyTest.test (1)" />
-      <item itemvalue="JUnit.ApplicationTests.test" />
       <item itemvalue="JUnit.ApplicationTests.secKill" />
+      <item itemvalue="JUnit.OauthResourceTests.send" />
       <item itemvalue="Maven.generator" />
-      <item itemvalue="Spring Boot.ServerImplStrap" />
-      <item itemvalue="Spring Boot.ServerApiStrap" />
+      <item itemvalue="Spring Boot.OauthResourceStrap" />
+      <item itemvalue="Spring Boot.SpringBootStrap" />
+      <item itemvalue="Spring Boot.OauthServerApplication" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Spring Boot.SpringBootStrap" />
+        <item itemvalue="Spring Boot.OauthServerApplication" />
+        <item itemvalue="Spring Boot.OauthResourceStrap" />
+        <item itemvalue="JUnit.OauthResourceTests.send" />
         <item itemvalue="JUnit.ApplicationTests.secKill" />
-        <item itemvalue="JUnit.ApplicationTests.test" />
-        <item itemvalue="Application.JwtTokenUtil" />
-        <item itemvalue="Application.CreateSecrteKey" />
-        <item itemvalue="JUnit.MyTest.test (1)" />
       </list>
     </recent_temporary>
   </component>
@@ -448,13 +611,6 @@
       <workItem from="1592153024037" duration="88000" />
       <workItem from="1592211472114" duration="2921000" />
       <workItem from="1592228971981" duration="844000" />
-    </task>
-    <task id="LOCAL-00008" summary="mybatis">
-      <created>1510849913766</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1510849913766</updated>
     </task>
     <task id="LOCAL-00009" summary="mybatis">
       <created>1510993178618</created>
@@ -792,7 +948,14 @@
       <option name="project" value="LOCAL" />
       <updated>1592304909340</updated>
     </task>
-    <option name="localTasksCounter" value="57" />
+    <task id="LOCAL-00057" summary="update">
+      <created>1592460026957</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1592460026958</updated>
+    </task>
+    <option name="localTasksCounter" value="58" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -835,186 +998,137 @@
     <option name="LAST_COMMIT_MESSAGE" value="update" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="551" y="151" key="#HTTP_Proxy" timestamp="1588241905944">
-      <screen x="0" y="0" width="1536" height="834" />
-    </state>
-    <state x="551" y="151" key="#HTTP_Proxy/0.0.1536.834@0.0.1536.834" timestamp="1588241905944" />
-    <state x="361" y="76" key="#Inspections" timestamp="1588427955210">
-      <screen x="0" y="0" width="1536" height="834" />
-    </state>
-    <state x="361" y="76" key="#Inspections/0.0.1536.834@0.0.1536.834" timestamp="1588427955210" />
-    <state x="359" y="150" width="826" height="563" key="#Notifications" timestamp="1589528842474">
-      <screen x="0" y="0" width="1536" height="834" />
-    </state>
-    <state x="359" y="150" width="826" height="563" key="#Notifications/0.0.1536.834@0.0.1536.834" timestamp="1589528842474" />
-    <state x="361" y="76" key="#Project_Structure" timestamp="1587456917013">
-      <screen x="0" y="0" width="1536" height="834" />
-    </state>
-    <state x="361" y="76" key="#Project_Structure/0.0.1536.834@0.0.1536.834" timestamp="1587456917013" />
-    <state x="223" y="72" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1589955660034">
-      <screen x="0" y="0" width="1536" height="834" />
-    </state>
-    <state x="223" y="72" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.834@0.0.1536.834" timestamp="1589955660034" />
-    <state x="516" y="218" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1589956833942">
-      <screen x="0" y="0" width="1536" height="834" />
-    </state>
-    <state x="516" y="218" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1536.834@0.0.1536.834" timestamp="1589956833942" />
-    <state x="656" y="121" width="766" height="567" key="#com.intellij.ide.util.MemberChooser" timestamp="1591772230340">
-      <screen x="0" y="0" width="1536" height="834" />
-    </state>
-    <state x="656" y="121" width="766" height="567" key="#com.intellij.ide.util.MemberChooser/0.0.1536.834@0.0.1536.834" timestamp="1591772230340" />
-    <state x="499" y="193" key="#com.intellij.ide.util.PackageChooserDialog" timestamp="1589767640710">
-      <screen x="0" y="0" width="1536" height="834" />
-    </state>
-    <state x="499" y="193" key="#com.intellij.ide.util.PackageChooserDialog/0.0.1536.834@0.0.1536.834" timestamp="1589767640710" />
-    <state x="614" y="306" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog" timestamp="1588235990175">
-      <screen x="0" y="0" width="1536" height="834" />
-    </state>
-    <state x="614" y="306" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/0.0.1536.834@0.0.1536.834" timestamp="1588235990175" />
-    <state x="449" y="152" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1588237966994">
-      <screen x="0" y="0" width="1536" height="834" />
-    </state>
-    <state x="449" y="152" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.1536.834@0.0.1536.834" timestamp="1588237966994" />
-    <state x="490" y="342" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1588233646241">
-      <screen x="0" y="0" width="1536" height="834" />
-    </state>
-    <state x="490" y="342" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1536.834@0.0.1536.834" timestamp="1588233646241" />
-    <state x="510" y="284" width="516" height="272" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1591948638141">
-      <screen x="0" y="0" width="1536" height="834" />
-    </state>
-    <state x="510" y="284" width="516" height="272" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1536.834@0.0.1536.834" timestamp="1591948638141" />
-    <state x="250" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1591455484308">
-      <screen x="0" y="0" width="1536" height="834" />
-    </state>
-    <state x="250" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1536.834@0.0.1536.834" timestamp="1591455484308" />
-    <state x="499" y="164" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1591550727528">
-      <screen x="0" y="0" width="1536" height="834" />
-    </state>
-    <state x="499" y="164" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.834@0.0.1536.834" timestamp="1591550727528" />
-    <state x="286" y="236" key="#xdebugger.evaluate" timestamp="1591856179783">
-      <screen x="0" y="0" width="1536" height="834" />
-    </state>
-    <state x="286" y="236" key="#xdebugger.evaluate/0.0.1536.834@0.0.1536.834" timestamp="1591856179783" />
-    <state x="368" y="0" key="CommitChangelistDialog2" timestamp="1592153096570">
-      <screen x="0" y="0" width="1536" height="834" />
-    </state>
-    <state x="368" y="0" key="CommitChangelistDialog2/0.0.1536.834@0.0.1536.834" timestamp="1592153096570" />
-    <state width="792" height="466" key="DebuggerActiveHint" timestamp="1591941563168">
-      <screen x="0" y="0" width="1536" height="834" />
-    </state>
-    <state width="792" height="466" key="DebuggerActiveHint/0.0.1536.834@0.0.1536.834" timestamp="1591941563168" />
-    <state x="549" y="172" key="FileChooserDialogImpl" timestamp="1591864785459">
-      <screen x="0" y="0" width="1536" height="834" />
-    </state>
-    <state x="549" y="172" key="FileChooserDialogImpl/0.0.1536.834@0.0.1536.834" timestamp="1591864785459" />
-    <state width="1224" height="425" key="GridCell.Tab.0.bottom" timestamp="1591985397684">
-      <screen x="0" y="0" width="1536" height="834" />
-    </state>
-    <state width="1224" height="425" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1591985397684" />
-    <state width="1224" height="425" key="GridCell.Tab.0.center" timestamp="1591985397684">
-      <screen x="0" y="0" width="1536" height="834" />
-    </state>
-    <state width="1224" height="425" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1591985397684" />
-    <state width="1224" height="425" key="GridCell.Tab.0.left" timestamp="1591985397684">
-      <screen x="0" y="0" width="1536" height="834" />
-    </state>
-    <state width="1224" height="425" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1591985397684" />
-    <state width="1224" height="425" key="GridCell.Tab.0.right" timestamp="1591985397684">
-      <screen x="0" y="0" width="1536" height="834" />
-    </state>
-    <state width="1224" height="425" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1591985397684" />
-    <state width="1224" height="425" key="GridCell.Tab.1.bottom" timestamp="1591985397684">
-      <screen x="0" y="0" width="1536" height="834" />
-    </state>
-    <state width="1224" height="425" key="GridCell.Tab.1.bottom/0.0.1536.834@0.0.1536.834" timestamp="1591985397684" />
-    <state width="1224" height="425" key="GridCell.Tab.1.center" timestamp="1591985397684">
-      <screen x="0" y="0" width="1536" height="834" />
-    </state>
-    <state width="1224" height="425" key="GridCell.Tab.1.center/0.0.1536.834@0.0.1536.834" timestamp="1591985397684" />
-    <state width="1224" height="425" key="GridCell.Tab.1.left" timestamp="1591985397684">
-      <screen x="0" y="0" width="1536" height="834" />
-    </state>
-    <state width="1224" height="425" key="GridCell.Tab.1.left/0.0.1536.834@0.0.1536.834" timestamp="1591985397684" />
-    <state width="1224" height="425" key="GridCell.Tab.1.right" timestamp="1591985397684">
-      <screen x="0" y="0" width="1536" height="834" />
-    </state>
-    <state width="1224" height="425" key="GridCell.Tab.1.right/0.0.1536.834@0.0.1536.834" timestamp="1591985397684" />
-    <state width="1224" height="243" key="GridCell.Tab.2.bottom" timestamp="1591606406430">
-      <screen x="0" y="0" width="1536" height="834" />
-    </state>
-    <state width="1224" height="243" key="GridCell.Tab.2.bottom/0.0.1536.834@0.0.1536.834" timestamp="1591606406430" />
-    <state width="1224" height="243" key="GridCell.Tab.2.center" timestamp="1591606406430">
-      <screen x="0" y="0" width="1536" height="834" />
-    </state>
-    <state width="1224" height="243" key="GridCell.Tab.2.center/0.0.1536.834@0.0.1536.834" timestamp="1591606406430" />
-    <state width="1224" height="243" key="GridCell.Tab.2.left" timestamp="1591606406430">
-      <screen x="0" y="0" width="1536" height="834" />
-    </state>
-    <state width="1224" height="243" key="GridCell.Tab.2.left/0.0.1536.834@0.0.1536.834" timestamp="1591606406430" />
-    <state width="1224" height="243" key="GridCell.Tab.2.right" timestamp="1591606406430">
-      <screen x="0" y="0" width="1536" height="834" />
-    </state>
-    <state width="1224" height="243" key="GridCell.Tab.2.right/0.0.1536.834@0.0.1536.834" timestamp="1591606406430" />
-    <state x="299" y="72" key="Maven.ArtifactSearchDialog" timestamp="1588241671819">
-      <screen x="0" y="0" width="1536" height="834" />
-    </state>
-    <state x="299" y="72" key="Maven.ArtifactSearchDialog/0.0.1536.834@0.0.1536.834" timestamp="1588241671819" />
-    <state x="555" y="128" key="RollbackChangesDialog" timestamp="1591585859705">
-      <screen x="0" y="0" width="1536" height="834" />
-    </state>
-    <state x="555" y="128" key="RollbackChangesDialog/0.0.1536.834@0.0.1536.834" timestamp="1591585859705" />
-    <state x="249" y="0" key="SettingsEditor" timestamp="1591064587734">
-      <screen x="0" y="0" width="1536" height="834" />
-    </state>
-    <state x="249" y="0" key="SettingsEditor/0.0.1536.834@0.0.1536.834" timestamp="1591064587734" />
-    <state width="530" height="448" key="SwitcherDM" timestamp="1591460431772">
-      <screen x="0" y="0" width="1536" height="834" />
-    </state>
-    <state width="530" height="448" key="SwitcherDM/0.0.1536.834@0.0.1536.834" timestamp="1591460431772" />
-    <state x="361" y="150" key="Vcs.Push.Dialog.v2" timestamp="1592153099669">
-      <screen x="0" y="0" width="1536" height="834" />
-    </state>
-    <state x="361" y="150" key="Vcs.Push.Dialog.v2/0.0.1536.834@0.0.1536.834" timestamp="1592153099669" />
-    <state x="565" y="195" key="chooseDestDirectoryDialog" timestamp="1589767632472">
-      <screen x="0" y="0" width="1536" height="834" />
-    </state>
-    <state x="565" y="195" key="chooseDestDirectoryDialog/0.0.1536.834@0.0.1536.834" timestamp="1589767632472" />
-    <state x="93" y="93" width="1350" height="648" maximized="true" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1591547941858">
-      <screen x="0" y="0" width="1536" height="834" />
-    </state>
-    <state x="93" y="93" width="1350" height="648" maximized="true" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1536.834@0.0.1536.834" timestamp="1591547941858" />
-    <state x="562" y="334" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1586255281020">
-      <screen x="0" y="0" width="1536" height="834" />
-    </state>
-    <state x="562" y="334" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.834@0.0.1536.834" timestamp="1586255281020" />
-    <state x="298" y="146" width="940" height="640" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1591552522747">
-      <screen x="0" y="0" width="1536" height="834" />
-    </state>
-    <state x="298" y="146" width="940" height="640" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.0.1536.834@0.0.1536.834" timestamp="1591552522747" />
-    <state x="447" y="150" width="647" height="536" key="find.popup" timestamp="1591985261514">
-      <screen x="0" y="0" width="1536" height="834" />
-    </state>
-    <state x="447" y="150" width="647" height="536" key="find.popup/0.0.1536.834@0.0.1536.834" timestamp="1591985261514" />
-    <state x="471" y="208" key="git4idea.merge.GitPullDialog" timestamp="1588429898333">
-      <screen x="0" y="0" width="1536" height="834" />
-    </state>
-    <state x="471" y="208" key="git4idea.merge.GitPullDialog/0.0.1536.834@0.0.1536.834" timestamp="1588429898333" />
-    <state x="197" y="40" key="new project wizard" timestamp="1591770601877">
-      <screen x="0" y="0" width="1536" height="834" />
-    </state>
-    <state x="197" y="40" key="new project wizard/0.0.1536.834@0.0.1536.834" timestamp="1591770601877" />
-    <state x="425" y="189" key="run.anything.popup" timestamp="1591446622486">
-      <screen x="0" y="0" width="1536" height="834" />
-    </state>
-    <state x="425" y="189" key="run.anything.popup/0.0.1536.834@0.0.1536.834" timestamp="1591446622486" />
-    <state x="466" y="122" width="672" height="678" key="search.everywhere.popup" timestamp="1591957114286">
-      <screen x="0" y="0" width="1536" height="834" />
-    </state>
-    <state x="466" y="122" width="672" height="678" key="search.everywhere.popup/0.0.1536.834@0.0.1536.834" timestamp="1591957114286" />
-    <state x="158" y="165" key="vcs.ApplyPatchDifferentiatedDialog" timestamp="1588426645800">
-      <screen x="0" y="0" width="1536" height="834" />
-    </state>
-    <state x="158" y="165" key="vcs.ApplyPatchDifferentiatedDialog/0.0.1536.834@0.0.1536.834" timestamp="1588426645800" />
+    <state x="551" y="151" key="#HTTP_Proxy" />
+    <state x="551" y="151" key="#HTTP_Proxy/0.0.1536.834@0.0.1536.834" />
+    <state x="361" y="76" key="#Inspections" />
+    <state x="361" y="76" key="#Inspections/0.0.1536.834@0.0.1536.834" />
+    <state x="359" y="150" width="826" height="563" key="#Notifications" />
+    <state x="359" y="150" width="826" height="563" key="#Notifications/0.0.1536.834@0.0.1536.834" />
+    <state x="361" y="76" key="#Project_Structure" />
+    <state x="361" y="76" key="#Project_Structure/0.0.1536.834@0.0.1536.834" />
+    <state x="223" y="72" key="#com.intellij.execution.impl.EditConfigurationsDialog" />
+    <state x="223" y="72" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.834@0.0.1536.834" />
+    <state x="516" y="218" key="#com.intellij.fileTypes.FileTypeChooser" />
+    <state x="516" y="218" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1536.834@0.0.1536.834" />
+    <state x="656" y="121" width="766" height="567" key="#com.intellij.ide.util.MemberChooser" />
+    <state x="656" y="121" width="766" height="567" key="#com.intellij.ide.util.MemberChooser/0.0.1536.834@0.0.1536.834" />
+    <state x="499" y="193" key="#com.intellij.ide.util.PackageChooserDialog" />
+    <state x="499" y="193" key="#com.intellij.ide.util.PackageChooserDialog/0.0.1536.834@0.0.1536.834" />
+    <state x="614" y="306" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog" />
+    <state x="614" y="306" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/0.0.1536.834@0.0.1536.834" />
+    <state x="449" y="152" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" />
+    <state x="449" y="152" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.1536.834@0.0.1536.834" />
+    <state x="490" y="342" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" />
+    <state x="490" y="342" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1536.834@0.0.1536.834" />
+    <state x="510" y="284" width="516" height="272" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" />
+    <state x="510" y="284" width="516" height="272" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1536.834@0.0.1536.834" />
+    <state x="250" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" />
+    <state x="250" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1536.834@0.0.1536.834" />
+    <state x="499" y="164" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" />
+    <state x="499" y="164" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.834@0.0.1536.834" />
+    <state x="286" y="236" key="#xdebugger.evaluate" />
+    <state x="286" y="236" key="#xdebugger.evaluate/0.0.1536.834@0.0.1536.834" />
+    <state x="368" y="0" key="CommitChangelistDialog2" />
+    <state x="368" y="0" key="CommitChangelistDialog2/0.0.1536.834@0.0.1536.834" />
+    <state width="792" height="466" key="DebuggerActiveHint" />
+    <state width="792" height="466" key="DebuggerActiveHint/0.0.1536.834@0.0.1536.834" />
+    <state x="549" y="172" key="FileChooserDialogImpl" />
+    <state x="549" y="172" key="FileChooserDialogImpl/0.0.1536.834@0.0.1536.834" />
+    <state width="1224" height="425" key="GridCell.Tab.0.bottom" />
+    <state width="1224" height="425" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" />
+    <state width="1224" height="425" key="GridCell.Tab.0.center" />
+    <state width="1224" height="425" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" />
+    <state width="1224" height="425" key="GridCell.Tab.0.left" />
+    <state width="1224" height="425" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" />
+    <state width="1224" height="425" key="GridCell.Tab.0.right" />
+    <state width="1224" height="425" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" />
+    <state width="1224" height="425" key="GridCell.Tab.1.bottom" />
+    <state width="1224" height="425" key="GridCell.Tab.1.bottom/0.0.1536.834@0.0.1536.834" />
+    <state width="1224" height="425" key="GridCell.Tab.1.center" />
+    <state width="1224" height="425" key="GridCell.Tab.1.center/0.0.1536.834@0.0.1536.834" />
+    <state width="1224" height="425" key="GridCell.Tab.1.left" />
+    <state width="1224" height="425" key="GridCell.Tab.1.left/0.0.1536.834@0.0.1536.834" />
+    <state width="1224" height="425" key="GridCell.Tab.1.right" />
+    <state width="1224" height="425" key="GridCell.Tab.1.right/0.0.1536.834@0.0.1536.834" />
+    <state width="1224" height="243" key="GridCell.Tab.2.bottom" />
+    <state width="1224" height="243" key="GridCell.Tab.2.bottom/0.0.1536.834@0.0.1536.834" />
+    <state width="1224" height="243" key="GridCell.Tab.2.center" />
+    <state width="1224" height="243" key="GridCell.Tab.2.center/0.0.1536.834@0.0.1536.834" />
+    <state width="1224" height="243" key="GridCell.Tab.2.left" />
+    <state width="1224" height="243" key="GridCell.Tab.2.left/0.0.1536.834@0.0.1536.834" />
+    <state width="1224" height="243" key="GridCell.Tab.2.right" />
+    <state width="1224" height="243" key="GridCell.Tab.2.right/0.0.1536.834@0.0.1536.834" />
+    <state x="299" y="72" key="Maven.ArtifactSearchDialog" />
+    <state x="299" y="72" key="Maven.ArtifactSearchDialog/0.0.1536.834@0.0.1536.834" />
+    <state x="555" y="128" key="RollbackChangesDialog" />
+    <state x="555" y="128" key="RollbackChangesDialog/0.0.1536.834@0.0.1536.834" />
+    <state x="249" y="0" key="SettingsEditor" />
+    <state x="249" y="0" key="SettingsEditor/0.0.1536.834@0.0.1536.834" />
+    <state width="530" height="448" key="SwitcherDM" />
+    <state width="530" height="448" key="SwitcherDM/0.0.1536.834@0.0.1536.834" />
+    <state x="361" y="150" key="Vcs.Push.Dialog.v2" />
+    <state x="361" y="150" key="Vcs.Push.Dialog.v2/0.0.1536.834@0.0.1536.834" />
+    <state x="565" y="195" key="chooseDestDirectoryDialog" />
+    <state x="565" y="195" key="chooseDestDirectoryDialog/0.0.1536.834@0.0.1536.834" />
+    <state x="93" y="93" width="1350" height="648" maximized="true" key="com.intellij.history.integration.ui.views.FileHistoryDialog" />
+    <state x="93" y="93" width="1350" height="648" maximized="true" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1536.834@0.0.1536.834" />
+    <state x="562" y="334" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" />
+    <state x="562" y="334" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.834@0.0.1536.834" />
+    <state x="298" y="146" width="940" height="640" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" />
+    <state x="298" y="146" width="940" height="640" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.0.1536.834@0.0.1536.834" />
+    <state x="447" y="150" width="647" height="536" key="find.popup" />
+    <state x="447" y="150" width="647" height="536" key="find.popup/0.0.1536.834@0.0.1536.834" />
+    <state x="471" y="208" key="git4idea.merge.GitPullDialog" />
+    <state x="471" y="208" key="git4idea.merge.GitPullDialog/0.0.1536.834@0.0.1536.834" />
+    <state x="197" y="40" key="new project wizard" />
+    <state x="197" y="40" key="new project wizard/0.0.1536.834@0.0.1536.834" />
+    <state x="425" y="189" key="run.anything.popup" />
+    <state x="425" y="189" key="run.anything.popup/0.0.1536.834@0.0.1536.834" />
+    <state x="466" y="122" width="672" height="678" key="search.everywhere.popup" />
+    <state x="466" y="122" width="672" height="678" key="search.everywhere.popup/0.0.1536.834@0.0.1536.834" />
+    <state x="158" y="165" key="vcs.ApplyPatchDifferentiatedDialog" />
+    <state x="158" y="165" key="vcs.ApplyPatchDifferentiatedDialog/0.0.1536.834@0.0.1536.834" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/oauth-resource/src/test/java/OauthResourceTests.java</url>
+          <line>25</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/oauth-resource/src/main/java/com/zjc/controller/UserController.java</url>
+          <line>32</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/controller/sysuser/SysUserController.java</url>
+          <line>36</line>
+          <option name="timeStamp" value="26" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/security/ExpiredSessionService.java</url>
+          <line>24</line>
+          <option name="timeStamp" value="36" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/security/JwtVerifyFilter.java</url>
+          <line>53</line>
+          <option name="timeStamp" value="42" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/security/MyUsernamePasswordAuthenticationFilter.java</url>
+          <line>23</line>
+          <option name="timeStamp" value="44" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/security/UserLogoutSuccessHandler.java</url>
+          <line>36</line>
+          <option name="timeStamp" value="45" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />

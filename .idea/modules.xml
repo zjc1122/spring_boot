@@ -9,8 +9,7 @@
       <module fileurl="file://$PROJECT_DIR$/spi-example/spi-test/spi-test.iml" filepath="$PROJECT_DIR$/spi-example/spi-test/spi-test.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/spring-boot.iml" filepath="$PROJECT_DIR$/.idea/spring-boot.iml" />
       <module fileurl="file://$PROJECT_DIR$/spring-ioc/spring-ioc.iml" filepath="$PROJECT_DIR$/spring-ioc/spring-ioc.iml" />
-      <module fileurl="file://$PROJECT_DIR$/springboot-server-api/springboot-server-api.iml" filepath="$PROJECT_DIR$/springboot-server-api/springboot-server-api.iml" />
-      <module fileurl="file://$PROJECT_DIR$/springboot-server-impl/springboot-server-impl.iml" filepath="$PROJECT_DIR$/springboot-server-impl/springboot-server-impl.iml" />
+      <module fileurl="file://$PROJECT_DIR$/springboot-server/springboot-server.iml" filepath="$PROJECT_DIR$/springboot-server/springboot-server.iml" />
     </modules>
   </component>
 </project>

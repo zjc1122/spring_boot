@@ -7,10 +7,11 @@
     <artifactId>spring-boot</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <modules>
-        <module>springboot-server-api</module>
-        <module>springboot-server-impl</module>
+        <module>springboot-server</module>
         <module>spi-example</module>
         <module>spring-ioc</module>
+        <module>oauth-resource</module>
+        <module>oauth-server</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -61,10 +62,6 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-amqp</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-redis</artifactId>
         </dependency>
         <!--Spring-->
         <dependency>
