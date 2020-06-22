@@ -1,7 +1,6 @@
-package com.zjc.entity.sysuser;
+package com.zjc.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.zjc.entity.sysrole.SysRole;
 import org.apache.commons.lang3.math.NumberUtils;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

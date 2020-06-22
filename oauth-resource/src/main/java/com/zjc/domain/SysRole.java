@@ -1,4 +1,4 @@
-package com.zjc.entity.sysrole;
+package com.zjc.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
