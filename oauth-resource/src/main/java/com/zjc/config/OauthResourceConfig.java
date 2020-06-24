@@ -3,6 +3,7 @@ package com.zjc.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
@@ -17,10 +18,11 @@ import javax.sql.DataSource;
  * @ClassName : OauthResourceConfig
  * @Author : zhangjiacheng
  * @Date : 2020/6/17
- * @Description : TODO
+ * @Description : oauth资源服务器认证
  */
 @Configuration
 @EnableResourceServer
+@EnableGlobalMethodSecurity(securedEnabled = true)
 public class OauthResourceConfig extends ResourceServerConfigurerAdapter {
 
     private static final String METHOD = "OPTIONS";

@@ -53,6 +53,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private static final String[] AUTH_WHITELIST = {
             "/logout/success",
+            "/oauth/**",
             "/login",
             "/logout",
             "/register",
