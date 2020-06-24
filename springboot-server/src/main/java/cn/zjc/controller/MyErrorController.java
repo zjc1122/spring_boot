@@ -55,7 +55,7 @@ public class MyErrorController implements ErrorController {
         switch (response.getStatus()) {
 
             case 400:
-                msg = "参数不足";
+                msg = "参数错误";
                 break;
             case 401:
                 msg = "访问未授权";
