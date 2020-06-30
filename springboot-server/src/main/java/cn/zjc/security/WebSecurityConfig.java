@@ -239,12 +239,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
+                .antMatchers(AUTH_WHITELIST).permitAll()
+                .anyRequest().authenticated()
                 .and()
                 //关闭Session
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and().authorizeRequests()
-                .antMatchers(AUTH_WHITELIST).permitAll()
-                .anyRequest().authenticated()
                 .and()
                 .addFilter(new JwtVerifyFilter(super.authenticationManager(),userDetailsService))
                 .addFilter(new JwtAuthenticationFilter(super.authenticationManager()));
