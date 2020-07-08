@@ -2,6 +2,7 @@ package com.zjc.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -10,6 +11,8 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.R
 import org.springframework.security.oauth2.config.annotation.web.configurers.ResourceServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JdbcTokenStore;
+import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
+import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 
 import javax.annotation.Resource;
 import javax.sql.DataSource;
@@ -27,6 +30,8 @@ public class OauthResourceConfig extends ResourceServerConfigurerAdapter {
 
     private static final String METHOD = "OPTIONS";
 
+    private static final String SIGNING_KEY = "zjc";
+
     @Resource
     private DataSource dataSource;
     /**
@@ -41,6 +46,19 @@ public class OauthResourceConfig extends ResourceServerConfigurerAdapter {
         return new JdbcTokenStore(dataSource);
     }
 
+    @Bean
+    @Primary
+    public TokenStore jwtTokenStore(){
+        return new JwtTokenStore(accessTokenConverter());
+    }
+
+    @Bean
+    public JwtAccessTokenConverter accessTokenConverter(){
+        JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
+        converter.setSigningKey(SIGNING_KEY);
+        return converter;
+    }
+
     /**
      * 指定当前资源的id和存储方案
      * @param resources
@@ -48,7 +66,7 @@ public class OauthResourceConfig extends ResourceServerConfigurerAdapter {
      */
     @Override
     public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
-        resources.resourceId("user_api").tokenStore(jdbcTokenStore());
+        resources.resourceId("user_api").tokenStore(jwtTokenStore());
     }
 
     @Override
