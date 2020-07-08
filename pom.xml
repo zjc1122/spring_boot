@@ -11,7 +11,7 @@
         <module>spi-example</module>
         <module>spring-ioc</module>
         <module>oauth-resource</module>
-        <module>oauth-authorization</module>
+        <module>oauth-server</module>
     </modules>
     <packaging>pom</packaging>
 
