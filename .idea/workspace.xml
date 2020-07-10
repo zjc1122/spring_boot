@@ -1,181 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2891f993-faff-46cd-b542-b0c6b24148cb" name="Default" comment="update">
-      <change afterPath="$PROJECT_DIR$/oauth-resource/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/oauth-resource/src/main/java/com/zjc/OauthResourceStrap.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/oauth-resource/src/main/java/com/zjc/config/OauthResourceConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/oauth-resource/src/main/java/com/zjc/controller/UserController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/oauth-resource/src/main/java/com/zjc/dao/UserDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/oauth-resource/src/main/java/com/zjc/entity/sysrole/SysRole.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/oauth-resource/src/main/java/com/zjc/entity/sysuser/SysUser.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/oauth-resource/src/main/java/com/zjc/service/IUserServer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/oauth-resource/src/main/java/com/zjc/service/impl/UserServerImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/oauth-resource/src/main/java/com/zjc/user/User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/oauth-resource/src/main/resources/application.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/oauth-resource/src/test/java/OauthResourceTests.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/oauth-server/oauth-server.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/oauth-server/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/oauth-server/src/main/java/com/zjc/OauthServerApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/oauth-server/src/main/java/com/zjc/config/WebSecurityConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/oauth-server/src/main/java/com/zjc/domain/SysRole.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/oauth-server/src/main/java/com/zjc/domain/SysUser.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/oauth-server/src/main/java/com/zjc/mapper/RoleMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/oauth-server/src/main/java/com/zjc/mapper/UserMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/oauth-server/src/main/java/com/zjc/server/IUserService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/oauth-server/src/main/java/com/zjc/server/UserServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/oauth-server/src/main/resources/application.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/security/MyAccessDeniedHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/security/MyLoginUrlAuthenticationEntryPoint.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/security/MyUsernamePasswordAuthenticationFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/security/OauthServerConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/springboot_server_impl_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/springboot_server_impl_war_exploded.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+    <list default="true" id="2891f993-faff-46cd-b542-b0c6b24148cb" name="Default" comment="oauth">
+      <change afterPath="$PROJECT_DIR$/oauth-authorization/oauth-authorization.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-api/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-api/src/main/java/cn/zjc/ServerApiStrap.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-api/src/main/resources/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-api/src/main/resources/logback-spring.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/springboot-server-impl.iml" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/springboot-server.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/ServerImplStrap.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/SpringBootStrap.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/aspect/db/DataSourceBeforeAdvice.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/aspect/db/DataSourceBeforeAdvice.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/aspect/db/DataSourceContextHolder.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/aspect/db/DataSourceContextHolder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/aspect/db/DynamicDataSource.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/aspect/db/DynamicDataSource.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/aspect/db/TargetDataSource.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/aspect/db/TargetDataSource.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/aspect/demo/Demo.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/aspect/demo/Demo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/aspect/demo/DemoAspect.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/aspect/demo/DemoAspect.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/aspect/redislock/RedisLock.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/aspect/redislock/RedisLock.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/aspect/redislock/RedisLockAspect.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/aspect/redislock/RedisLockAspect.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/aspect/redissonlock/RedissonLock.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/aspect/redissonlock/RedissonLock.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/aspect/redissonlock/RedissonLockAspect.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/aspect/redissonlock/RedissonLockAspect.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/aspect/throwing/ThrowMailAspect.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/aspect/throwing/ThrowMailAspect.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/aspect/throwing/ThrowingMail.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/aspect/throwing/ThrowingMail.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/aspect/zklock/ZkDistributedLock.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/aspect/zklock/ZkDistributedLock.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/aspect/zklock/ZkDistributedLockAspect.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/aspect/zklock/ZkDistributedLockAspect.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/autotask/ScheduledTasks.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/autotask/ScheduledTasks.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/config/DataSourcesConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/config/DataSourcesConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/config/EsRestConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/config/EsRestConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/config/JetCacheConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/config/JetCacheConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/config/MybatisConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/config/MybatisConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/config/RabbitAmqpConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/config/RabbitAmqpConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/config/RedisConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/config/RedisConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/config/RedissonConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/config/RedissonConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/config/ZkConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/config/ZkConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/controller/MyErrorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/controller/MyErrorController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/controller/sysuser/SysUserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/controller/sysuser/SysUserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/controller/user/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/controller/user/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/designmode/chain/MyFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/designmode/chain/MyFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/designmode/chain/MyFilter1Impl.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/designmode/chain/MyFilter1Impl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/designmode/chain/MyFilter2Impl.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/designmode/chain/MyFilter2Impl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/designmode/chain/MyFilterChain.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/designmode/chain/MyFilterChain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/designmode/chain/MyRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/designmode/chain/MyRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/designmode/chain/MyResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/designmode/chain/MyResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/designmode/chain/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/designmode/chain/Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/designmode/factory/AbstractFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/designmode/factory/AbstractFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/designmode/factory/AppleFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/designmode/factory/AppleFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/designmode/factory/ApplePhone.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/designmode/factory/ApplePhone.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/designmode/factory/FactoryProducer.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/designmode/factory/FactoryProducer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/designmode/factory/IPC.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/designmode/factory/IPC.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/designmode/factory/IPhone.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/designmode/factory/IPhone.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/designmode/factory/MAC.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/designmode/factory/MAC.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/designmode/factory/MyTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/designmode/factory/MyTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/designmode/factory/XiaoMiFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/designmode/factory/XiaoMiFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/designmode/factory/XiaoMiPC.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/designmode/factory/XiaoMiPC.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/designmode/factory/XiaoMiPhone.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/designmode/factory/XiaoMiPhone.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/designmode/strategy/Model1ServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/designmode/strategy/Model1ServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/designmode/strategy/Model2ServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/designmode/strategy/Model2ServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/designmode/strategy/Model3ServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/designmode/strategy/Model3ServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/designmode/strategy/ModelConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/designmode/strategy/ModelConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/designmode/strategy/ModelService.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/designmode/strategy/ModelService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/elasticsearch/ESearchTypeColumn.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/elasticsearch/ESearchTypeColumn.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/enums/DataBaseTypeEnum.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/enums/DataBaseTypeEnum.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/enums/SystemCodeEnum.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/enums/SystemCodeEnum.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/handler/MyInterceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/handler/MyInterceptor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/handler/WebConfigurerAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/handler/WebConfigurerAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/mapper/BaseMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/mapper/BaseMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/mapper/sysrole/SysRoleMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/mapper/sysrole/SysRoleMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/mapper/sysuser/SysUserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/mapper/sysuser/SysUserMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/mapper/user/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/mapper/user/UserMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/md/OAuth2.0.md" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/md/OAuth2.0.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/model/BaseEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/model/BaseEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/model/es/Article.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/model/es/Article.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/model/es/ArticleUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/model/es/ArticleUser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/model/sysrole/SysRole.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/model/sysrole/SysRole.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/model/sysuser/SysUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/model/sysuser/SysUser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/model/user/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/model/user/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/model/util/EmailMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/model/util/EmailMessage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/model/util/SystemMsg.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/model/util/SystemMsg.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/rabbitmq/receive/direct/DirectReceive.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/rabbitmq/receive/direct/DirectReceive.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/rabbitmq/receive/topic/TopicReceiver.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/rabbitmq/receive/topic/TopicReceiver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/rabbitmq/sender/direct/DirectSender.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/rabbitmq/sender/direct/DirectSender.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/rabbitmq/sender/topic/TopicSender.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/rabbitmq/sender/topic/TopicSender.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/security/ExpiredSessionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/security/ExpiredSessionService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/security/JwtAuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/security/JwtAuthenticationFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/security/JwtVerifyFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/security/JwtVerifyFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/security/MyUserDetailsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/security/MyUserDetailsService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/security/UserLoginFailHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/security/UserLoginFailHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/security/UserLoginSuccessHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/security/UserLoginSuccessHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/security/UserLogoutSuccessHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/security/UserLogoutSuccessHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/security/WebSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/security/WebSecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/server/base/BaseServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/server/base/BaseServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/server/base/impl/BaseServerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/server/base/impl/BaseServerImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/server/sysrole/SysRoleService.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/server/sysrole/SysRoleService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/server/sysrole/impl/SysRoleServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/server/sysrole/impl/SysRoleServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/server/sysuser/SysUserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/server/sysuser/SysUserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/server/sysuser/impl/SysUserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/server/sysuser/impl/SysUserServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/server/user/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/server/user/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/server/user/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/server/user/impl/UserServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/server/util/IdGeneratorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/server/util/IdGeneratorService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/server/util/JedisService.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/server/util/JedisService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/server/util/MailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/server/util/MailService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/server/util/MailUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/server/util/MailUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/server/util/RedisService.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/server/util/RedisService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/server/util/RedissonService.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/server/util/RedissonService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/test/DemoTestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/test/DemoTestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/test/DistributedTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/test/DistributedTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/test/SendTestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/test/SendTestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/util/GsonUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/util/GsonUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/util/IdGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/util/IdGenerator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/util/JsonResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/util/JsonResult.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/util/JwtTokenUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/util/JwtTokenUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/util/TimeUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/util/TimeUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/util/rsa/JsonUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/util/rsa/JsonUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/util/rsa/JwtUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/util/rsa/JwtUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/util/rsa/Payload.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/util/rsa/Payload.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/java/cn/zjc/util/rsa/RsaUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/java/cn/zjc/util/rsa/RsaUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/resources/banner.txt" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/resources/banner.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/resources/datasources.properties" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/resources/datasources.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/resources/generatorConfig.xml" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/resources/generatorConfig.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/resources/log4j.properties" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/resources/log4j.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/resources/logback-spring.xml" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/resources/logback-spring.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/resources/mapping/SysRoleMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/resources/mapping/SysRoleMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/resources/mapping/SysUserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/resources/mapping/SysUserMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/resources/mapping/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/resources/mapping/UserMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/resources/rabbitmq.properties" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/resources/rabbitmq.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/resources/redis.properties" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/resources/redis.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/resources/templates/message.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/resources/templates/message.ftl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/main/resources/zk.properties" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/main/resources/zk.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-impl/src/test/java/cn/zjc/ApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/src/test/java/cn/zjc/ApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/oauth-server/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/oauth-authorization/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/oauth-server/src/main/java/com/zjc/OauthServerApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/oauth-authorization/src/main/java/com/zjc/OauthServerApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/oauth-server/src/main/java/com/zjc/config/OauthServerConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/oauth-authorization/src/main/java/com/zjc/config/AuthorizationServerConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/oauth-server/src/main/java/com/zjc/config/WebSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/oauth-authorization/src/main/java/com/zjc/config/WebSecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/oauth-server/src/main/java/com/zjc/domain/SysRole.java" beforeDir="false" afterPath="$PROJECT_DIR$/oauth-authorization/src/main/java/com/zjc/domain/SysRole.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/oauth-server/src/main/java/com/zjc/domain/SysUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/oauth-authorization/src/main/java/com/zjc/domain/SysUser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/oauth-server/src/main/java/com/zjc/mapper/RoleMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/oauth-authorization/src/main/java/com/zjc/mapper/RoleMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/oauth-server/src/main/java/com/zjc/mapper/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/oauth-authorization/src/main/java/com/zjc/mapper/UserMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/oauth-server/src/main/java/com/zjc/server/IUserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/oauth-authorization/src/main/java/com/zjc/server/IUserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/oauth-server/src/main/java/com/zjc/server/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/oauth-authorization/src/main/java/com/zjc/server/UserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/oauth-server/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/oauth-authorization/src/main/resources/application.yml" afterDir="false" />
     </list>
     <list id="0737b33e-3a59-4e82-b497-4a4d56e6c0d3" name="不提交文件" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_squareup_okhttp3_okhttp_4_7_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_squareup_okio_okio_2_6_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_bouncycastle_bcpkix_jdk15on_1_64.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_bouncycastle_bcprov_jdk15on_1_64.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_jetbrains_annotations_13_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_jetbrains_kotlin_kotlin_stdlib_1_3_71.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_jetbrains_kotlin_kotlin_stdlib_common_1_3_70.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_security_spring_security_jwt_1_1_1_RELEASE.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_security_oauth_spring_security_oauth2_2_0_14_RELEASE.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_security_oauth_spring_security_oauth2_2_3_5_RELEASE.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/spring-boot.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/spring-boot.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/oauth-server/oauth-server.iml" beforeDir="false" afterPath="$PROJECT_DIR$/oauth-resource/oauth-resource.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/spi-example/spi-api/spi-api.iml" beforeDir="false" afterPath="$PROJECT_DIR$/spi-example/spi-api/spi-api.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/spi-example/spi-example.iml" beforeDir="false" afterPath="$PROJECT_DIR$/spi-example/spi-example.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/spi-example/spi-server-dog/spi-server-dog.iml" beforeDir="false" afterPath="$PROJECT_DIR$/spi-example/spi-server-dog/spi-server-dog.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/spi-example/spi-server-pig/spi-server-pig.iml" beforeDir="false" afterPath="$PROJECT_DIR$/spi-example/spi-server-pig/spi-server-pig.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/spi-example/spi-test/spi-test.iml" beforeDir="false" afterPath="$PROJECT_DIR$/spi-example/spi-test/spi-test.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/spring-ioc/spring-ioc.iml" beforeDir="false" afterPath="$PROJECT_DIR$/spring-ioc/spring-ioc.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-server-api/springboot-server-api.iml" beforeDir="false" afterPath="$PROJECT_DIR$/oauth-resource/oauth-resource.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-server/springboot-server.iml" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-server/springboot-server.iml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -185,6 +49,20 @@
   </component>
   <component name="CodeInsightWorkspaceSettings">
     <option name="optimizeImportsOnTheFly" value="true" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -210,30 +88,40 @@
     </push-targets>
   </component>
   <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/.idea/encodings.xml">
+    <file path="$PROJECT_DIR$/.idea/workspace.xml">
       <ranges>
-        <range start1="4" end1="4" start2="4" end2="6" changelist="0737b33e-3a59-4e82-b497-4a4d56e6c0d3" />
-        <range start1="16" end1="16" start2="18" end2="19" changelist="2891f993-faff-46cd-b542-b0c6b24148cb" />
-        <range start1="18" end1="20" start2="21" end2="22" changelist="2891f993-faff-46cd-b542-b0c6b24148cb" />
-      </ranges>
-    </file>
-    <file path="$PROJECT_DIR$/.idea/modules.xml">
-      <ranges>
-        <range start1="4" end1="4" start2="4" end2="6" changelist="0737b33e-3a59-4e82-b497-4a4d56e6c0d3" />
-        <range start1="11" end1="13" start2="13" end2="14" changelist="2891f993-faff-46cd-b542-b0c6b24148cb" />
-      </ranges>
-    </file>
-    <file path="$PROJECT_DIR$/.idea/compiler.xml">
-      <ranges>
-        <range start1="9" end1="9" start2="9" end2="10" changelist="0737b33e-3a59-4e82-b497-4a4d56e6c0d3" />
-        <range start1="10" end1="12" start2="11" end2="13" changelist="2891f993-faff-46cd-b542-b0c6b24148cb" />
-        <range start1="14" end1="15" start2="15" end2="15" changelist="2891f993-faff-46cd-b542-b0c6b24148cb" />
-        <range start1="16" end1="17" start2="16" end2="18" changelist="2891f993-faff-46cd-b542-b0c6b24148cb" />
-        <range start1="20" end1="20" start2="21" end2="23" changelist="2891f993-faff-46cd-b542-b0c6b24148cb" />
-        <range start1="28" end1="28" start2="31" end2="32" changelist="2891f993-faff-46cd-b542-b0c6b24148cb" />
-        <range start1="29" end1="30" start2="33" end2="33" changelist="2891f993-faff-46cd-b542-b0c6b24148cb" />
-        <range start1="43" end1="43" start2="46" end2="47" changelist="2891f993-faff-46cd-b542-b0c6b24148cb" />
-        <range start1="44" end1="45" start2="48" end2="48" changelist="2891f993-faff-46cd-b542-b0c6b24148cb" />
+        <range start1="3" end1="36" start2="3" end2="5" changelist="2891f993-faff-46cd-b542-b0c6b24148cb" />
+        <range start1="37" end1="164" start2="6" end2="17" changelist="2891f993-faff-46cd-b542-b0c6b24148cb" />
+        <range start1="166" end1="166" start2="19" end2="27" changelist="2891f993-faff-46cd-b542-b0c6b24148cb" />
+        <range start1="169" end1="169" start2="30" end2="31" changelist="2891f993-faff-46cd-b542-b0c6b24148cb" />
+        <range start1="171" end1="171" start2="33" end2="35" changelist="2891f993-faff-46cd-b542-b0c6b24148cb" />
+        <range start1="177" end1="178" start2="41" end2="42" changelist="2891f993-faff-46cd-b542-b0c6b24148cb" />
+        <range start1="187" end1="187" start2="51" end2="65" changelist="2891f993-faff-46cd-b542-b0c6b24148cb" />
+        <range start1="212" end1="226" start2="90" end2="91" changelist="2891f993-faff-46cd-b542-b0c6b24148cb" />
+        <range start1="227" end1="236" start2="92" end2="125" changelist="2891f993-faff-46cd-b542-b0c6b24148cb" />
+        <range start1="278" end1="280" start2="167" end2="169" changelist="2891f993-faff-46cd-b542-b0c6b24148cb" />
+        <range start1="282" end1="283" start2="171" end2="172" changelist="2891f993-faff-46cd-b542-b0c6b24148cb" />
+        <range start1="290" end1="290" start2="179" end2="181" changelist="2891f993-faff-46cd-b542-b0c6b24148cb" />
+        <range start1="293" end1="295" start2="184" end2="184" changelist="2891f993-faff-46cd-b542-b0c6b24148cb" />
+        <range start1="297" end1="297" start2="186" end2="187" changelist="2891f993-faff-46cd-b542-b0c6b24148cb" />
+        <range start1="300" end1="301" start2="190" end2="190" changelist="2891f993-faff-46cd-b542-b0c6b24148cb" />
+        <range start1="324" end1="325" start2="213" end2="214" changelist="2891f993-faff-46cd-b542-b0c6b24148cb" />
+        <range start1="337" end1="366" start2="226" end2="226" changelist="2891f993-faff-46cd-b542-b0c6b24148cb" />
+        <range start1="425" end1="427" start2="285" end2="287" changelist="2891f993-faff-46cd-b542-b0c6b24148cb" />
+        <range start1="434" end1="434" start2="294" end2="295" changelist="2891f993-faff-46cd-b542-b0c6b24148cb" />
+        <range start1="470" end1="472" start2="331" end2="331" changelist="2891f993-faff-46cd-b542-b0c6b24148cb" />
+        <range start1="479" end1="480" start2="338" end2="338" changelist="2891f993-faff-46cd-b542-b0c6b24148cb" />
+        <range start1="481" end1="481" start2="339" end2="340" changelist="2891f993-faff-46cd-b542-b0c6b24148cb" />
+        <range start1="482" end1="484" start2="341" end2="341" changelist="2891f993-faff-46cd-b542-b0c6b24148cb" />
+        <range start1="490" end1="491" start2="347" end2="348" changelist="2891f993-faff-46cd-b542-b0c6b24148cb" />
+        <range start1="495" end1="496" start2="352" end2="353" changelist="2891f993-faff-46cd-b542-b0c6b24148cb" />
+        <range start1="499" end1="501" start2="356" end2="358" changelist="2891f993-faff-46cd-b542-b0c6b24148cb" />
+        <range start1="613" end1="676" start2="470" end2="473" changelist="2891f993-faff-46cd-b542-b0c6b24148cb" />
+        <range start1="957" end1="958" start2="754" end2="818" changelist="0737b33e-3a59-4e82-b497-4a4d56e6c0d3" />
+        <range start1="997" end1="998" start2="857" end2="859" changelist="0737b33e-3a59-4e82-b497-4a4d56e6c0d3" />
+        <range start1="1101" end1="1102" start2="962" end2="963" changelist="0737b33e-3a59-4e82-b497-4a4d56e6c0d3" />
+        <range start1="1106" end1="1107" start2="967" end2="968" changelist="0737b33e-3a59-4e82-b497-4a4d56e6c0d3" />
+        <range start1="1128" end1="1128" start2="989" end2="999" changelist="0737b33e-3a59-4e82-b497-4a4d56e6c0d3" />
       </ranges>
     </file>
   </component>
@@ -276,11 +164,11 @@
     <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file://E:/spring_boot/src/main/java/cn/zjc/aspect/redisdistributedlock/RedisLock.java" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/oauth-server/src/main/java/com/zjc/config" />
-    <property name="project.structure.last.edited" value="Project" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/registration-center/src/main/resources" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Console Font" />
   </component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
@@ -288,17 +176,17 @@
       <recent name="service.impl" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\spring-boot\registration-center\src\main\resources" />
+      <recent name="E:\spring-boot\oauth-resource\src\main\java\com\zjc\domain" />
       <recent name="E:\spring-boot\oauth-server\src\main\java\com\zjc\config" />
       <recent name="E:\spring-boot\oauth-server\src\main\java\com\zjc" />
       <recent name="E:\spring-boot\oauth-server\src" />
-      <recent name="E:\spring-boot\oauth-server\src\main\java\com\zjc\mapper" />
-      <recent name="E:\spring-boot\oauth-server\src\main\java\com\zjc\server" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.zjc.controller" />
       <recent name="cn.zjc.security" />
       <recent name="com.zjc.server" />
       <recent name="com.zjc.domain" />
-      <recent name="com.zjc.controller" />
       <recent name="" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -322,7 +210,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.SpringBootStrap">
+  <component name="RunManager" selected="Spring Boot.OauthServerApplication">
     <configuration default="true" type="Applet">
       <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
       <method v="2">
@@ -331,35 +219,6 @@
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ApplicationTests.secKill" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="springboot-server" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="cn.zjc.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="cn.zjc" />
-      <option name="MAIN_CLASS_NAME" value="cn.zjc.ApplicationTests" />
-      <option name="METHOD_NAME" value="secKill" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="OauthResourceTests.send" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="oauth-resource" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="OauthResourceTests" />
-      <option name="METHOD_NAME" value="send" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="PARAMETERS" value="" />
-      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -423,8 +282,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="OauthServerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
-      <module name="oauth-server" />
+    <configuration name="OauthServerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true">
+      <module name="oauth-authorization" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.zjc.*" />
@@ -432,6 +291,7 @@
         </pattern>
       </extension>
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.zjc.OauthServerApplication" />
+      <option name="ALTERNATIVE_JRE_PATH" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -468,8 +328,6 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="JUnit.ApplicationTests.secKill" />
-      <item itemvalue="JUnit.OauthResourceTests.send" />
       <item itemvalue="Maven.generator" />
       <item itemvalue="Spring Boot.OauthResourceStrap" />
       <item itemvalue="Spring Boot.SpringBootStrap" />
@@ -477,28 +335,26 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Spring Boot.SpringBootStrap" />
         <item itemvalue="Spring Boot.OauthServerApplication" />
+        <item itemvalue="Spring Boot.SpringBootStrap" />
         <item itemvalue="Spring Boot.OauthResourceStrap" />
-        <item itemvalue="JUnit.OauthResourceTests.send" />
-        <item itemvalue="JUnit.ApplicationTests.secKill" />
       </list>
     </recent_temporary>
   </component>
   <component name="ServiceViewManager">
     <option name="allServicesViewState">
       <serviceView>
-        <option name="contentProportion" value="0.17076503" />
+        <option name="contentProportion" value="0.19945355" />
         <treeState>
           <expand>
             <path>
               <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@b85476d9" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@15f1c9df" type="7427dc5b:ServiceModel$ServiceGroupNode" />
             </path>
             <path>
               <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@b85476d9" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@aaa3ba27" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@15f1c9df" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@c7ffa799" type="7427dc5b:ServiceModel$ServiceGroupNode" />
             </path>
           </expand>
           <select />
@@ -611,69 +467,9 @@
       <workItem from="1592153024037" duration="88000" />
       <workItem from="1592211472114" duration="2921000" />
       <workItem from="1592228971981" duration="844000" />
-    </task>
-    <task id="LOCAL-00009" summary="mybatis">
-      <created>1510993178618</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1510993178618</updated>
-    </task>
-    <task id="LOCAL-00010" summary="mybatis/log4j">
-      <created>1511016712348</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1511016712348</updated>
-    </task>
-    <task id="LOCAL-00011" summary="mybatis/log4j">
-      <created>1511099228487</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1511099228487</updated>
-    </task>
-    <task id="LOCAL-00012" summary="mybatis/log4j">
-      <created>1511687817442</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1511687817442</updated>
-    </task>
-    <task id="LOCAL-00013" summary="rabbitmq">
-      <created>1512305668372</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1512305668372</updated>
-    </task>
-    <task id="LOCAL-00014" summary="rabbitmq">
-      <created>1512898082486</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1512898082487</updated>
-    </task>
-    <task id="LOCAL-00015" summary="handler">
-      <created>1512900159721</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1512900159721</updated>
-    </task>
-    <task id="LOCAL-00016" summary="handler">
-      <created>1513421211558</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1513421211558</updated>
-    </task>
-    <task id="LOCAL-00017" summary="handler">
-      <created>1513526969644</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1513526969644</updated>
+      <workItem from="1592791912078" duration="61036000" />
+      <workItem from="1593246375281" duration="29330000" />
+      <workItem from="1594180323107" duration="18828000" />
     </task>
     <task id="LOCAL-00018" summary="handler">
       <created>1518622233476</created>

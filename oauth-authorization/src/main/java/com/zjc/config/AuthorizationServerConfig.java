@@ -3,7 +3,10 @@ package com.zjc.config;
 import com.zjc.server.IUserService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.crypto.bcrypt.BCrypt;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
@@ -14,15 +17,24 @@ import org.springframework.security.oauth2.provider.approval.JdbcApprovalStore;
 import org.springframework.security.oauth2.provider.client.JdbcClientDetailsService;
 import org.springframework.security.oauth2.provider.code.AuthorizationCodeServices;
 import org.springframework.security.oauth2.provider.code.JdbcAuthorizationCodeServices;
+import org.springframework.security.oauth2.provider.token.AuthorizationServerTokenServices;
+import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
+import org.springframework.security.oauth2.provider.token.TokenEnhancerChain;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JdbcTokenStore;
+import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
+import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 
 import javax.annotation.Resource;
 import javax.sql.DataSource;
+import java.util.Collections;
+import java.util.concurrent.TimeUnit;
 
 @Configuration
 @EnableAuthorizationServer
-public class OauthServerConfig extends AuthorizationServerConfigurerAdapter {
+public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
+
+    private static final String SIGNING_KEY = "zjc";
 
     /**
      * 数据库连接池对象
@@ -31,7 +43,7 @@ public class OauthServerConfig extends AuthorizationServerConfigurerAdapter {
     private DataSource dataSource;
 
     /**
-     * 认证业务对象
+     * 认证业务对象(UserDetailsService)
      */
     @Resource
     private IUserService userService;
@@ -42,22 +54,43 @@ public class OauthServerConfig extends AuthorizationServerConfigurerAdapter {
     @Resource
     private AuthenticationManager authenticationManager;
 
+    @Resource
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
+
     /**
      * 客户端信息来源
      * @return
      */
     @Bean
     public JdbcClientDetailsService jdbcClientDetailsService(){
-        return new JdbcClientDetailsService(dataSource);
+        JdbcClientDetailsService jdbcClientDetailsService = new JdbcClientDetailsService(dataSource);
+        jdbcClientDetailsService.setPasswordEncoder(bCryptPasswordEncoder);
+        return jdbcClientDetailsService;
     }
 
     /**
-     * token保存策略
+     * token保存策略(数据库方式)
      * @return
      */
     @Bean
-    public TokenStore tokenStore(){
+    public TokenStore jdbcTokenStore(){
         return new JdbcTokenStore(dataSource);
+    }
+
+    /**
+     * token保存策略(JWT)
+     * @return
+     */
+    @Bean
+    public TokenStore jwtTokenStore(){
+        return new JwtTokenStore(accessTokenConverter());
+    }
+
+    @Bean
+    public JwtAccessTokenConverter accessTokenConverter(){
+        JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
+        converter.setSigningKey(SIGNING_KEY);
+        return converter;
     }
 
     /**
@@ -78,6 +111,26 @@ public class OauthServerConfig extends AuthorizationServerConfigurerAdapter {
         return new JdbcAuthorizationCodeServices(dataSource);
     }
 
+    @Bean
+    public AuthorizationServerTokenServices tokenServices(){
+        DefaultTokenServices tokenServices = new DefaultTokenServices();
+        //token存储策略
+//        tokenServices.setTokenStore(jdbcTokenStore());
+        tokenServices.setTokenStore(jwtTokenStore());
+        //token增强(配合jwt模式)
+        TokenEnhancerChain tokenEnhancerChain = new TokenEnhancerChain();
+        tokenEnhancerChain.setTokenEnhancers(Collections.singletonList(accessTokenConverter()));
+        tokenServices.setTokenEnhancer(tokenEnhancerChain);
+        //是否产生刷新令牌
+        tokenServices.setSupportRefreshToken(true);
+        //客户端信息
+        tokenServices.setClientDetailsService(jdbcClientDetailsService());
+        // token有效期30天
+        tokenServices.setAccessTokenValiditySeconds( (int) TimeUnit.DAYS.toSeconds(30));
+        tokenServices.setRefreshTokenValiditySeconds((int) TimeUnit.DAYS.toSeconds(30));
+        return tokenServices;
+    }
+
     /**
      * 指定客户端信息的数据库来源
      * @param clients
@@ -89,14 +142,15 @@ public class OauthServerConfig extends AuthorizationServerConfigurerAdapter {
     }
 
     /**
-     * 检查token的策略
+     * token的安全策略
      * @param security
      * @throws Exception
      */
     @Override
     public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
         security.allowFormAuthenticationForClients();
-        security.checkTokenAccess("isAuthenticated()");
+        security.checkTokenAccess("permitAll()");
+        security.tokenKeyAccess("permitAll()");
     }
 
     /**
@@ -109,20 +163,24 @@ public class OauthServerConfig extends AuthorizationServerConfigurerAdapter {
         endpoints
                 .userDetailsService(userService)
                 .approvalStore(approvalStore())
+                //密码模式需要
                 .authenticationManager(authenticationManager)
+                //授权码模式需要
                 .authorizationCodeServices(authorizationCodeServices())
-                .tokenStore(tokenStore());
+                //允许post提交，默认配置就是post
+                .allowedTokenEndpointRequestMethods(HttpMethod.POST)
+                //配置令牌管理
+                .tokenServices(tokenServices());
+
         // 替换授权页面的url
 //        endpoints.pathMapping("/oauth/confirm_access","/custom/confirm_access");
 
-        // 配置TokenServices参数
-//        DefaultTokenServices tokenServices = new DefaultTokenServices();
-//        tokenServices.setTokenStore(endpoints.getTokenStore());
-//        tokenServices.setSupportRefreshToken(false);
-//        tokenServices.setClientDetailsService(endpoints.getClientDetailsService());
-//        tokenServices.setTokenEnhancer(endpoints.getTokenEnhancer());
-//        tokenServices.setAccessTokenValiditySeconds( (int) TimeUnit.DAYS.toSeconds(30)); // 30天
-//        endpoints.tokenServices(tokenServices);
+
+    }
+
+    public static void main(String[] args) {
+        String zjc = BCrypt.hashpw("zjc", BCrypt.gensalt());
+        System.out.println(zjc);
     }
 
 }
