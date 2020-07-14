@@ -6,8 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 @MapperScan("com.zjc.mapper")
-public class OauthServerApplication {
+public class OauthAuthorizationApplication {
     public static void main(String[] args) {
-        SpringApplication.run(OauthServerApplication.class, args);
+        SpringApplication.run(OauthAuthorizationApplication.class, args);
     }
 }

@@ -1,7 +1,7 @@
 package cn.zjc.mapper.user;
 
 import cn.zjc.mapper.BaseMapper;
-import cn.zjc.model.user.User;
+import com.zjc.Entity.user.User;
 
 /**
  * @author : zhangjiacheng

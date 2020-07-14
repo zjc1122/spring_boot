@@ -1,14 +1,15 @@
 package cn.zjc.server.user.impl;
 
 import cn.zjc.mapper.user.UserMapper;
-import cn.zjc.model.user.User;
-import cn.zjc.server.user.UserService;
 import com.alicp.jetcache.anno.CacheInvalidate;
 import com.alicp.jetcache.anno.CacheRefresh;
 import com.alicp.jetcache.anno.CacheUpdate;
 import com.alicp.jetcache.anno.Cached;
+import com.alicp.jetcache.anno.KeyConvertor;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.zjc.Entity.user.User;
+import com.zjc.Server.UserService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,6 +23,7 @@ import java.util.List;
  * @Description : UserServiceImpl
  */
 @Service
+@com.alibaba.dubbo.config.annotation.Service(group = "userGroup",version = "1.0.0",timeout = 3000)
 public class UserServiceImpl implements UserService {
 
     @Resource
@@ -51,7 +53,7 @@ public class UserServiceImpl implements UserService {
      * @return
      */
     @Override
-    @Cached(name = "userCache_", key = "#id", expire = 60, cacheNullValue = true)
+    @Cached(name = "userCache_", key = "#id", expire = 120, cacheNullValue = true, keyConvertor = KeyConvertor.FASTJSON)
     @CacheRefresh(refresh = 30, stopRefreshAfterLastAccess = 120)
     public User selectByPrimaryKey(Long id) {
         return userMapper.selectByPrimaryKey(id);

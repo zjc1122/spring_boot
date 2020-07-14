@@ -1,7 +1,7 @@
-package cn.zjc.server.user;
+package com.zjc.Server;
 
-import cn.zjc.model.user.User;
 import com.github.pagehelper.PageInfo;
+import com.zjc.Entity.user.User;
 
 import java.util.List;
 

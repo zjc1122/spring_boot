@@ -30,7 +30,7 @@ import java.util.Map;
  * @Description : JetCache基本配置
  */
 @Configuration
-@EnableMethodCache(basePackages = "cn.zjc")
+@EnableMethodCache(basePackages = "")
 @EnableCreateCacheAnnotation
 public class JetCacheConfig {
 

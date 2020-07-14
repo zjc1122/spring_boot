@@ -1,9 +1,10 @@
 package cn.zjc.controller.user;
 
-import cn.zjc.model.user.User;
-import cn.zjc.server.user.UserService;
+
 import cn.zjc.util.JsonResult;
 import com.github.pagehelper.PageInfo;
+import com.zjc.Entity.user.User;
+import com.zjc.Server.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.cache.annotation.CacheEvict;

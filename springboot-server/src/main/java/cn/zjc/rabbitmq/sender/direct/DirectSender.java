@@ -1,6 +1,6 @@
 package cn.zjc.rabbitmq.sender.direct;
 
-import cn.zjc.model.user.User;
+import com.zjc.Entity.user.User;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.amqp.rabbit.support.CorrelationData;
 import org.springframework.stereotype.Component;

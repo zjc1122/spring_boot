@@ -1,9 +1,14 @@
-package cn.zjc.model.user;
+package com.zjc.Entity.user;
 
-import cn.zjc.model.BaseEntity;
-import lombok.*;
+import com.zjc.Entity.BaseEntity;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.Table;
+import java.io.Serializable;
 
 
 @Data
@@ -12,7 +17,7 @@ import javax.persistence.Table;
 @ToString
 @Builder
 @Table(name = "t_user")
-public class User extends BaseEntity {
+public class User extends BaseEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
 

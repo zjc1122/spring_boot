@@ -2,12 +2,12 @@ package cn.zjc.test;
 
 import cn.zjc.aspect.throwing.ThrowingMail;
 import cn.zjc.designmode.strategy.ModelService;
-import cn.zjc.model.user.User;
-import cn.zjc.server.user.UserService;
 import cn.zjc.server.util.RedisService;
 import cn.zjc.server.util.RedissonService;
 import cn.zjc.util.JsonResult;
 import com.github.pagehelper.PageInfo;
+import com.zjc.Entity.user.User;
+import com.zjc.Server.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.redisson.api.RLock;
 import org.springframework.cache.annotation.Cacheable;

@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: dubbo-user-consumer
+  session:
+    store-type: none
+dubbo:
+  application:
+    id: dubbo-consumer
+    name: dubbo-consumer
+  protocol:
+    id: dubbo
+    name: dubbo
+    port: 20881
+  registry:
+    id: zookeeper # 选择注册中心
+    address: zookeeper://127.0.0.1:2181 # Zookeeper地址，这是单应用，非集群
+  monitor:
+    protocol: register
+  consumer:
+    check:  false
+    timeout: 3000
+server:
+  port: 9003
