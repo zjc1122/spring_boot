@@ -1,11 +1,10 @@
 package cn.zjc.config;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.http.HttpHost;
 import org.elasticsearch.client.RestClient;
 import org.elasticsearch.client.RestClientBuilder;
 import org.elasticsearch.client.RestHighLevelClient;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.FactoryBean;
 import org.springframework.beans.factory.InitializingBean;
@@ -14,14 +13,14 @@ import org.springframework.context.annotation.Configuration;
 
 /**
  * @author : zhangjiacheng
- * @ClassName : EsRestConfig
+ * @ClassName : RestClientConfig
  * @date : 2018/6/11
- * @Description : ES配置类
+ * @Description : RestClient配置类
  */
 @Configuration
-public class EsRestConfig implements FactoryBean<RestHighLevelClient>, InitializingBean, DisposableBean {
+@Slf4j
+public class RestClientConfig implements FactoryBean<RestClient>, InitializingBean, DisposableBean {
 
-    private static final Logger logger = LoggerFactory.getLogger(EsRestConfig.class);
 
     @Value("${httpHost.host}")
     private String host;
@@ -34,30 +33,28 @@ public class EsRestConfig implements FactoryBean<RestHighLevelClient>, Initializ
     @Value("${esclient.connectPerRoute}")
     private Integer connectPerRoute;
 
-    private RestHighLevelClient restHighLevelClient;
-    private RestClientBuilder builder;
+    private RestClientBuilder restClientBuilder;
     private RestClient restClient;
-    private HttpHost httpHost = null;
 
-    private final int CONNECT_TIME_OUT = 1000;
-    private final int SOCKET_TIME_OUT = 30000;
-    private final int CONNECTION_REQUEST_TIME_OUT = 500;
+    private static final int CONNECT_TIME_OUT = 5000;
+    private static final int SOCKET_TIME_OUT = 60000;
+    private static final int CONNECTION_REQUEST_TIME_OUT = 5000;
 
     @Override
     public void destroy(){
         try {
-            logger.info("Closing elasticSearch client");
+            log.info("Closing elasticSearch client");
             if (restClient != null) {
                 restClient.close();
             }
         } catch (final Exception e) {
-            logger.error("Error closing ElasticSearch client: ", e);
+            log.error("Error closing ElasticSearch client: ", e);
         }
     }
 
     @Override
-    public RestHighLevelClient getObject(){
-        return restHighLevelClient;
+    public RestClient getObject(){
+        return restClient;
     }
 
     @Override
@@ -76,14 +73,12 @@ public class EsRestConfig implements FactoryBean<RestHighLevelClient>, Initializ
     }
 
     private void buildClient() {
-        if (httpHost == null) {
-            builder = RestClient.builder(httpHost());
-        }
-        setConnectTimeOutConfig();
-        setMutiConnectConfig();
-        restClient = builder.build();
-        restHighLevelClient = new RestHighLevelClient(restClient);
-        logger.info("ElasticsearchClient RestHighLevelClient 连接成功");
+        restClientBuilder = RestClient
+                .builder(httpHost());
+        setHttpClientConfigCallback();
+        setRequestConfigCallback();
+        restClient = restClientBuilder.build();
+        log.info("ElasticsearchClient RestClient 初始化成功");
     }
 
     private HttpHost httpHost() {
@@ -93,8 +88,8 @@ public class EsRestConfig implements FactoryBean<RestHighLevelClient>, Initializ
     /**
      * 异步httpclient的连接数配置
      */
-    private void setMutiConnectConfig() {
-        builder.setHttpClientConfigCallback(httpClientBuilder -> {
+    private void setHttpClientConfigCallback() {
+        restClientBuilder.setHttpClientConfigCallback(httpClientBuilder -> {
             httpClientBuilder.setMaxConnTotal(connectNum);
             httpClientBuilder.setMaxConnPerRoute(connectPerRoute);
             return httpClientBuilder;
@@ -104,8 +99,8 @@ public class EsRestConfig implements FactoryBean<RestHighLevelClient>, Initializ
     /**
      * 异步httpclient的连接延时配置
      */
-    private void setConnectTimeOutConfig() {
-        builder.setRequestConfigCallback(requestConfigBuilder -> {
+    private void setRequestConfigCallback() {
+        restClientBuilder.setRequestConfigCallback(requestConfigBuilder -> {
             requestConfigBuilder.setConnectTimeout(CONNECT_TIME_OUT);
             requestConfigBuilder.setSocketTimeout(SOCKET_TIME_OUT);
             requestConfigBuilder.setConnectionRequestTimeout(CONNECTION_REQUEST_TIME_OUT);
