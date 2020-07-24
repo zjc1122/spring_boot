@@ -19,7 +19,6 @@ import org.springframework.security.oauth2.provider.code.AuthorizationCodeServic
 import org.springframework.security.oauth2.provider.code.JdbcAuthorizationCodeServices;
 import org.springframework.security.oauth2.provider.token.AuthorizationServerTokenServices;
 import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
-import org.springframework.security.oauth2.provider.token.TokenEnhancerChain;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JdbcTokenStore;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
@@ -27,7 +26,6 @@ import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 
 import javax.annotation.Resource;
 import javax.sql.DataSource;
-import java.util.Collections;
 import java.util.concurrent.TimeUnit;
 
 @Configuration
@@ -115,12 +113,12 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     public AuthorizationServerTokenServices tokenServices(){
         DefaultTokenServices tokenServices = new DefaultTokenServices();
         //token存储策略
-//        tokenServices.setTokenStore(jdbcTokenStore());
-        tokenServices.setTokenStore(jwtTokenStore());
-        //token增强(配合jwt模式)
-        TokenEnhancerChain tokenEnhancerChain = new TokenEnhancerChain();
-        tokenEnhancerChain.setTokenEnhancers(Collections.singletonList(accessTokenConverter()));
-        tokenServices.setTokenEnhancer(tokenEnhancerChain);
+        tokenServices.setTokenStore(jdbcTokenStore());
+//        tokenServices.setTokenStore(jwtTokenStore());
+//        //token增强(配合jwt模式)
+//        TokenEnhancerChain tokenEnhancerChain = new TokenEnhancerChain();
+//        tokenEnhancerChain.setTokenEnhancers(Collections.singletonList(accessTokenConverter()));
+//        tokenServices.setTokenEnhancer(tokenEnhancerChain);
         //是否产生刷新令牌
         tokenServices.setSupportRefreshToken(true);
         //客户端信息

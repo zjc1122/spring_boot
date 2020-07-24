@@ -13,7 +13,7 @@ dubbo:
     port: 20881
   registry:
     id: zookeeper # 选择注册中心
-    address: zookeeper://127.0.0.1:2181 # Zookeeper地址，这是单应用，非集群
+    address: zookeeper://47.93.201.189:2181 # Zookeeper地址，这是单应用，非集群
   monitor:
     protocol: register
   consumer:

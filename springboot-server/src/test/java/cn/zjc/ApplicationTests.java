@@ -6,6 +6,8 @@ import cn.zjc.server.util.IdGeneratorService;
 import cn.zjc.test.DistributedTest;
 import com.google.common.collect.Lists;
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
+import com.zjc.Entity.user.User;
+import com.zjc.Server.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -47,6 +49,8 @@ public class ApplicationTests {
     private TopicSender topicSender;
     @Resource
     private IdGeneratorService idGeneratorService;
+    @Resource
+    private UserService userService;
 
     @Test
     public void secKill() throws InterruptedException {
@@ -110,5 +114,11 @@ public class ApplicationTests {
             //优雅地关闭线程池
             executorService.shutdown();
         }
+    }
+
+    @Test
+    public void test1() {
+        List<User> users = userService.selectAll();
+        System.out.println(users.size());
     }
 }

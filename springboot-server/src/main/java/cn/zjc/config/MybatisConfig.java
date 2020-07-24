@@ -2,13 +2,12 @@ package cn.zjc.config;
 
 import cn.zjc.aspect.db.DynamicDataSource;
 import cn.zjc.enums.DataBaseTypeEnum;
+import com.baomidou.mybatisplus.extension.spring.MybatisSqlSessionFactoryBean;
 import com.github.pagehelper.PageHelper;
 import com.google.common.collect.Maps;
 import org.apache.ibatis.plugin.Interceptor;
 import org.apache.ibatis.session.SqlSessionFactory;
-import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
-import org.mybatis.spring.annotation.MapperScan;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
@@ -32,7 +31,6 @@ import java.util.Properties;
  * @Description : mybatis配置类
  */
 @Configuration
-@MapperScan("cn.zjc.mapper")
 public class MybatisConfig implements TransactionManagementConfigurer {
     @Resource
     DataSource defaultDataSource;
@@ -75,7 +73,9 @@ public class MybatisConfig implements TransactionManagementConfigurer {
 
     @Bean(name = "sqlSessionFactory")
     public SqlSessionFactory sqlSessionFactoryBean(DynamicDataSource ds) {
-        SqlSessionFactoryBean bean = new SqlSessionFactoryBean();
+//        SqlSessionFactoryBean bean = new SqlSessionFactoryBean();
+//        调整 SqlSessionFactory 为 MyBatis-Plus 的 SqlSessionFactory
+        MybatisSqlSessionFactoryBean bean = new MybatisSqlSessionFactoryBean();
         bean.setDataSource(ds);
         bean.setTypeAliasesPackage("cn.zjc.model");
         //分页插件,插件无非是设置mybatis的拦截器

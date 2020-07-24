@@ -76,7 +76,7 @@ public class SysUserController {
      * 根据oauth的code换取token,并将token返回给前端
      * @return
      */
-    @RequestMapping(value = "/oauth/token", method = RequestMethod.GET)
+    @RequestMapping(value = "/oauth/callback", method = RequestMethod.GET)
     public JsonResult oauthToken(@RequestParam("code") String code) {
         log.info("code--->{}",code);
         if (StringUtils.isBlank(code)){
