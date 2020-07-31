@@ -56,13 +56,23 @@ public class OauthResourceConfig extends ResourceServerConfigurerAdapter {
 //        return converter;
 //    }
 
+//    /**
+//     * 指定当前资源的id和存储方案(jwt)
+//     * @param resources
+//     * @throws Exception
+//     */
+//    @Override
+//    public void configure(ResourceServerSecurityConfigurer resources) {
+//        resources.resourceId("user_api").tokenStore(jwtTokenStore());
+//    }
+
     /**
-     * 指定当前资源的id和存储方案
+     * 指定当前资源的id和存储方案(jdbc)
      * @param resources
      * @throws Exception
      */
     @Override
-    public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
+    public void configure(ResourceServerSecurityConfigurer resources) {
         resources.resourceId("user_api").tokenStore(jdbcTokenStore());
     }
 
