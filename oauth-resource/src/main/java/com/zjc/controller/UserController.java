@@ -1,5 +1,6 @@
 package com.zjc.controller;
 
+import com.google.gson.GsonBuilder;
 import com.zjc.service.IUserServer;
 import com.zjc.user.User;
 import lombok.extern.slf4j.Slf4j;
@@ -37,7 +38,8 @@ public class UserController {
     @Secured({"ROLE_USER","ROLE_ADMIN"})
     public List<User> findAllUser(@RequestParam("key") String key) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        System.out.println(key);
+        log.info(new GsonBuilder().serializeNulls().create().toJson(authentication.getAuthorities()));
+        log.info("key------>{}",key);
         log.info("获取oauth访问权限");
         return userService.findAll();
     }
