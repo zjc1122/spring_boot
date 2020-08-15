@@ -4,13 +4,12 @@ import cn.zjc.enums.SystemCodeEnum;
 import cn.zjc.model.util.SystemMsg;
 import cn.zjc.util.JsonResult;
 import cn.zjc.util.TimeUtil;
-import org.springframework.boot.autoconfigure.web.ErrorAttributes;
-import org.springframework.boot.autoconfigure.web.ErrorController;
+import org.springframework.boot.web.servlet.error.ErrorAttributes;
+import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.context.request.RequestAttributes;
-import org.springframework.web.context.request.ServletRequestAttributes;
+import org.springframework.web.context.request.ServletWebRequest;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -32,11 +31,24 @@ public class MyErrorController implements ErrorController {
 
     private static final String ERROR_PATH = "/error";
 
+    @Override
+    public String getErrorPath() {
+        return ERROR_PATH;
+    }
+
+    private Map<String, Object> getErrorAttributes(HttpServletRequest request) {
+        //1.5.8版本使用
+//        RequestAttributes requestAttributes = new ServletRequestAttributes(request);
+        //2.3.1版本使用
+        ServletWebRequest servletWebRequest = new ServletWebRequest(request);
+        return errorAttributes.getErrorAttributes(servletWebRequest, true);
+    }
+
     @RequestMapping(value = ERROR_PATH)
     @ResponseBody
     public JsonResult handleError(HttpServletRequest request, HttpServletResponse response) {
 
-        Map<String, Object> errorAttributes = getErrorAttributes(request, true);
+        Map<String, Object> errorAttributes = getErrorAttributes(request);
         String message = (String) errorAttributes.get("message");
         String error = (String) errorAttributes.get("error");
         Integer status = (Integer) errorAttributes.get("status");
@@ -76,15 +88,5 @@ public class MyErrorController implements ErrorController {
                 msg = "系统繁忙";
         }
         return JsonResult.failed(SystemCodeEnum.ERROR.getCode(), msg, systemMsg);
-    }
-
-    @Override
-    public String getErrorPath() {
-        return ERROR_PATH;
-    }
-
-    private Map<String, Object> getErrorAttributes(HttpServletRequest request, boolean includeStackTrace) {
-        RequestAttributes requestAttributes = new ServletRequestAttributes(request);
-        return errorAttributes.getErrorAttributes(requestAttributes, includeStackTrace);
     }
 }

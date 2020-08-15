@@ -17,8 +17,8 @@ import org.springframework.context.annotation.Configuration;
  * @date : 2018/6/11
  * @Description : RestHighLevelClient配置类
  */
-@Configuration
 @Slf4j
+@Configuration
 public class RestHighLevelClientConfig implements FactoryBean<RestHighLevelClient>, InitializingBean, DisposableBean {
 
 

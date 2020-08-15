@@ -4,7 +4,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.http.HttpHost;
 import org.elasticsearch.client.RestClient;
 import org.elasticsearch.client.RestClientBuilder;
-import org.elasticsearch.client.RestHighLevelClient;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.FactoryBean;
 import org.springframework.beans.factory.InitializingBean;
@@ -17,8 +16,8 @@ import org.springframework.context.annotation.Configuration;
  * @date : 2018/6/11
  * @Description : RestClient配置类
  */
-@Configuration
 @Slf4j
+@Configuration
 public class RestClientConfig implements FactoryBean<RestClient>, InitializingBean, DisposableBean {
 
 
@@ -58,8 +57,8 @@ public class RestClientConfig implements FactoryBean<RestClient>, InitializingBe
     }
 
     @Override
-    public Class<RestHighLevelClient> getObjectType() {
-        return RestHighLevelClient.class;
+    public Class<RestClient> getObjectType() {
+        return RestClient.class;
     }
 
     @Override

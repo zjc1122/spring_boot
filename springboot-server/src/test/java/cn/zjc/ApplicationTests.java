@@ -3,6 +3,7 @@ package cn.zjc;
 import cn.zjc.rabbitmq.sender.direct.DirectSender;
 import cn.zjc.rabbitmq.sender.topic.TopicSender;
 import cn.zjc.server.util.IdGeneratorService;
+import cn.zjc.server.util.JedisService;
 import cn.zjc.test.DistributedTest;
 import com.google.common.collect.Lists;
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
@@ -51,6 +52,8 @@ public class ApplicationTests {
     private IdGeneratorService idGeneratorService;
     @Resource
     private UserService userService;
+    @Resource
+    private JedisService jedisService;
 
     @Test
     public void secKill() throws InterruptedException {
@@ -120,5 +123,11 @@ public class ApplicationTests {
     public void test1() {
         List<User> users = userService.selectAll();
         System.out.println(users.size());
+    }
+
+    @Test
+    public void test2() {
+        boolean b = jedisService.setNx("zjc","test1",100000);
+        System.out.println(b);
     }
 }

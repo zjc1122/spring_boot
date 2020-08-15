@@ -53,7 +53,7 @@ public class RedisLockAspect {
                 //持锁时间
                 String keepMills = String.valueOf(System.currentTimeMillis() + lockInfo.keepMills());
                 //上锁
-                lock = jedisService.setNX(lockKey, keepMills, lockInfo.keepMills());
+                lock = jedisService.setNx(lockKey, keepMills, lockInfo.keepMills());
                 // 得到锁，没有人加过相同的锁
                 if (lock) {
                     logger.info("得到锁...");

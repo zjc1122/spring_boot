@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
+import redis.clients.jedis.params.SetParams;
 
 import javax.annotation.Resource;
 
@@ -37,13 +38,16 @@ public class JedisService {
      * @param value
      * @return
      */
-    public boolean setNX(String key, String value, long time) {
+    public boolean setNx(String key, String value, long time) {
         boolean res = false;
         Jedis jedis = null;
         try {
             jedis = jedisPool.getResource();
-            String set = jedis.set(key, value, NX, PX, time);
-            if (StringUtils.isBlank(set)) {
+            SetParams setParams = new SetParams();
+            setParams.nx();
+            setParams.px(time);
+            String set = jedis.set(key, value, setParams);
+            if (StringUtils.isNotBlank(set)) {
                 res = true;
             }
         } catch (Exception e) {
@@ -67,7 +71,7 @@ public class JedisService {
         try {
             jedis = jedisPool.getResource();
             set = jedis.getSet(key, value);
-            if (StringUtils.isBlank(set)) {
+            if (StringUtils.isNotBlank(set)) {
                 return 0;
             }
         } catch (Exception e) {
@@ -85,7 +89,7 @@ public class JedisService {
         try {
             jedis = jedisPool.getResource();
             value = jedis.get(key);
-            if (StringUtils.isBlank(value)) {
+            if (StringUtils.isNotBlank(value)) {
                 return 0;
             }
         } catch (Exception e) {
@@ -133,7 +137,7 @@ public class JedisService {
      */
     private void returnResource(Jedis jedis) {
         if (jedis != null) {
-            jedisPool.returnResource(jedis);
+            jedis.close();
         }
     }
 }

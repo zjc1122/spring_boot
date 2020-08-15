@@ -4,6 +4,7 @@ import com.alicp.jetcache.CacheBuilder;
 import com.alicp.jetcache.anno.CacheConsts;
 import com.alicp.jetcache.anno.config.EnableCreateCacheAnnotation;
 import com.alicp.jetcache.anno.config.EnableMethodCache;
+import com.alicp.jetcache.anno.support.ConfigProvider;
 import com.alicp.jetcache.anno.support.GlobalCacheConfig;
 import com.alicp.jetcache.anno.support.SpringConfigProvider;
 import com.alicp.jetcache.embedded.EmbeddedCacheBuilder;
@@ -19,7 +20,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
-import redis.clients.util.Pool;
+import redis.clients.jedis.util.Pool;
 
 import java.util.Map;
 
@@ -30,7 +31,7 @@ import java.util.Map;
  * @Description : JetCache基本配置
  */
 @Configuration
-@EnableMethodCache(basePackages = "")
+@EnableMethodCache(basePackages = "cn.zjc")
 @EnableCreateCacheAnnotation
 public class JetCacheConfig {
 
@@ -48,13 +49,18 @@ public class JetCacheConfig {
         return new JedisPool(pc, host, port);
     }
 
+    /**
+     * JetCache设置配置提供者
+     */
     @Bean
-    public SpringConfigProvider springConfigProvider() {
+    public ConfigProvider configProvider(GlobalCacheConfig globalCacheConfig) {
+        ConfigProvider configProvider = new ConfigProvider();
+        configProvider.setGlobalCacheConfig(globalCacheConfig);
         return new SpringConfigProvider();
     }
 
     @Bean
-    public GlobalCacheConfig config(SpringConfigProvider configProvider, Pool<Jedis> pool) {
+    public GlobalCacheConfig globalCacheConfig(Pool<Jedis> pool) {
         //配置本地缓存
         Map<String, CacheBuilder> localBuilders = Maps.newHashMap();
         EmbeddedCacheBuilder localBuilder = LinkedHashMapCacheBuilder
@@ -73,10 +79,13 @@ public class JetCacheConfig {
 
         //全局配置
         GlobalCacheConfig globalCacheConfig = new GlobalCacheConfig();
-        globalCacheConfig.setConfigProvider(configProvider);
+        //设置本地缓存信息
         globalCacheConfig.setLocalCacheBuilders(localBuilders);
+        // 设置远程缓存信息
         globalCacheConfig.setRemoteCacheBuilders(remoteBuilders);
+        // 设置统计间隔
         globalCacheConfig.setStatIntervalMinutes(15);
+        // 禁止启用Area
         globalCacheConfig.setAreaInCacheName(false);
 
         return globalCacheConfig;

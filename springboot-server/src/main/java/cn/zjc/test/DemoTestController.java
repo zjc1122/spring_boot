@@ -85,7 +85,6 @@ public class DemoTestController {
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
     public void delete(Long id) {
         userService.deleteById(id);
-        return;
     }
 
     @RequestMapping(value = "/test", method = RequestMethod.GET)

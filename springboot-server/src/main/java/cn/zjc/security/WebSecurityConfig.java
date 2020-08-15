@@ -26,8 +26,7 @@ import org.springframework.security.web.authentication.logout.LogoutSuccessHandl
 import org.springframework.security.web.session.HttpSessionEventPublisher;
 import org.springframework.security.web.session.SessionInformationExpiredStrategy;
 import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
-import org.springframework.session.web.http.HeaderHttpSessionStrategy;
-import org.springframework.session.web.http.HttpSessionStrategy;
+import org.springframework.session.web.http.HeaderHttpSessionIdResolver;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
@@ -70,10 +69,20 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
      * 生成x-auth-token头信息,格式为(x-auth-token : 062e995b-6e21-4ad5-a96c-b837389d5f7e)
      * 注释掉此方法则生成session头信息，格式为(Cookie : SESSION=09cc4ffe-7ad5-4455-962b-148053effb34)
      * 在postman用2个账号登录获得的session是一样的
+     * 1.3版本
+     */
+//    @Bean
+//    public HttpSessionStrategy httpSessionStrategy() {
+//        return new HeaderHttpSessionStrategy();
+//    }
+
+    /**
+     * 2.2版本
+     * @return
      */
     @Bean
-    public HttpSessionStrategy httpSessionStrategy() {
-        return new HeaderHttpSessionStrategy();
+    public HeaderHttpSessionIdResolver httpSessionStrategy() {
+        return new HeaderHttpSessionIdResolver("x-auth-token");
     }
 
     /**
