@@ -23,9 +23,14 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.annotation.Resource;
 import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.ThreadPoolExecutor;
@@ -129,5 +134,39 @@ public class ApplicationTests {
     public void test2() {
         boolean b = jedisService.setNx("zjc","test1",100000);
         System.out.println(b);
+    }
+
+    /**
+     * SimpleDateFormat线程不安全例子
+     * @throws ParseException
+     */
+    private static ThreadLocal<DateFormat> sdfThreadLocal = ThreadLocal.withInitial(() -> new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"));
+
+    @Test
+    public void test3() {
+        ExecutorService executorService = Executors.newCachedThreadPool();
+        List<String> dateStrList = Lists.newArrayList(
+                "2018-04-01 10:00:01",
+                "2018-04-02 11:00:02",
+                "2018-04-03 12:00:03",
+                "2018-04-04 13:00:04",
+                "2018-04-05 14:00:05"
+        );
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        for (String str : dateStrList) {
+            executorService.execute(() -> {
+                try {
+                    //放到里面就线程安全了
+//                    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+                    //线程安全的方式，使用Threadlocal
+                    sdfThreadLocal.get().parse(str);
+                    Date parse = simpleDateFormat.parse(str);
+                    System.out.println(parse);
+                    TimeUnit.SECONDS.sleep(1);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            });
+        }
     }
 }
