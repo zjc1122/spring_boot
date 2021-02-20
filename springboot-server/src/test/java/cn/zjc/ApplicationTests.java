@@ -26,6 +26,7 @@ import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
@@ -132,8 +133,18 @@ public class ApplicationTests {
 
     @Test
     public void test2() {
+        ArrayList<Object> objects = Lists.newArrayList();
         boolean b = jedisService.setNx("zjc","test1",100000);
         System.out.println(b);
+    }
+
+    /**
+     * 事物测试
+     * serviceA不加@Transactional注解，调用serviceB的方法,如果serviceB的方法抛异常不会影响自己方法的事物，反之会影响。
+     */
+    @Test
+    public void test7(){
+        userService.deleteById(1L);
     }
 
     /**

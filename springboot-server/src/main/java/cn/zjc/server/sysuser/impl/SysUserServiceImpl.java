@@ -6,6 +6,7 @@ import cn.zjc.server.base.impl.BaseServerImpl;
 import cn.zjc.server.sysuser.SysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 
@@ -26,6 +27,14 @@ public class SysUserServiceImpl extends BaseServerImpl<SysUser> implements SysUs
     @Override
     public SysUser getByUsername(String username) {
         return sysUserMapper.selectSysUserByUsername(username);
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void add(SysUser sysUser) {
+
+        sysUserMapper.insert(sysUser);
+        int i = 1 / 0;
     }
 
 }

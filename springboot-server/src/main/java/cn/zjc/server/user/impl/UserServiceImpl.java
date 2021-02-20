@@ -1,6 +1,8 @@
 package cn.zjc.server.user.impl;
 
 import cn.zjc.mapper.user.UserMapper;
+import cn.zjc.model.sysuser.SysUser;
+import cn.zjc.server.sysuser.SysUserService;
 import com.alicp.jetcache.anno.CacheInvalidate;
 import com.alicp.jetcache.anno.CacheRefresh;
 import com.alicp.jetcache.anno.CacheUpdate;
@@ -28,6 +30,9 @@ public class UserServiceImpl implements UserService {
 
     @Resource
     private UserMapper userMapper;
+
+    @Resource
+    private SysUserService sysUserService;
 
 
     @Override
@@ -98,6 +103,13 @@ public class UserServiceImpl implements UserService {
     @CacheInvalidate(name = "userCache_", key = "#id")
     @Transactional(rollbackFor = Exception.class)
     public Integer deleteById(Long id) {
-        return userMapper.deleteByPrimaryKey(id);
+        SysUser sysUser = new SysUser();
+        sysUser.setLoginName("a");
+        sysUser.setPassword("a");
+        sysUser.setSalt("a");
+        sysUser.setUsername("z");
+        userMapper.deleteByPrimaryKey(id);
+        sysUserService.add(sysUser);
+        return 1;
     }
 }

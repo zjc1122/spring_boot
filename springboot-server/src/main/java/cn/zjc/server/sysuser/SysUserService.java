@@ -16,4 +16,6 @@ public interface SysUserService extends BaseServer<SysUser> {
      */
     SysUser getByUsername(String username);
 
+    void add(SysUser sysUser);
+
 }
