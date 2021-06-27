@@ -1,7 +1,6 @@
 package cn.zjc.test;
 
 import cn.zjc.aspect.throwing.ThrowingMail;
-import cn.zjc.designmode.strategy.ModelService;
 import cn.zjc.server.util.RedisService;
 import cn.zjc.server.util.RedissonService;
 import cn.zjc.util.JsonResult;
@@ -41,8 +40,6 @@ public class DemoTestController {
     private UserService userService;
     @Resource
     private RedissonService redissonService;
-    @Resource
-    private Map<Integer, ModelService> modelMap;
 
 
     @ResponseBody
@@ -112,11 +109,4 @@ public class DemoTestController {
         }
     }
 
-    @RequestMapping(value = "/type")
-    @ResponseBody
-    public void test1() {
-        ModelService modelService = modelMap.get(3);
-        Integer integer = modelService.queryByType();
-        System.out.println(integer);
-    }
 }
