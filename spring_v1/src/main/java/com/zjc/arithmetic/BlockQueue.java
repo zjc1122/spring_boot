@@ -62,34 +62,28 @@ public class BlockQueue {
 //        mq.put("cc");
 //        mq.put("dd");
 
-        Thread t1 = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                System.out.println("小明开始放元素了");
-                while (count > list.size()){
-                    System.out.println("小明放入ee" + count--);
-                    mq.put("小明放入ee" + count--);
-                }
+        Thread t1 = new Thread(() -> {
+            System.out.println("小明开始放元素了");
+            while (count > list.size()){
+                System.out.println("小明放入ee" + count--);
+                mq.put("小明放入ee" + count--);
+            }
 //                mq.put("ff");
 //                System.out.println(list.size());
-            }
         });
         t1.start();
 
-        Thread t2 = new Thread(new Runnable() {
-            @Override
-            public void run() {
+        Thread t2 = new Thread(() -> {
 
-                try {
-                    Thread.sleep(10000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                System.out.println("小王开始拿元素了");
-                while (list.size()>0){
-                    String take = mq.take();
-                    System.out.println("小王取出"+take);
-                }
+            try {
+                Thread.sleep(10000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            System.out.println("小王开始拿元素了");
+            while (list.size()>0){
+                String take = mq.take();
+                System.out.println("小王取出"+take);
             }
         });
         t2.start();
