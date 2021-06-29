@@ -1,9 +1,5 @@
 package com.zjc.arithmetic.二分查找;
 
-import com.google.common.collect.Lists;
-
-import java.util.ArrayList;
-import java.util.stream.Collectors;
 
 /**
  * @ClassName : NerLeft
