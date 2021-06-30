@@ -25,6 +25,7 @@ import java.lang.reflect.Method;
 @Slf4j
 public class DataSourceBeforeAdvice {
 
+
     @Pointcut("execution(* cn.zjc.mapper..*(..))||execution(* cn.zjc.server..*(..))")
     public void dataSourceMethodPointCut() {
 
